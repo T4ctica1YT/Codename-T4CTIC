@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>RetroArch Rom Hub</title>
+    <style>
+        @font-face {
+            font-family: 'NiseSegaSonic';
+            src: url('Title - Font - Thick  Smooth Pixel.ttf') format('truetype');
+        }
+
+        :root {
+            --primary-blue: #4a9eff;
+            --dark-bg: #0d1117;
+            --medium-bg: #161b22;
+            --light-bg: #21262d;
+            --text-color: #c9d1d9;
+            --border-color: #30363d;
+        }
+
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--text-color);
+        }
+        
+        h1 {
+            font-family: 'NiseSegaSonic', sans-serif;
+            color: var(--primary-blue);
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        #upload-section {
+            background: var(--medium-bg);
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            border: 1px solid var(--border-color);
+        }
+
+        #upload-section h2 {
+            font-family: 'NiseSegaSonic', sans-serif;
+            color: white;
+            margin-top: 0;
+            font-size: 20px;
+        }
+
+        #file-input {
+            display: none;
+        }
+
+        #upload-label {
+            display: block;
+            background: var(--light-bg);
+            border: 2px dashed var(--primary-blue);
+            padding: 20px;
+            text-align: center;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        
+        #upload-label:hover {
+            background: rgba(74, 158, 255, 0.1);
+        }
+        
+        #file-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .file-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            margin-bottom: 10px;
+            background: var(--medium-bg);
+            border-radius: 4px;
+            border: 1px solid var(--border-color);
+            font-family: 'NiseSegaSonic', sans-serif;
+        }
+
+        .file-info {
+            flex-grow: 1;
+        }
+
+        .file-name {
+            color: white;
+            font-size: 16px;
+        }
+        
+        .file-size {
+            color: var(--primary-blue);
+            font-size: 12px;
+            margin-left: 10px;
+        }
+
+        .file-actions button {
+            background: var(--primary-blue);
+            border: none;
+            padding: 8px 12px;
+            color: white;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.2s;
+            margin-left: 10px;
+            font-family: 'NiseSegaSonic', sans-serif;
+            font-size: 14px;
+        }
+
+        .file-actions .download-btn { background: #ff8c00; }
+        .file-actions .download-btn:hover { background: #e07b00; }
+        .file-actions .delete-btn { background: #ff4a4a; }
+        .file-actions .delete-btn:hover { background: #cc3939; }
+        .file-actions .default-btn:hover { background: #3a7edf; }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>RetroArch Rom Hub</h1>
+        
+        <div id="upload-section">
+            <h2>Upload ROMs</h2>
+            <label id="upload-label" for="file-input">
+                Click here or drag ROM files to upload and store them locally (in your browser).
+            </label>
+            <input type="file" id="file-input" multiple accept=".zip,.7z,.rar,.nes,.gb,.gba,.sfc,.smc,.z64,.n64,.iso,.cue,.ccd,.chd,.pce,.ngp,.ws,.wsc,.col,.cv,.d64,.nds,.iso,.cso,.bin">
+            <p id="upload-status" style="margin-top: 15px; color: #ff8c00; display: none;">Uploading...</p>
+        </div>
+        
+        <h2>Stored ROMs</h2>
+        <ul id="file-list">
+            <li id="empty-list-message" style="text-align: center; color: #888;">No ROMs currently stored.</li>
+        </ul>
+    </div>
+
+    <script>
+        const DB_NAME = 'RetroArchRomDB';
+        const DB_VERSION = 1;
+        const STORE_NAME = 'roms';
+        let db;
+
+        const fileInput = document.getElementById('file-input');
+        const fileList = document.getElementById('file-list');
+        const uploadStatus = document.getElementById('upload-status');
+        const emptyListMessage = document.getElementById('empty-list-message');
+
+        function openDB() {
+            return new Promise((resolve, reject) => {
+                const request = indexedDB.open(DB_NAME, DB_VERSION);
+
+                request.onupgradeneeded = (event) => {
+                    db = event.target.result;
+                    if (!db.objectStoreNames.contains(STORE_NAME)) {
+                        db.createObjectStore(STORE_NAME, { keyPath: 'name' });
+                    }
+                };
+
+                request.onsuccess = (event) => {
+                    db = event.target.result;
+                    resolve(db);
+                };
+
+                request.onerror = (event) => {
+                    console.error('IndexedDB error:', event.target.errorCode);
+                    reject(event.target.errorCode);
+                };
+            });
+        }
+
+        function formatSize(bytes) {
+            if (bytes === 0) return '0 Bytes';
+            const k = 1024;
+            const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
+            const i = Math.floor(Math.log(bytes) / Math.log(k));
+            return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+        }
+
+        function renderFileItem(file) {
+            const listItem = document.createElement('li');
+            listItem.className = 'file-item';
+            listItem.dataset.name = file.name;
+
+            listItem.innerHTML = `
+                <div class="file-info">
+                    <span class="file-name">${file.name}</span>
+                    <span class="file-size">(${formatSize(file.data.size)})</span>
+                </div>
+                <div class="file-actions">
+                    <button class="download-btn">Download</button>
+                    <button class="delete-btn">Delete</button>
+                </div>
+            `;
+
+            listItem.querySelector('.download-btn').addEventListener('click', () => downloadFile(file.name, file.data));
+            listItem.querySelector('.delete-btn').addEventListener('click', () => deleteFile(file.name));
+
+            return listItem;
+        }
+        
+        function updateEmptyMessage() {
+            emptyListMessage.style.display = fileList.children.length === 0 ? 'block' : 'none';
+        }
+
+        async function loadFiles() {
+            try {
+                await openDB();
+            } catch (e) {
+                fileList.innerHTML = `<li style="color: #ff4a4a; text-align: center;">Could not initialize local storage. ROM Hub is non-functional.</li>`;
+                return;
+            }
+            
+            fileList.innerHTML = '';
+            const transaction = db.transaction([STORE_NAME], 'readonly');
+            const objectStore = transaction.objectStore(STORE_NAME);
+            const request = objectStore.getAll();
+
+            request.onsuccess = () => {
+                request.result.forEach(file => {
+                    // Ensure it's a valid file object (Blob/File)
+                    if (file.data && typeof file.data.size === 'number') {
+                        fileList.appendChild(renderFileItem(file));
+                    }
+                });
+                updateEmptyMessage();
+            };
+            request.onerror = (e) => console.error('Error loading files:', e);
+        }
+        
+        function storeFile(file) {
+            return new Promise((resolve, reject) => {
+                const transaction = db.transaction([STORE_NAME], 'readwrite');
+                const objectStore = transaction.objectStore(STORE_NAME);
+                
+                // Store file name and the actual Blob/File object
+                const fileRecord = { name: file.name, data: file, timestamp: Date.now() };
+                const request = objectStore.put(fileRecord); 
+
+                request.onsuccess = () => {
+                    resolve();
+                };
+                request.onerror = (e) => {
+                    console.error('Error storing file:', e);
+                    reject(e);
+                };
+            });
+        }
+        
+        function deleteFile(name) {
+            return new Promise((resolve, reject) => {
+                const transaction = db.transaction([STORE_NAME], 'readwrite');
+                const objectStore = transaction.objectStore(STORE_NAME);
+                const request = objectStore.delete(name);
+
+                request.onsuccess = () => {
+                    // Remove from UI
+                    const item = document.querySelector(`.file-item[data-name="${name}"]`);
+                    if (item) item.remove();
+                    updateEmptyMessage();
+                    resolve();
+                };
+                request.onerror = (e) => {
+                    console.error('Error deleting file:', e);
+                    reject(e);
+                };
+            });
+        }
+        
+        function downloadFile(name, blob) {
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = name;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+        
+        // Handle file input changes
+        fileInput.addEventListener('change', async (event) => {
+            const files = Array.from(event.target.files);
+            if (files.length === 0) return;
+            
+            uploadStatus.textContent = `Uploading ${files.length} file(s)...`;
+            uploadStatus.style.display = 'block';
+
+            let successfulUploads = 0;
+            try {
+                for (const file of files) {
+                    await storeFile(file);
+                    successfulUploads++;
+                }
+                await loadFiles(); // Reload list to show new files
+                uploadStatus.textContent = `Successfully uploaded ${successfulUploads} file(s).`;
+            } catch (e) {
+                uploadStatus.textContent = `Upload failed for some files. Check console.`;
+            } finally {
+                // Clear input so selecting the same file triggers change again
+                event.target.value = '';
+                setTimeout(() => { uploadStatus.style.display = 'none'; }, 3000);
+            }
+        });
+
+        // Initialize
+        loadFiles(); 
+        
+        // Handle Drag and Drop
+        const uploadLabel = document.getElementById('upload-label');
+
+        ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+            uploadLabel.addEventListener(eventName, preventDefaults, false);
+        });
+        
+        // Also prevent default for window/body to stop accidental navigation/file opening
+        ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+            document.body.addEventListener(eventName, preventDefaults, false);
+        });
+
+        ['dragenter', 'dragover'].forEach(eventName => {
+            uploadLabel.addEventListener(eventName, () => uploadLabel.style.borderColor = 'white', false);
+        });
+
+        ['dragleave', 'drop'].forEach(eventName => {
+            uploadLabel.addEventListener(eventName, () => uploadLabel.style.borderColor = 'var(--primary-blue)', false);
+        });
+
+        uploadLabel.addEventListener('drop', handleDrop, false);
+
+        function preventDefaults(e) {
+            e.preventDefault();
+            e.stopPropagation();
+        }
+
+        function handleDrop(e) {
+            const dt = e.dataTransfer;
+            const files = dt.files;
+            
+            // Create a DataTransfer object compatible with input.files
+            const dataTransfer = new DataTransfer();
+            Array.from(files).forEach(file => dataTransfer.items.add(file));
+
+            fileInput.files = dataTransfer.files; // Assign files to input element
+            fileInput.dispatchEvent(new Event('change')); // Trigger change event
+        }
+
+    </script>
+</body>
+</html>
