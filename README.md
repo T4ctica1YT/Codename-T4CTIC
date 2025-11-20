@@ -5,7 +5,7 @@ Website PT 1: https://websim.com/@T4ctica1/tactic
 
 Website PT 2: https://websim.com/@T4ctica1/2nd
 
-Local File Donloader: https://drive.google.com/drive/folders/1gueTxTt1YjLbbwZ3YyQcZJkq9tbC5nse?usp=sharing
+Local File Donloader: Go to the Releases Tab or go to https://drive.google.com/drive/folders/1gueTxTt1YjLbbwZ3YyQcZJkq9tbC5nse?usp=sharing
 
 Thanks for using Codename T4ctic!
 
