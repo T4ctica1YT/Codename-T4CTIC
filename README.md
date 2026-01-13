@@ -1,7 +1,7 @@
 # Codename-T4CTIC
 Game Website using HTML Web ports, Web games, And soon possibly social media made by Other People, and then packaged into my website for In School Use. This github hosts the assets for Part 1 and 2 that the local Downloader and Player uses.
 
-Website PT 1: https://websim.com/@T4ctica1/tactic
+Website PT 1 (Deleted by Websim): https://websim.com/@T4ctica1/tactic 
 
 Website PT 2: https://websim.com/@T4ctica1/2nd
 
