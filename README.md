@@ -12,11 +12,11 @@ Thanks for using Codename T4ctic!
 To play the games after downloading just open the HTML file by going to the Files app on the Task Bar or the Chrome/Edge Downloads Page, find the Game and double click the HTML file, this should open your game in either Edge or Chrome. 
 
 
-Games from https://gn-math.github.io , Truffled.lol , and various other places
+Games from https://gn-math.github.io , https://Truffled.lol , and various other places
 
 Cover images and BGs from https://steamgriddb.com
 
-Sounds from Game Files, https://sounds.spriters-resource.com/ , and Youtube.com
+Sounds from Game Files, https://sounds.spriters-resource.com/ , and https://Youtube.com
 
 
  
