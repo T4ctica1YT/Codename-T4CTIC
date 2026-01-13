@@ -3600,7 +3600,7 @@
     }
 
     const room = new WebsimSocket();
-    const CDN_BASE = 'https://cdn.jsdelivr.net/gh/T4ctica1YT/Codename-T4CTIC@main/';
+    const CDN_BASE = 'https://cdn.jsdelivr.net/gh/T4ctica1YT/Codename-T4CTIC@latest/';
     const creatorUsername = 'T4ctica1';
     let currentUser = null; 
     window.websim.getCurrentUser().then(user => { currentUser = user; });
@@ -5401,7 +5401,10 @@
         }
 
         try {
-            const response = await fetch(CDN_BASE + gamePath, { credentials: 'omit' });
+            const response = await fetch(CDN_BASE + gamePath + (gamePath.includes('?') ? `&_=${Date.now()}` : `?_=${Date.now()}`), {
+                credentials: 'omit',
+                cache: 'no-store'
+            });
             if (!response.ok) {
                 throw new Error(`Failed to fetch game HTML: ${response.status} ${response.statusText}`);
             }
@@ -5409,6 +5412,8 @@
 
             // Rewrite relative src/href URLs to absolute CDN URLs so assets still load correctly
             const cdn = CDN_BASE;
+            // Cache‑buster for all in‑game asset URLs to force the latest version from jsDelivr
+            const assetBuster = Date.now();
 
             // src="..." (skip data:, http, https, blob)
             html = html.replace(
@@ -5416,8 +5421,9 @@
                 (match, prefix, url) => {
                     const trimmed = url.trim();
                     if (!trimmed) return match;
-                    // If it already looks absolute (starts with / or ./ or ../), just prefix CDN
-                    return `${prefix}${cdn}${trimmed.replace(/^(\.\/|\/)/, '')}"`;
+                    const base = `${cdn}${trimmed.replace(/^(\.\/|\/)/, '')}`;
+                    const withBuster = base + (base.includes('?') ? '&' : '?') + '_ts=' + assetBuster;
+                    return `${prefix}${withBuster}"`;
                 }
             );
 
@@ -5427,7 +5433,9 @@
                 (match, prefix, url) => {
                     const trimmed = url.trim();
                     if (!trimmed) return match;
-                    return `${prefix}${cdn}${trimmed.replace(/^(\.\/|\/)/, '')}"`;
+                    const base = `${cdn}${trimmed.replace(/^(\.\/|\/)/, '')}`;
+                    const withBuster = base + (base.includes('?') ? '&' : '?') + '_ts=' + assetBuster;
+                    return `${prefix}${withBuster}"`;
                 }
             );
 
@@ -5686,7 +5694,7 @@
         
         let overviewHTML = '';
         if (info.warning) {
-            overviewHTML += `<div class="popup-warning"><span class="warning-icon"⚠️</span>${info.warning}</div>`;
+            overviewHTML += `<div class="popup-warning"><span class="warning-icon">⚠️</span>${info.warning}</div>`;
         }
         overviewHTML += `<p class="popup-description">${info.description || 'No description available.'}</p>`;
         document.getElementById('tab-overview').innerHTML = overviewHTML;
@@ -5757,15 +5765,70 @@
         
         // --- NEW BLANK TAB LOGIC ---
         if (blankTabToggle.checked) {
-            // Open game in about:blank tab and redirect
+            // Open game in a new tab using the same rewritten, cache-busted HTML we use for the iframe
             const win = window.open('about:blank', '_blank');
-            if (win) {
-                 // Perform redirect immediately.
-                 win.location.href = game;
-                 return; // Prevent iframe usage
+            if (!win) {
+                alert("Failed to open new tab. Please allow popups for this site.");
             } else {
-                 alert("Failed to open new tab. Please allow popups for this site.");
+                (async () => {
+                    try {
+                        const cacheBuster = Date.now();
+                        const response = await fetch(
+                            CDN_BASE + game + (game.includes('?') ? `&_=${cacheBuster}` : `?_=${cacheBuster}`),
+                            { credentials: 'omit', cache: 'no-store' }
+                        );
+                        if (!response.ok) {
+                            throw new Error(`Failed to fetch game HTML: ${response.status} ${response.statusText}`);
+                        }
+                        let html = await response.text();
+
+                        // Rewrite relative src/href URLs to absolute CDN URLs so assets still load correctly
+                        const cdn = CDN_BASE;
+                        // Cache‑buster for all in‑game asset URLs in the new tab as well
+                        const assetBuster = Date.now();
+
+                        // src="..." (skip data:, http, https, blob)
+                        html = html.replace(
+                            /(\s(?:src|data-src)\s*=\s*["'])(?!https?:|data:|blob:|\/\/)([^"']+)["']/gi,
+                            (match, prefix, url) => {
+                                const trimmed = url.trim();
+                                if (!trimmed) return match;
+                                const base = `${cdn}${trimmed.replace(/^(\.\/|\/)/, '')}`;
+                                const withBuster = base + (base.includes('?') ? '&' : '?') + '_ts=' + assetBuster;
+                                return `${prefix}${withBuster}"`;
+                            }
+                        );
+
+                        // href="..." (skip http, https, mailto, tel, blob, #, javascript:)
+                        html = html.replace(
+                            /(\s(?:href)\s*=\s*["'])(?!https?:|mailto:|tel:|blob:|javascript:|#|\/\/)([^"']+)["']/gi,
+                            (match, prefix, url) => {
+                                const trimmed = url.trim();
+                                if (!trimmed) return match;
+                                const base = `${cdn}${trimmed.replace(/^(\.\/|\/)/, '')}`;
+                                const withBuster = base + (base.includes('?') ? '&' : '?') + '_ts=' + assetBuster;
+                                return `${prefix}${withBuster}"`;
+                            }
+                        );
+
+                        const blob = new Blob([html], { type: 'text/html' });
+                        const objectUrl = URL.createObjectURL(blob);
+                        // Navigate the new tab to the Blob URL so the game runs exactly as in the embedded iframe
+                        win.location.href = objectUrl;
+                        // Best-effort: revoke after some time to avoid leaking, the tab will usually have it cached
+                        setTimeout(() => {
+                            try { URL.revokeObjectURL(objectUrl); } catch (_) {}
+                        }, 60_000);
+                    } catch (err) {
+                        console.error('Error loading game into new tab:', err);
+                        alert('Failed to load game HTML from GitHub in the new tab. Check the console for details.');
+                        // Fallback: direct CDN navigation (may show raw HTML if the CDN serves it as text)
+                        const cacheBuster = Date.now();
+                        win.location.href = CDN_BASE + game + (game.includes('?') ? `&_=${cacheBuster}` : `?_=${cacheBuster}`);
+                    }
+                })();
             }
+            return; // Prevent iframe usage
         }
         // --- END NEW BLANK TAB LOGIC ---
 
@@ -5841,7 +5904,9 @@
     async function downloadGameHtml(gameUrl) {
         try {
             // Note: Since the HTML files are project assets, they are available relative to index.html
-            const response = await fetch(CDN_BASE + gameUrl); 
+            const response = await fetch(CDN_BASE + gameUrl + (gameUrl.includes('?') ? `&_=${Date.now()}` : `?_=${Date.now()}`), {
+                cache: 'no-store'
+            }); 
             if (!response.ok) throw new Error(`Failed to fetch ${gameUrl}: ${response.statusText}`);
             
             const blob = await response.blob();
