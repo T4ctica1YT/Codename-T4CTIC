@@ -925,6 +925,9 @@
       transform: translateX(100%);
       opacity: 0;
       transition: transform 0.25s ease-out, opacity 0.2s ease-out;
+      overflow-y: auto; /* allow scrolling when content is taller than viewport */
+      -webkit-overflow-scrolling: touch; /* smooth scrolling on mobile */
+      padding-right: 18px; /* ensure space for scrollbar on some browsers */
     }
 
     .settings-menu.visible {
@@ -2819,7 +2822,7 @@
     >
     <div class="header-buttons">
       <button class="nav-tab" id="proxy-hub-btn">Proxy Hub</button>
-      <button class="nav-tab" id="chat-btn">Chat</button>
+      <button class="nav-tab" id="chat-btn" style="display: none;">Chat</button>
       <button class="nav-tab" id="github-repo-btn">Github Repo &amp; Drive</button>
       <button class="nav-tab" id="local-player-info-btn">What is the Local Player?</button>
       <img src="https://cdn.jsdelivr.net/gh/T4ctica1YT/Codename-T4CTIC@main/settings_cog.png" alt="Settings" class="settings-button">
@@ -3078,6 +3081,26 @@
         </button>
       </div>
     </div>
+
+    <!-- Force full HTML/PNG sync from GitHub/jsDelivr -->
+    <div class="settings-option" style="margin-top: 10px; border-top: 1px solid rgba(148,163,184,0.2); padding-top: 8px;">
+      <div class="settings-label-group">
+        <span>Force Full Sync</span>
+        <div class="info-icon">
+          ⓘ
+          <span class="tooltip-text">
+            Reloads all .html and .png files from the GitHub repo
+            (https://github.com/T4ctica1YT/Codename-T4CTIC) via jsDelivr to
+            ensure you have the latest versions cached locally.
+          </span>
+        </div>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:4px; align-items:flex-end; width:170px;">
+        <button id="forceSyncBtn" class="close-button" style="width:100%; padding:7px 10px; font-size:11px;">
+          Force full sync
+        </button>
+      </div>
+    </div>
   </div>
 
   <main id="game-container" class="app-hidden">
@@ -3184,7 +3207,7 @@
           Websim deleted the Codename: T4CTIC website, so I created the Local Player to allow everyone to continue playing the games they want to play (even if Websim gets banned).
           <br>
           <br>
-          When an update happens, the Local Player will update manually through GitHub integration.
+          When an update happens, the Local Player will update automatically through GitHub integration.
         <br>
           <br>
           If any bugs are found, please report them to the Issues tab on the GitHub repo.
@@ -3225,18 +3248,15 @@
     </div>
     <div class="modal-content rom-hub-container">
         <div id="upload-section">
-            <h2>Upload ROMs or Share Links</h2>
-            <label id="upload-label" for="file-input">
-                Click here or drag ROM files to upload and store them locally (in your browser).
-            </label>
-            <input type="file" id="file-input" multiple accept=".zip,.7z,.rar,.nes,.gb,.gba,.gbc,.sfc,.smc,.z64,.n64,.v64,.iso,.cue,.ccd,.chd,.pce,.ngp,.ws,.wsc,.col,.cv,.d64,.nds,.cso,.bin,.wbfs,.wad,.ciso">
-            <p id="upload-status" style="margin-top: 15px; color: #ff8c00; display: none;">Uploading...</p>
-            
-            <div style="margin-top: 20px; border-top: 1px solid var(--border-color); padding-top: 20px;">
-                <h3 style="color: white; margin-top: 0; font-family: 'NiseSegaSonic', sans-serif; font-size: 18px;">Share External Link</h3>
-                <input type="url" id="external-link-input" class="dropdown-select" placeholder="Paste direct link to ROM file (e.g., Mediafire, Mega, Drive)" style="width: 100%; margin-bottom: 10px;">
-                <button id="submit-link-btn" class="submit-btn" style="width: 100%; margin-top: 0;">Share Link</button>
-            </div>
+            <h2>ROMs from GitHub</h2>
+            <p style="margin: 0; font-size: 13px; color: var(--text-muted); line-height: 1.5;">
+                This ROM Hub is read-only and lists files directly from the
+                <code>Roms</code> folder in the
+                <a href="https://github.com/T4ctica1YT/Codename-T4CTIC/tree/main/Roms" target="_blank" rel="noopener noreferrer" style="color:#93c5fd; text-decoration:none;">
+                    Codename-T4CTIC GitHub repository
+                </a>.
+                You can download these ROMs and load them into RetroArch or any compatible emulator.
+            </p>
         </div>
         
         <div id="stored-roms-header">
@@ -3259,17 +3279,13 @@
         <button class="close-modal-btn" onclick="closeProxyHub()">&times;</button>
     </div>
     <div class="modal-content proxy-hub-container">
-        <div id="proxy-submission-section">
-            <h3 style="margin-bottom: 10px;">Submit a Working Proxy Link</h3>
-            <input type="url" id="proxy-url-input" class="dropdown-select" placeholder="Paste full Proxy URL (e.g., https://example.com)" style="width: 100%; margin-bottom: 10px;">
-            <input type="text" id="proxy-name-input" class="dropdown-select" placeholder="Display Name/Description (e.g., Cool Proxy Site)" style="width: 100%; margin-bottom: 10px;">
-            <button id="submit-proxy-btn" class="submit-btn" style="width: 100%; margin-top: 0;">Submit Proxy</button>
-        </div>
-        
-        <h2 style="font-size: 18px;">Shared Proxies</h2>
-        <ul id="proxy-list">
-            <li id="empty-proxy-message" style="text-align: center; color: #888; font-family: Arial, sans-serif;">No proxies submitted yet.</li>
-        </ul>
+        <h2 style="font-size: 18px; margin-top: 0;">Available Proxies</h2>
+        <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 10px;">
+          These links are loaded from <code>Proxy.txt</code> in the GitHub repo and are read-only in the Local Player.
+        </p>
+        <pre id="proxy-raw" style="background: rgba(15,23,42,0.98); border-radius: 12px; border: 1px solid rgba(55,65,81,0.9); padding: 10px; font-size: 12px; color: #e5e7eb; max-height: 260px; overflow-y: auto; white-space: pre-wrap; word-wrap: break-word; margin: 0;">
+Loading proxies...
+        </pre>
         <div class="bottom" style="text-align: right; margin-top: 20px;">
              <button class="close-button" onclick="closeProxyHub()">Close</button>
         </div>
@@ -3601,6 +3617,7 @@
 
     const room = new WebsimSocket();
     const CDN_BASE = 'https://cdn.jsdelivr.net/gh/T4ctica1YT/Codename-T4CTIC@latest/';
+    const GITHUB_BASE = 'https://github.com/T4ctica1YT/Codename-T4CTIC';
     const creatorUsername = 'T4ctica1';
     let currentUser = null; 
     window.websim.getCurrentUser().then(user => { currentUser = user; });
@@ -6224,6 +6241,8 @@
 
     // Clear asset cache control
     const clearCacheBtn = document.getElementById('clearCacheBtn');
+    // Force full sync control
+    const forceSyncBtn = document.getElementById('forceSyncBtn');
 
     // Track intro behavior & last BG music choice
     let disableIntro = false;
@@ -6455,6 +6474,29 @@
       clearCacheBtn.addEventListener('click', clearAssetCache);
     }
 
+    // Force full sync handler
+    if (forceSyncBtn) {
+      forceSyncBtn.addEventListener('click', async () => {
+        const originalText = forceSyncBtn.textContent;
+        forceSyncBtn.disabled = true;
+        forceSyncBtn.textContent = 'Syncing...';
+
+        try {
+          await forceFullSyncFromGitHub();
+          forceSyncBtn.textContent = 'Sync complete!';
+        } catch (e) {
+          console.error('Force sync failed:', e);
+          alert('Failed to sync from GitHub/jsDelivr. Check the console for details.');
+          forceSyncBtn.textContent = originalText;
+        } finally {
+          setTimeout(() => {
+            forceSyncBtn.disabled = false;
+            forceSyncBtn.textContent = originalText;
+          }, 1500);
+        }
+      });
+    }
+
     function updateDebugModeVisibility() {
         const group = document.querySelector('.in-game-debug-group');
         if (!group || !debugModeToggle) return;
@@ -6652,6 +6694,82 @@
                 clearCacheBtn.disabled = false;
                 clearCacheBtn.textContent = originalText;
             }, 1500);
+        }
+    }
+
+    // Force full HTML/PNG sync by reloading all known assets directly from the CDN,
+    // without using the jsDelivr metadata API (which now returns 403).
+    async function forceFullSyncFromGitHub() {
+        const bust = Date.now();
+        const BATCH_SIZE = 12;
+
+        // Collect relative asset paths (served via CDN_BASE)
+        const relativePaths = new Set();
+        // Core UI images
+        relativePaths.add('Logo.png');
+        relativePaths.add('settings_cog.png');
+
+        // Game HTML files (keys of gameInfo)
+        Object.keys(gameInfo).forEach((key) => {
+            if (key.toLowerCase().endsWith('.html')) {
+                relativePaths.add(key);
+            }
+        });
+
+        // Game cover images (only ones stored in repo, not external URLs)
+        Object.values(gameInfo).forEach((info) => {
+            if (info && info.cover && !info.cover.startsWith('http')) {
+                relativePaths.add(info.cover);
+            }
+        });
+
+        // Background images that live in the repo (skip "particle" and "vanta-cells")
+        const absoluteUrls = new Set();
+        if (backgroundSelect) {
+            Array.from(backgroundSelect.options).forEach((opt) => {
+                const val = opt.value;
+                if (!val || val === 'particle' || val === 'vanta-cells') return;
+                if (val.startsWith('http://') || val.startsWith('https://')) {
+                    absoluteUrls.add(val);
+                } else {
+                    relativePaths.add(val);
+                }
+            });
+        }
+
+        const urlsToFetch = [];
+
+        // Build CDN URLs for relative paths
+        relativePaths.forEach((rel) => {
+            const clean = rel.replace(/^\.?\//, '');
+            const cdnUrl = CDN_BASE + clean;
+            const urlWithBust = cdnUrl + (cdnUrl.includes('?') ? '&' : '?') + '_sync=' + bust;
+            urlsToFetch.push(urlWithBust);
+        });
+
+        // Add external absolute URLs (e.g. some backgrounds) as-is with cache-buster
+        absoluteUrls.forEach((abs) => {
+            const urlWithBust = abs + (abs.includes('?') ? '&' : '?') + '_sync=' + bust;
+            urlsToFetch.push(urlWithBust);
+        });
+
+        if (!urlsToFetch.length) return;
+
+        // Fetch in small parallel batches so we don't hammer the CDN
+        for (let i = 0; i < urlsToFetch.length; i += BATCH_SIZE) {
+            const batch = urlsToFetch.slice(i, i + BATCH_SIZE);
+            await Promise.all(
+                batch.map(async (url) => {
+                    try {
+                        await fetch(url, {
+                            cache: 'reload',
+                            mode: 'cors'
+                        });
+                    } catch (e) {
+                        console.warn('Failed to sync asset:', url, e);
+                    }
+                })
+            );
         }
     }
 
@@ -6917,17 +7035,14 @@
     });
 
 
-    // --- ROM Hub Logic (Websim Persistent Records) ---
-    const ROM_COLLECTION_TYPE = 'rom_v1';
+    // --- ROM Hub Logic (GitHub Roms folder, read-only) ---
+    // Use jsDelivr metadata API instead of the GitHub REST API to list ROM files
+    const ROMS_JSDELIVR_API = 'https://data.jsdelivr.com/v1/package/gh/T4ctica1YT/Codename-T4CTIC@latest';
     
     // Elements inside the ROM Hub modal
-    const fileInput = document.getElementById('file-input');
     const fileList = document.getElementById('file-list');
-    const uploadStatus = document.getElementById('upload-status');
     const emptyListMessage = document.getElementById('empty-list-message');
-    const romSearchInput = document.getElementById('rom-search-input'); // New element
-    const submitLinkBtn = document.getElementById('submit-link-btn'); // New element
-    const externalLinkInput = document.getElementById('external-link-input'); // New element
+    const romSearchInput = document.getElementById('rom-search-input');
 
     function formatSize(bytes) {
         if (bytes === 0) return '0 Bytes';
@@ -6936,64 +7051,41 @@
         const i = Math.floor(Math.log(bytes) / Math.log(k));
         return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
     }
-    
+
     function getSystemFromFilename(filename) {
         const parts = filename.split('.');
-        // Handle files without extension gracefully, return Unidentified right away
         if (parts.length < 2) return 'Unidentified';
-        
-        const ext = parts.pop().toLowerCase();
-        // Name excluding the last extension for keyword searching
-        const nameWithoutExt = parts.join('.').toLowerCase(); 
 
-        // 1. Extension Check (Definitive Systems) - If found, return immediately
-        // N64
+        const ext = parts.pop().toLowerCase();
+        const nameWithoutExt = parts.join('.').toLowerCase();
+
         if (['z64', 'n64', 'v64'].includes(ext)) return 'N64';
-        
-        // SNES
         if (['sfc', 'smc'].includes(ext)) return 'SNES';
-        
-        // NES
         if (ext === 'nes') return 'NES';
-        
-        // Game Boy Family
         if (ext === 'gba') return 'Game Boy Advance';
         if (ext === 'gbc') return 'Game Boy Color';
         if (ext === 'gb') return 'Game Boy';
         if (ext === 'nds') return 'Nintendo DS';
-
-        // Wii / GameCube
         if (ext === 'wbfs') return 'Wii';
         if (ext === 'wad') return 'WiiWare';
         if (ext === 'ciso') return 'GameCube / Wii Disk';
-
-        // Sega
         if (['md', 'gen'].includes(ext)) return 'Sega Genesis/MD';
-        
-        // Other specific systems
         if (ext === 'pce') return 'PC Engine';
         if (['ngp', 'ngc'].includes(ext)) return 'Neo Geo Pocket (Color)';
         if (['ws', 'wsc'].includes(ext)) return 'WonderSwan (Color)';
         if (['col', 'cv'].includes(ext)) return 'ColecoVision';
         if (ext === 'd64') return 'Commodore 64';
 
-        // 2. Define Ambiguous Containers
         const isArchive = ['zip', '7z', 'rar'].includes(ext);
         const isGenericDisk = ['iso', 'cue', 'ccd', 'chd', 'bin', 'cso'].includes(ext);
 
         if (isArchive || isGenericDisk) {
-            // 3. Keyword Lookup
-            
-            // Map keywords to system names. Keywords are checked against the filename (without extension).
             const keywordMap = [
-                // Disk Systems (often packed in archives or are generic disk images)
                 { keywords: ['psx', 'ps1', 'playstation', 'ps one'], system: 'PlayStation (Disk System)' },
                 { keywords: ['psp', 'playstation portable'], system: 'PSP (Disk System)' },
                 { keywords: ['saturn'], system: 'Sega Saturn (Disk System)' },
                 { keywords: ['dreamcast', 'dc'], system: 'Sega Dreamcast (Disk System)' },
                 { keywords: ['sega cd'], system: 'Sega CD (Disk System)' },
-                
-                // Other systems (useful if they are packed in archives)
                 { keywords: ['n64', 'nintendo 64'], system: 'N64' },
                 { keywords: ['snes', 'super nintendo'], system: 'SNES' },
                 { keywords: ['nes', 'nintendo entertainment system'], system: 'NES' },
@@ -7008,228 +7100,86 @@
 
             for (const entry of keywordMap) {
                 const found = entry.keywords.some(keyword => nameWithoutExt.includes(keyword.toLowerCase()));
-                if (found) {
-                    return entry.system;
-                }
+                if (found) return entry.system;
             }
 
-            // 4. Default Fallback for Ambiguous Containers
-            if (isArchive) {
-                return 'Archive';
-            }
-            if (isGenericDisk) {
-                return 'Disk System';
-            }
+            if (isArchive) return 'Archive';
+            if (isGenericDisk) return 'Disk System';
         }
-        
-        // 5. Unidentified (for truly unknown extensions/files that failed keyword lookup)
+
         return 'Unidentified';
     }
-    
-    // New function to determine the system name shown in UI
+
     function getDisplaySystemName(fileRecord) {
-        if (fileRecord.manualSystemName) {
-            return fileRecord.manualSystemName;
-        }
         return getSystemFromFilename(fileRecord.name);
-    }
-    
-    async function handlePinToggle(fileRecord) {
-        if (!currentUser || currentUser.username !== creatorUsername) {
-            alert("Only the project creator can pin/unpin ROMs.");
-            return;
-        }
-
-        const newPinStatus = !fileRecord.isPinned;
-        
-        try {
-            await room.collection(ROM_COLLECTION_TYPE).update(fileRecord.id, {
-                isPinned: newPinStatus
-            });
-            console.log(`Toggled pin status for ROM ID ${fileRecord.id}: ${newPinStatus}`);
-        } catch (e) {
-            alert("Failed to change pin status. Ensure you are the project creator.");
-            console.error('Failed to update ROM record (pinning):', e);
-        }
-    }
-    
-    async function handleEditRom(fileRecord) {
-        if (!currentUser || (currentUser.username !== creatorUsername && currentUser.username !== fileRecord.username)) {
-            alert("You do not have permission to edit this entry.");
-            return;
-        }
-
-        const isLink = fileRecord.isLink;
-        
-        // 1. Get new name
-        const newName = prompt(`Edit Name:`, fileRecord.name);
-        if (newName === null) return; // Cancelled
-        const newNameTrimmed = newName.trim();
-        if (newNameTrimmed === '') {
-             alert('Name cannot be empty.');
-             return;
-        }
-
-        let updateData = {
-            name: newNameTrimmed,
-        };
-        
-        // 2. Get new system name (manual override)
-        const currentSystemName = getDisplaySystemName(fileRecord);
-        const newSystem = prompt(`Edit System Identification (Current: ${currentSystemName}). Leave blank or enter "auto" to use filename detection:`, fileRecord.manualSystemName || '');
-        
-        if (newSystem !== null) {
-            if (newSystem.trim() === '' || newSystem.toLowerCase() === 'auto') {
-                 updateData.manualSystemName = null;
-            } else {
-                 updateData.manualSystemName = newSystem.trim();
-            }
-        }
-
-        // 3. Edit Link/URL (if applicable)
-        if (isLink) {
-             const newUrl = prompt(`Edit External Link URL:`, fileRecord.url);
-             if (newUrl === null) return; // Cancelled mid-edit
-             const newUrlTrimmed = newUrl.trim();
-             if (!newUrlTrimmed.startsWith('http')) {
-                 alert('Link URL must be a valid URL starting with http/https.');
-                 return;
-             }
-             updateData.url = newUrlTrimmed;
-        } 
-        
-        // Note: We skip editing uploaded file data (URL/size) as replacement requires re-upload logic which is complex.
-
-        try {
-            await room.collection(ROM_COLLECTION_TYPE).update(fileRecord.id, updateData);
-            console.log(`Updated ROM ID ${fileRecord.id}`, updateData);
-        } catch (e) {
-             alert(`Failed to update ROM. Only the original uploader (${fileRecord.username}) or the project creator can modify records.`);
-             console.error('Failed to update ROM record:', e);
-        }
-    }
-
-    async function identifySystem(fileRecord) {
-        if (!currentUser || (currentUser.username !== creatorUsername && currentUser.username !== fileRecord.username)) {
-            alert("You do not have permission to change this entry.");
-            return;
-        }
-        
-        const newSystem = prompt(`Enter the correct system name for ${fileRecord.name}:`, fileRecord.manualSystemName || '');
-        
-        if (newSystem && newSystem.trim()) {
-            const systemName = newSystem.trim();
-            try {
-                const updateData = {};
-                if (newSystem.trim() === '' || newSystem.toLowerCase() === 'auto') {
-                     updateData.manualSystemName = null;
-                } else {
-                     updateData.manualSystemName = systemName;
-                }
-                
-                // Update the record with the manual system name
-                await room.collection(ROM_COLLECTION_TYPE).update(fileRecord.id, updateData);
-                console.log(`Updated ROM ID ${fileRecord.id} with system: ${systemName}`);
-                // UI update will happen automatically via subscription
-            } catch (e) {
-                alert("Failed to update system name. Permissions denied by the system.");
-                console.error('Failed to update ROM record:', e);
-            }
-        }
     }
 
     function updateEmptyMessage() {
-        if (emptyListMessage) {
-            // Check only valid file items, excluding the empty message placeholder itself
-            const fileItemCount = fileList.querySelectorAll('.file-item').length;
-            emptyListMessage.style.display = fileItemCount === 0 ? 'block' : 'none';
-        }
+        if (!emptyListMessage || !fileList) return;
+        const fileItemCount = fileList.querySelectorAll('.file-item').length;
+        emptyListMessage.style.display = fileItemCount === 0 ? 'block' : 'none';
     }
 
     function renderFileItem(fileRecord) {
-        // fileRecord includes username implicitly from Websim
-        const isCreator = currentUser && currentUser.username === creatorUsername; // New check for creator
-        const isOwner = currentUser && currentUser.username === fileRecord.username;
         const systemName = getDisplaySystemName(fileRecord);
-        const isLink = fileRecord.isLink === true; // Check for the new field
-        const isPinned = fileRecord.isPinned === true;
-
         const listItem = document.createElement('li');
         listItem.className = 'file-item';
-        if (isPinned) {
-            listItem.classList.add('pinned');
-        }
         listItem.dataset.id = fileRecord.id;
 
         const fileSize = fileRecord.size || 0;
-        // Display size differently if it's an external link
-        const sizeDisplay = isLink ? '(External Link)' : `(${formatSize(fileSize)})`;
-
-        // Define deletion/editing rights based on creator status
-        // Creator can delete/edit any file
-        const canDelete = isOwner || isCreator; 
-        const canEdit = isOwner || isCreator;
-        
-        // Determine system identification button visibility
-        const showIdentifyBtn = canEdit && systemName === 'Unidentified' && !fileRecord.manualSystemName;
-        
-        // Decide whether to show the generic 'Edit' button 
-        // Show generic edit if not showing identify OR if the system name has been manually set (meaning 'identify' is obsolete)
-        const showEditBtn = canEdit && (!showIdentifyBtn || fileRecord.manualSystemName);
+        const sizeDisplay = `(${formatSize(fileSize)})`;
 
         listItem.innerHTML = `
             <div class="file-info">
                 <span class="file-name">
-                    ${isPinned ? '<span class="pinned-label" style="margin-right: 5px;">[PINNED]</span>' : ''}
                     ${fileRecord.name} 
                     <span style="font-size: 10px; color: #7af;">(${systemName})</span>
-                    <span style="font-size: 10px; color: #888;">(Uploaded by ${fileRecord.username})</span>
                 </span>
                 <span class="file-size">${sizeDisplay}</span>
             </div>
             <div class="file-actions">
-                ${isCreator ? `<button class="default-btn pin-toggle-btn">${isPinned ? 'Unpin' : 'Pin'}</button>` : ''}
-                ${showEditBtn ? '<button class="default-btn edit-btn">Edit</button>' : ''}
-                ${showIdentifyBtn ? '<button class="default-btn identify-btn">Identify System</button>' : ''}
-                <button class="download-btn">${isLink ? 'Open Link' : 'Download'}</button>
-                ${canDelete ? '<button class="delete-btn">Delete</button>' : ''}
+                <button class="download-btn">Download</button>
             </div>
         `;
 
-        // Download uses the stored URL
-        listItem.querySelector('.download-btn').addEventListener('click', () => handleDownloadOrLink(fileRecord));
-        
-        if (canDelete && listItem.querySelector('.delete-btn')) {
-            listItem.querySelector('.delete-btn').addEventListener('click', () => deleteFile(fileRecord.id, fileRecord.username));
-        }
-
-        if (isCreator && listItem.querySelector('.pin-toggle-btn')) {
-            listItem.querySelector('.pin-toggle-btn').addEventListener('click', () => handlePinToggle(fileRecord));
-        }
-        
-        if (showEditBtn && listItem.querySelector('.edit-btn')) {
-            listItem.querySelector('.edit-btn').addEventListener('click', () => handleEditRom(fileRecord));
-        }
-
-        if (showIdentifyBtn && listItem.querySelector('.identify-btn')) {
-            listItem.querySelector('.identify-btn').addEventListener('click', () => identifySystem(fileRecord));
-        }
+        listItem.querySelector('.download-btn').addEventListener('click', async () => {
+            try {
+                const response = await fetch(fileRecord.url);
+                if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+                const blob = await response.blob();
+                const localUrl = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = localUrl;
+                a.download = fileRecord.name;
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                setTimeout(() => URL.revokeObjectURL(localUrl), 1000);
+            } catch (error) {
+                console.error('Failed to download ROM:', error);
+                alert(`Failed to download ${fileRecord.name}. Check console for details.`);
+            }
+        });
 
         return listItem;
     }
-    
-    // New variables for subscription management and data storage
-    let currentRoms = []; 
-    let unsubscribeRoms = null;
+
+    let currentRoms = [];
+    let unsubscribeRoms = null; // kept for compatibility elsewhere
+    let unsubscribeProxies = null; // unchanged proxy behavior
+
+    function setupProxySubscription() {
+        // Intentionally left blank (Proxy Hub uses static Proxy.txt)
+    }
 
     function renderRoms(romsToRender) {
+        if (!fileList) return;
         fileList.innerHTML = '';
-        
+
         if (emptyListMessage) {
-             fileList.appendChild(emptyListMessage);
+            fileList.appendChild(emptyListMessage);
         }
 
-        // Display ROMs
         romsToRender.forEach(rom => {
             if (rom.url && rom.name) {
                 fileList.appendChild(renderFileItem(rom));
@@ -7237,717 +7187,111 @@
         });
         updateEmptyMessage();
     }
-    
+
     function filterAndRenderRoms() {
-        if (!currentRoms.length && romSearchInput.value.trim() === '') {
-            // Let subscription handle initial empty state
-        }
+        const searchTerm = (romSearchInput?.value || '').toLowerCase().trim();
 
-        const searchTerm = romSearchInput.value.toLowerCase().trim();
-        
         let filteredRoms;
-
-        if (searchTerm === '') {
+        if (!searchTerm) {
             filteredRoms = currentRoms;
         } else {
             filteredRoms = currentRoms.filter(rom => {
                 const systemName = getDisplaySystemName(rom).toLowerCase();
                 const romName = rom.name.toLowerCase();
-                const username = rom.username.toLowerCase();
-
-                // Check name, system, or uploader
-                return romName.includes(searchTerm) || systemName.includes(searchTerm) || username.includes(searchTerm);
+                return romName.includes(searchTerm) || systemName.includes(searchTerm);
             });
         }
-        
-        // --- PINNING SORT LOGIC ---
-        // Sort: Pinned first, then by creation date (which is the default Websim reverse chronological order)
-        filteredRoms.sort((a, b) => {
-             // Treat undefined/null as false (0)
-             const aPinned = a.isPinned ? 1 : 0;
-             const bPinned = b.isPinned ? 1 : 0;
-             
-             if (bPinned !== aPinned) {
-                 return bPinned - aPinned; // Pinned true (1) comes before false (0)
-             }
-             
-             return 0; 
-        });
-
 
         renderRoms(filteredRoms);
     }
 
-    // This function subscribes to all ROM records and updates the UI automatically
-    function setupRomSubscription() {
-        // Ensure we only subscribe once
-        if (unsubscribeRoms) return;
+    async function setupRomSubscription() {
+        // Only fetch once per session
+        if (unsubscribeRoms || !fileList) return;
 
-        unsubscribeRoms = room.collection(ROM_COLLECTION_TYPE).subscribe(function (roms) {
-            // Records are returned newest to oldest. We use this order by default.
-            currentRoms = roms;
+        try {
+            // Use jsDelivr's metadata API to get a flat list of all files in the repo
+            const res = await fetch(ROMS_JSDELIVR_API + '/flat?_=' + Date.now(), { cache: 'no-store' });
+            if (!res.ok) throw new Error('Failed to load ROMs from jsDelivr: ' + res.status);
+            const data = await res.json();
+
+            // data.files is an array like: { name: "Roms/filename.ext", size: <bytes>, hash: "..." }
+            const files = Array.isArray(data.files) ? data.files : [];
+
+            currentRoms = files
+                .filter(entry => typeof entry.name === 'string' && entry.name.startsWith('Roms/'))
+                .map(entry => {
+                    const nameOnly = entry.name.replace(/^Roms\//, '');
+                    return {
+                        id: entry.hash || entry.name,
+                        name: nameOnly,
+                        // Build the download URL using the same CDN base as the rest of the app
+                        url: CDN_BASE + entry.name,
+                        size: entry.size || 0
+                    };
+                });
+
             filterAndRenderRoms();
-        });
+
+            // mark as "subscribed" so subsequent calls are no-op
+            unsubscribeRoms = () => {};
+        } catch (e) {
+            console.error('Error loading ROMs from jsDelivr:', e);
+            if (fileList) {
+                fileList.innerHTML = '<li id="empty-list-message" style="text-align: center; color: #888;">Failed to load ROMs from jsDelivr.</li>';
+            }
+        }
     }
 
-    // Add listener for search input
     if (romSearchInput) {
-        // Use input event for real-time filtering
         romSearchInput.addEventListener('input', filterAndRenderRoms);
     }
-    
-    // Add listener for link submission button
-    if (submitLinkBtn) {
-        submitLinkBtn.addEventListener('click', submitExternalLink);
-    }
 
-
-    async function uploadFileToDB(file) {
-        try {
-            // 1. Upload file to websim storage
-            const url = await websim.upload(file);
-            
-            // 2. Create record in database
-            await room.collection(ROM_COLLECTION_TYPE).create({
-                name: file.name,
-                url: url,
-                size: file.size,
-                isLink: false // Explicitly mark as uploaded file
-            });
-            return true;
-        } catch (error) {
-            console.error('Error uploading and storing file:', error);
-            alert(`Failed to upload ${file.name}. Please check the console for details.`);
-            return false;
-        }
-    }
-    
-    async function submitExternalLink() {
-        if (!externalLinkInput || !uploadStatus) return;
-
-        const url = externalLinkInput.value.trim();
-
-        if (!url) {
-            alert('Please paste a direct link URL.');
-            return;
-        }
-
-        // Basic URL validation
-        try {
-            new URL(url);
-        } catch (e) {
-            alert('Invalid URL format.');
-            return;
-        }
-
-        // 1. Determine a name for the file. Try to extract from URL or prompt.
-        let name;
-        try {
-            // Attempt to extract filename from URL path
-            const pathname = new URL(url).pathname;
-            const segments = pathname.split('/');
-            name = segments.pop() || 'external_rom.zip'; 
-            if (name.length > 50) {
-                 name = 'external_rom.zip'; // Use a default reasonable name if the path is too long
-            }
-        } catch (e) {
-            name = 'external_rom.zip';
-        }
-        
-        let romName = prompt(`Enter a display name for this ROM (including extension, e.g., Zelda Ocarina of Time.z64).`, name);
-        if (!romName || romName.trim() === '') {
-            alert("ROM name cannot be empty.");
-            return; // User cancelled or entered empty name
-        }
-        romName = romName.trim();
-
-        uploadStatus.textContent = `Sharing link: ${romName}...`;
-        uploadStatus.style.display = 'block';
-
-        try {
-            // 2. Create record in database
-            await room.collection(ROM_COLLECTION_TYPE).create({
-                name: romName,
-                url: url,
-                size: 0, // Size unknown for external links
-                isLink: true // Mark as external link
-            });
-            
-            externalLinkInput.value = ''; // Clear input
-            uploadStatus.textContent = `Successfully shared link: ${romName}`;
-
-        } catch (error) {
-            console.error('Error sharing external link:', error);
-            alert(`Failed to share link ${romName}. You might be disconnected or lack permissions.`);
-            uploadStatus.textContent = `Sharing failed.`;
-        } finally {
-            setTimeout(() => { uploadStatus.style.display = 'none'; }, 3000);
-        }
-    }
-    
-    async function deleteFile(id, uploaderUsername) {
-        if (!currentUser) {
-            alert("Cannot delete: User information unavailable.");
-            return;
-        }
-        
-        // Check if the current user is neither the uploader nor the creator (if the UI allowed this, it shouldn't, but as a fallback)
-        if (currentUser.username !== uploaderUsername && currentUser.username !== creatorUsername) {
-             alert("You do not have permission to delete this ROM.");
-             return;
-        }
-        
-        if (confirm(`Are you sure you want to delete this ROM (${id})? This cannot be undone.`)) {
-            try {
-                // Websim handles the ownership check for delete/update operations
-                await room.collection(ROM_COLLECTION_TYPE).delete(id);
-                console.log(`Attempted deletion of ROM ID: ${id}`);
-                // UI update handled by subscription
-                
-            } catch (e) {
-                // If the creator tries to delete someone else's file, this will trigger if the underlying platform forbids it.
-                alert(`Error deleting file. If you are the project creator, the platform's security policy prevents deleting files uploaded by other users. Only the original uploader (${uploaderUsername}) can perform the final deletion.`);
-                console.error('Failed to delete file:', e);
-            }
-        }
-    }
-    
-    async function startFileDownload(name, url) {
-        try {
-            // Fix for cross-domain download issue where the browser might default to .bin
-            // We fetch the blob and create a local URL to force the correct filename via a.download
-            
-            // Note: Currently websim upload URLs are often cross-origin.
-            const response = await fetch(url);
-            if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-            
-            const blob = await response.blob();
-            
-            // Create a local object URL for the blob
-            const localUrl = URL.createObjectURL(blob);
-
-            const a = document.createElement('a');
-            a.href = localUrl;
-            a.download = name; // Use the stored filename (e.g., my_rom.z64)
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-            
-            // Clean up the local URL after a short delay
-            setTimeout(() => URL.revokeObjectURL(localUrl), 1000); 
-            
-        } catch (error) {
-            console.error('Failed to download file content:', error);
-            alert(`Failed to download ${name}. Check console for details.`);
-        }
-    }
-
-    function handleDownloadOrLink(fileRecord) {
-        if (fileRecord.isLink) {
-            // External link: open in new tab
-            window.open(fileRecord.url, '_blank');
-        } else {
-            // Uploaded file: start download
-            startFileDownload(fileRecord.name, fileRecord.url);
-        }
-    }
-    
-    // Attach listeners for file input and drag/drop functionality
-    
-    if (fileInput) {
-        // File input change handler
-        fileInput.addEventListener('change', async (event) => {
-            const files = Array.from(event.target.files);
-            if (files.length === 0) return;
-            
-            uploadStatus.textContent = `Uploading ${files.length} file(s)...`;
-            uploadStatus.style.display = 'block';
-
-            let successfulUploads = 0;
-            let failedUploads = 0;
-            
-            for (const file of files) {
-                const success = await uploadFileToDB(file);
-                if (success) {
-                    successfulUploads++;
-                } else {
-                    failedUploads++;
-                }
-            }
-
-            if (failedUploads === 0) {
-                 uploadStatus.textContent = `Successfully uploaded ${successfulUploads} file(s).`;
-            } else if (successfulUploads > 0) {
-                 uploadStatus.textContent = `Uploaded ${successfulUploads} file(s). ${failedUploads} failed.`;
-            } else {
-                 uploadStatus.textContent = `Upload failed completely.`;
-            }
-             
-            event.target.value = ''; // Clear input
-            setTimeout(() => { uploadStatus.style.display = 'none'; }, 3000);
-        });
-
-        // Handle Drag and Drop setup
-        const uploadLabel = document.getElementById('upload-label');
-
-        if (uploadLabel) {
-            
-            ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
-                uploadLabel.addEventListener(eventName, preventDefaults, false);
-            });
-            
-            ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
-                document.body.addEventListener(eventName, preventDefaults, false);
-            });
-
-            ['dragenter', 'dragover'].forEach(eventName => {
-                uploadLabel.addEventListener(eventName, () => uploadLabel.style.borderColor = 'white', false);
-            });
-
-            ['dragleave', 'drop'].forEach(eventName => {
-                uploadLabel.addEventListener(eventName, () => uploadLabel.style.borderColor = 'var(--primary-blue)', false);
-            });
-
-            uploadLabel.addEventListener('drop', handleDrop, false);
-
-            function preventDefaults(e) {
-                e.preventDefault();
-                e.stopPropagation();
-            }
-
-            function handleDrop(e) {
-                const dt = e.dataTransfer;
-                const files = dt.files;
-                
-                const dataTransfer = new DataTransfer();
-                Array.from(files).forEach(file => dataTransfer.items.add(file));
-
-                fileInput.files = dataTransfer.files;
-                fileInput.dispatchEvent(new Event('change'));
-            }
-        }
-    }
-
-    // --- PROXY Hub Logic (Websim Persistent Records) ---
-    const PROXY_COLLECTION_TYPE = 'proxy_v1';
-    const VOTE_COLLECTION_TYPE = 'proxy_vote_v1';
-    
+    // --- PROXY Hub Logic (static list from GitHub Proxy.txt) ---
     const proxyHubPopup = document.getElementById('proxy-hub-popup');
-    const proxyList = document.getElementById('proxy-list');
-    const emptyProxyMessage = document.getElementById('empty-proxy-message');
-    const proxyUrlInput = document.getElementById('proxy-url-input');
-    const proxyNameInput = document.getElementById('proxy-name-input');
-    const submitProxyBtn = document.getElementById('submit-proxy-btn');
+    const proxyRaw = document.getElementById('proxy-raw');
 
-    let currentProxies = [];
-    // { proxyId: { upvotes: count, downvotes: count, userVote: 1/-1/0, userVoteId: string | null } }
-    let currentVotes = {}; 
-    let unsubscribeProxies = null;
-    let unsubscribeVotes = null;
+    let proxiesLoaded = false;
+    let proxiesLoading = false;
+
+    async function loadStaticProxies() {
+        if (proxiesLoaded || proxiesLoading) return;
+        proxiesLoading = true;
+
+        if (proxyRaw) {
+            proxyRaw.textContent = 'Loading proxies...';
+        }
+
+        try {
+            const res = await fetch(CDN_BASE + 'Proxy.txt?_=' + Date.now(), {
+                cache: 'no-store'
+            });
+            if (!res.ok) throw new Error('Failed to fetch Proxy.txt: ' + res.status);
+
+            const text = await res.text();
+            if (proxyRaw) {
+                proxyRaw.textContent = text || 'Proxy.txt is empty.';
+            }
+            proxiesLoaded = true;
+        } catch (e) {
+            console.error('Error loading Proxy.txt:', e);
+            if (proxyRaw) {
+                proxyRaw.textContent = 'Failed to load Proxy.txt. Check console for details.';
+            }
+        } finally {
+            proxiesLoading = false;
+        }
+    }
 
     function showProxyHub() {
-        if (!currentUser) {
-             window.websim.getCurrentUser().then(user => { 
-                currentUser = user; 
-                proxyHubPopup.style.display = 'block';
-                popupOverlay.style.display = 'block';
-             });
-        } else {
-            proxyHubPopup.style.display = 'block';
-            popupOverlay.style.display = 'block';
-        }
-        // UI rendering is handled by the subscription callback
+        proxyHubPopup.style.display = 'block';
+        popupOverlay.style.display = 'block';
+        loadStaticProxies();
     }
 
     function closeProxyHub() {
         smoothHide(proxyHubPopup);
         smoothHide(popupOverlay);
-    }
-    
-    if (submitProxyBtn) {
-        submitProxyBtn.addEventListener('click', submitProxyLink);
-    }
-    
-    async function submitProxyLink() {
-        const url = proxyUrlInput.value.trim();
-        const name = proxyNameInput.value.trim();
-
-        if (!url.startsWith('http') || !name) {
-            alert('Please provide a valid URL (starting with http/https) and a display name.');
-            return;
-        }
-
-        submitProxyBtn.disabled = true;
-        submitProxyBtn.textContent = 'Submitting...';
-
-        try {
-            await room.collection(PROXY_COLLECTION_TYPE).create({
-                name: name,
-                url: url,
-                moderatorStatus: 'Unsure' // Default status
-            });
-            
-            proxyUrlInput.value = '';
-            proxyNameInput.value = '';
-            alert('Proxy submitted successfully!');
-
-        } catch (error) {
-            console.error('Error submitting proxy:', error);
-            alert(`Failed to submit proxy. Ensure you are connected.`);
-        } finally {
-            submitProxyBtn.disabled = false;
-            submitProxyBtn.textContent = 'Submit Proxy';
-        }
-    }
-    
-    // --- Voting Logic ---
-    
-    function calculateVotes(votes) {
-        const results = {};
-        const currentUserId = currentUser ? currentUser.id : null;
-        
-        // Group votes by proxy ID
-        const groupedVotes = votes.reduce((acc, vote) => {
-            if (!acc[vote.proxy_id]) {
-                acc[vote.proxy_id] = { upvotes: 0, downvotes: 0, userVote: 0, userVoteId: null };
-            }
-            if (vote.vote === 1) {
-                acc[vote.proxy_id].upvotes++;
-            } else if (vote.vote === -1) {
-                acc[vote.proxy_id].downvotes++;
-            }
-            
-            // Check if this vote belongs to the current user
-            if (currentUserId && vote.user_id === currentUserId) {
-                 acc[vote.proxy_id].userVote = vote.vote;
-                 // Store the vote record ID for easy deletion/update
-                 acc[vote.proxy_id].userVoteId = vote.id;
-            }
-            return acc;
-        }, results);
-        
-        return groupedVotes;
-    }
-
-    async function handleVote(proxyId, desiredVote, existingVoteId) {
-        if (!currentUser) {
-            alert("Please connect to submit a vote.");
-            return;
-        }
-        
-        const currentVote = currentVotes[proxyId] ? currentVotes[proxyId].userVote : 0;
-        
-        try {
-            if (currentVote === desiredVote) {
-                // User clicked the same vote button again -> revoke vote
-                if (existingVoteId) {
-                    await room.collection(VOTE_COLLECTION_TYPE).delete(existingVoteId);
-                }
-            } else if (existingVoteId) {
-                // User changed their vote (e.g., upvote to downvote) -> update existing record
-                await room.collection(VOTE_COLLECTION_TYPE).update(existingVoteId, {
-                    vote: desiredVote
-                });
-            } else {
-                // New vote -> create new record
-                await room.collection(VOTE_COLLECTION_TYPE).create({
-                    proxy_id: proxyId,
-                    vote: desiredVote,
-                    user_id: currentUser.id // Store current user ID for retrieval in calculation
-                });
-            }
-        } catch (e) {
-            console.error('Failed to process vote:', e);
-            alert("Failed to submit vote. Check permissions/connection.");
-        }
-    }
-    
-    // --- Owner Moderation Logic ---
-    async function handleSetStatus(proxyId, status) {
-        if (!currentUser || currentUser.username !== creatorUsername) {
-            alert("Only the project creator can set the definitive status.");
-            return;
-        }
-        
-        try {
-            await room.collection(PROXY_COLLECTION_TYPE).update(proxyId, {
-                moderatorStatus: status
-            });
-            console.log(`Set status for proxy ${proxyId} to ${status}`);
-        } catch (e) {
-            console.error('Failed to set moderator status:', e);
-            alert("Failed to update status.");
-        }
-    }
-
-    async function handlePinToggleProxy(proxyRecord) {
-        if (!currentUser || currentUser.username !== creatorUsername) {
-            alert("Only the project creator can pin/unpin proxies.");
-            return;
-        }
-
-        const newPinStatus = !proxyRecord.isPinned;
-        
-        try {
-            await room.collection(PROXY_COLLECTION_TYPE).update(proxyRecord.id, {
-                isPinned: newPinStatus
-            });
-            console.log(`Toggled pin status for Proxy ID ${proxyRecord.id}: ${newPinStatus}`);
-        } catch (e) {
-            alert("Failed to change pin status. Ensure you are the project creator.");
-            console.error('Failed to update Proxy record (pinning):', e);
-        }
-    }
-    
-    async function handleEditProxy(proxyRecord) {
-        if (!currentUser || currentUser.username !== creatorUsername) {
-            alert("Only the project creator can edit proxy details.");
-            return;
-        }
-
-        // 1. Get new name
-        const newName = prompt(`Edit Proxy Name:`, proxyRecord.name);
-        if (newName === null) return; // Cancelled
-        const newNameTrimmed = newName.trim();
-        if (newNameTrimmed === '') {
-             alert('Name cannot be empty.');
-             return;
-        }
-
-        // 2. Get new URL
-        const newUrl = prompt(`Edit Proxy URL:`, proxyRecord.url);
-        if (newUrl === null) return; // Cancelled mid-edit
-        const newUrlTrimmed = newUrl.trim();
-        if (!newUrlTrimmed.startsWith('http')) {
-             alert('Link URL must be a valid URL starting with http/https.');
-             return;
-        }
-
-        let updateData = {
-            name: newNameTrimmed,
-            url: newUrlTrimmed
-        };
-
-        try {
-            await room.collection(PROXY_COLLECTION_TYPE).update(proxyRecord.id, updateData);
-            console.log(`Updated Proxy ID ${proxyRecord.id}`, updateData);
-        } catch (e) {
-             alert(`Failed to update proxy. Only the project creator can modify records.`);
-             console.error('Failed to update proxy record:', e);
-        }
-    }
-
-    // --- Rendering and Subscription ---
-    
-    function getStatusClass(status) {
-        switch (status) {
-            case 'Working': return 'status-working';
-            case 'Not Working': return 'status-not-working';
-            default: return 'status-unsure';
-        }
-    }
-    
-    function renderProxyItem(proxy) {
-        const isCreator = currentUser && currentUser.username === creatorUsername;
-        const votes = currentVotes[proxy.id] || { upvotes: 0, downvotes: 0, userVote: 0, userVoteId: null };
-        const score = votes.upvotes - votes.downvotes;
-        const statusClass = getStatusClass(proxy.moderatorStatus);
-        const isPinned = proxy.isPinned === true; // Check for pinning
-
-        const listItem = document.createElement('li');
-        listItem.className = 'proxy-link-item';
-        listItem.dataset.id = proxy.id;
-        if (isPinned) {
-            listItem.classList.add('pinned');
-        }
-
-        const uploaderMeta = `Submitted by ${proxy.username} on ${new Date(proxy.created_at).toLocaleDateString()}`;
-        
-        // Add pinned label to title if pinned
-        const pinnedLabel = isPinned ? '<span class="pinned-label" style="margin-right: 5px; color: #ffc107;">[PINNED]</span>' : '';
-
-        listItem.innerHTML = `
-            <div class="proxy-link-header">
-                <div class="proxy-link-title">
-                    ${pinnedLabel}
-                    <a href="${proxy.url}" target="_blank">${proxy.name}</a>
-                </div>
-                <div class="proxy-link-status ${statusClass}">
-                    ${proxy.moderatorStatus}
-                </div>
-            </div>
-            
-            <div class="proxy-link-footer">
-                <div class="proxy-votes">
-                    <button class="${votes.userVote === 1 ? 'upvoted' : ''}" data-vote="1" title="Upvote">
-                        ▲ ${votes.upvotes}
-                    </button>
-                    <span style="color: white;">${score}</span>
-                    <button class="${votes.userVote === -1 ? 'downvoted' : ''}" data-vote="-1" title="Downvote">
-                        ▼ ${votes.downvotes}
-                    </button>
-                </div>
-                <div class="proxy-link-meta">
-                    ${uploaderMeta}
-                </div>
-            </div>
-            
-            ${isCreator ? `
-                <div class="owner-proxy-actions">
-                    <span style="color: #888; margin-right: 10px;">Admin:</span>
-                    <button class="set-status-btn pin-toggle-btn" data-action="pin">${isPinned ? 'Unpin' : 'Pin'}</button>
-                    <button class="set-status-btn edit-btn" data-action="edit" style="background: #ff8c00;">Edit</button>
-                    <span style="color: #888; margin: 0 5px;">Status:</span>
-                    <button class="set-status-btn" data-status="Working" style="background: #28a745;">Working</button>
-                    <button class="set-status-btn" data-status="Unsure" style="background: #ffc107;">Unsure</button>
-                    <button class="set-status-btn" data-status="Not Working" style="background: #dc3545;">Not Working</button>
-                    <button class="set-status-btn" data-action="delete" style="background: #666;">Delete</button>
-                </div>
-            ` : ''}
-        `;
-        
-        // Add vote listeners
-        listItem.querySelectorAll('.proxy-votes button').forEach(button => {
-            const desiredVote = parseInt(button.dataset.vote);
-            button.addEventListener('click', () => {
-                handleVote(proxy.id, desiredVote, votes.userVoteId);
-            });
-        });
-        
-        // Add owner action listeners
-        if (isCreator) {
-            listItem.querySelectorAll('.owner-proxy-actions button').forEach(button => {
-                const action = button.dataset.action;
-                if (button.dataset.status) {
-                    button.addEventListener('click', () => handleSetStatus(proxy.id, button.dataset.status));
-                } else if (action === 'delete') {
-                    button.addEventListener('click', () => deleteFile(proxy.id, proxy.username, true));
-                } else if (action === 'pin') {
-                    button.addEventListener('click', () => handlePinToggleProxy(proxy));
-                } else if (action === 'edit') {
-                    button.addEventListener('click', () => handleEditProxy(proxy));
-                }
-            });
-        }
-
-        return listItem;
-    }
-
-    function renderProxies() {
-        if (!proxyList) return;
-        
-        proxyList.innerHTML = '';
-        
-        if (emptyProxyMessage) {
-             proxyList.appendChild(emptyProxyMessage);
-        }
-
-        // Sort proxies: Pinned first, then by Moderator Status, then by Score (highest score first)
-        const sortedProxies = [...currentProxies].sort((a, b) => {
-            const aPinned = a.isPinned ? 1 : 0;
-            const bPinned = b.isPinned ? 1 : 0;
-            
-            // Primary sort: Pinned status (Pinned first)
-            if (bPinned !== aPinned) {
-                return bPinned - aPinned; 
-            }
-
-            const scoreA = (currentVotes[a.id]?.upvotes || 0) - (currentVotes[a.id]?.downvotes || 0);
-            const scoreB = (currentVotes[b.id]?.upvotes || 0) - (currentVotes[b.id]?.downvotes || 0);
-            
-            // Secondary sort: Moderator Status (Working > Unsure > Not Working)
-            const statusOrder = { 'Working': 3, 'Unsure': 2, 'Not Working': 1 };
-            const statusScoreA = statusOrder[a.moderatorStatus] || 0;
-            const statusScoreB = statusOrder[b.moderatorStatus] || 0;
-            
-            if (statusScoreA !== statusScoreB) {
-                return statusScoreB - statusScoreA; // Highest status first
-            }
-
-            // Tertiary sort: Score (highest first)
-            return scoreB - scoreA;
-        });
-
-
-        sortedProxies.forEach(proxy => {
-            proxyList.appendChild(renderProxyItem(proxy));
-        });
-        
-        emptyProxyMessage.style.display = sortedProxies.length === 0 ? 'block' : 'none';
-    }
-
-
-    function setupProxySubscription() {
-        if (unsubscribeProxies) unsubscribeProxies();
-        if (unsubscribeVotes) unsubscribeVotes();
-
-        // 1. Subscribe to Proxy Links
-        unsubscribeProxies = room.collection(PROXY_COLLECTION_TYPE).subscribe(function (proxies) {
-            currentProxies = proxies;
-            // Re-render when proxies change (votes might stay the same, but the list order/content changes)
-            renderProxies();
-        });
-
-        // 2. Subscribe to Votes
-        unsubscribeVotes = room.collection(VOTE_COLLECTION_TYPE).subscribe(function (votes) {
-             // We need current user loaded to calculate `userVote` correctly
-             if (!currentUser) {
-                 window.websim.getCurrentUser().then(user => { 
-                    currentUser = user; 
-                    currentVotes = calculateVotes(votes);
-                    renderProxies(); // Re-render once user context is available
-                 });
-             } else {
-                 currentVotes = calculateVotes(votes);
-                 // Re-render when votes change
-                 renderProxies();
-             }
-        });
-    }
-
-    async function deleteFile(id, uploaderUsername, isProxy = false) {
-        if (!currentUser) {
-            alert("Cannot delete: User information unavailable.");
-            return;
-        }
-        
-        // Check if the current user is neither the uploader nor the creator 
-        if (currentUser.username !== uploaderUsername && currentUser.username !== creatorUsername) {
-             alert("You do not have permission to delete this entry.");
-             return;
-        }
-        
-        const isRom = !isProxy && id.includes('dm') !== true && id.includes('message') !== true;
-        const collection = isProxy ? PROXY_COLLECTION_TYPE : (isRom ? ROM_COLLECTION_TYPE : PROXY_COLLECTION_TYPE); // Fallback to proxy type if undetermined
-        
-        let type = 'Entry';
-        if (isProxy) type = 'Proxy';
-        else if (isRom) type = 'ROM';
-        
-        if (confirm(`Are you sure you want to delete this ${type} entry (${id})? This cannot be undone.`)) {
-            try {
-                // Try to determine collection type more precisely based on ID prefix if necessary
-                let targetCollection = room.collection(collection);
-                if (id.startsWith('dm_v1')) {
-                    targetCollection = room.collection(DM_COLLECTION_TYPE);
-                } else if (id.startsWith('message_v1')) {
-                    targetCollection = room.collection(MESSAGE_COLLECTION_TYPE);
-                } else if (isRom) {
-                     targetCollection = room.collection(ROM_COLLECTION_TYPE);
-                } else if (isProxy) {
-                     targetCollection = room.collection(PROXY_COLLECTION_TYPE);
-                }
-
-
-                await targetCollection.delete(id);
-                console.log(`Attempted deletion of ${type} ID: ${id}`);
-                
-            } catch (e) {
-                // If deletion fails due to permission denied (Websim default for unauthorized delete)
-                alert(`Error deleting ${type}. Only the original poster (${uploaderUsername}) or the project creator can perform the final deletion.`);
-                console.error(`Failed to delete ${type} record:`, e);
-            }
-        }
     }
 
     // --- CHAT Hub Logic (Websim Persistent Records) ---
@@ -8500,7 +7844,7 @@
       const imageSrcs = new Set();
       const audioSrcs = new Set();
 
-      // Core UI images
+      // Core UI images (resolved via CDN_BASE)
       imageSrcs.add('Logo.png');
       imageSrcs.add('settings_cog.png');
 
@@ -8518,7 +7862,7 @@
         });
       }
 
-      // Audio tracks & sfx
+      // Audio tracks & sfx (resolved via CDN_BASE)
       audioSrcs.add('TEMPO.mp3');
       audioSrcs.add('BG.mp3');
       audioSrcs.add('ManiaBG.ogg');
@@ -8529,13 +7873,19 @@
       const imagePromises = Array.from(imageSrcs).map(src => new Promise(resolve => {
         const img = new Image();
         img.onload = img.onerror = () => resolve();
-        img.src = src;
+        const resolved = src.startsWith('http://') || src.startsWith('https://')
+          ? src
+          : CDN_BASE + src;
+        img.src = resolved;
       }));
 
       const audioPromises = Array.from(audioSrcs).map(src => new Promise(resolve => {
         const a = new Audio();
         a.oncanplaythrough = a.onerror = () => resolve();
-        a.src = src;
+        const resolved = src.startsWith('http://') || src.startsWith('https://')
+          ? src
+          : CDN_BASE + src;
+        a.src = resolved;
         // Hint loading without autoplay
         a.load();
       }));
@@ -8578,8 +7928,8 @@
         });
       }
       renderGames();
-      setupRomSubscription(); // Start listening for ROM uploads globally
-      setupProxySubscription(); // Start listening for Proxy uploads globally
+      setupRomSubscription(); // Load ROM list from GitHub once
+      setupProxySubscription(); // Start listening for Proxy uploads globally (no-op)
       loadSplashText();
 
       // After 10 seconds, allow the user to skip asset loading if still on the loading screen
@@ -8870,6 +8220,30 @@
         }
     });
 
+  </script>
+  <script>
+    // Add a persistent version label inside the settings drawer and ensure it stays at the bottom.
+    (function appendSettingsVersion() {
+      try {
+        const settings = document.querySelector('.settings-menu');
+        if (!settings) return;
+        // Create container to pin to bottom visually
+        const versionEl = document.createElement('div');
+        versionEl.style.cssText = [
+          'margin-top:12px',
+          'border-top:1px solid rgba(148,163,184,0.12)',
+          'padding-top:10px',
+          'color:var(--text-muted)',
+          'font-size:12px',
+          'text-align:right',
+          'font-family: system-ui, sans-serif'
+        ].join(';');
+        versionEl.textContent = 'Version 5.0.2';
+        settings.appendChild(versionEl);
+      } catch (e) {
+        console.error('Failed to append settings version label', e);
+      }
+    })();
   </script>
 </body>
 </html>
