@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, viewport-fit=cover"
+  />
+  <meta name="color-scheme" content="dark light" />
+  <title>Escaping The Prison</title>
+  <style>
+    :root {
+      color-scheme: dark light;
+    }
+    * {
+      box-sizing: border-box;
+    }
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background: #111;
+    }
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    #game-container {
+      width: 100vw;
+      height: 100vh;
+      max-width: 100%;
+      max-height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #000;
+    }
+    ruffle-player,
+    .ruffle-player {
+      width: 100%;
+      height: 100%;
+    }
+  </style>
+</head>
+<body>
+  <div id="game-container"></div>
+
+  <!-- Ruffle runtime (Flash emulator) -->
+  <script src="https://unpkg.com/@ruffle-rs/ruffle"></script>
+
+  <script type="module">
+    // Path to your Gunblood SWF (from your GitHub repo via jsDelivr)
+    const SWF_URL =
+      "https://cdn.jsdelivr.net/gh/T4ctica1YT/Game-files/ETP/ETP.swf";
+
+    const container = document.getElementById("game-container");
+
+    function createRufflePlayer() {
+      if (!window.RufflePlayer) return;
+
+      const ruffle = window.RufflePlayer.newest();
+      const player = ruffle.createPlayer();
+
+      player.style.width = "100%";
+      player.style.height = "100%";
+
+      container.innerHTML = "";
+      container.appendChild(player);
+
+      player
+        .load(SWF_URL)
+        .catch((err) => {
+          console.error("Failed to load SWF:", err);
+        });
+    }
+
+    // Ruffle injects window.RufflePlayer after the script loads
+    if (document.readyState === "complete" || document.readyState === "interactive") {
+      createRufflePlayer();
+    } else {
+      document.addEventListener("DOMContentLoaded", createRufflePlayer);
+    }
+
+    // Keep game sized to viewport
+    function resizeGame() {
+      container.style.width = window.innerWidth + "px";
+      container.style.height = window.innerHeight + "px";
+    }
+
+    resizeGame();
+    window.addEventListener("resize", resizeGame);
+    window.addEventListener("orientationchange", resizeGame);
+  </script>
+</body>
+</html>
+
