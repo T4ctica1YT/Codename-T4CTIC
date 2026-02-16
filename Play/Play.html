@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Game Collection</title>
+  <title>CODENAME: T4CTIC$</title>
   <style>
     @font-face {
       font-family: 'NiseSegaSonic';
@@ -2054,7 +2054,7 @@
 
     #in-game-overlay {
       position: fixed;
-      top: -88px;
+      top: -120px;
       right: 20px;
       z-index: 3001;
       transition: top 0.22s ease-out;
@@ -2814,12 +2814,43 @@
 
   <header class="app-hidden">
     <img src="https://cdn.jsdelivr.net/gh/T4ctica1YT/Codename-T4CTIC@main/Logo.png" alt="Game Collection Logo" class="logo">
-    <input
-      id="game-search"
-      type="search"
-      placeholder="Search games..."
-      style="padding:8px 12px; border-radius:999px; border:1px solid transparent; background:transparent; color:inherit; font-family: system-ui, -apple-system, BlinkMacSystemFont, 'SF Pro Text', Arial, sans-serif;"
-    >
+
+    <!-- Filters button (left of search) -->
+    <div style="display:flex; align-items:center; gap:10px;">
+      <div style="position:relative;">
+        <button id="filters-button" class="nav-tab" aria-expanded="false" title="Filters" style="display:flex; align-items:center; gap:8px; padding:7px 12px;">
+          Filters
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" style="opacity:0.9"><path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div id="filters-panel" style="display:none; position:absolute; left:0; top:44px; width:320px; max-width:90vw; background:linear-gradient(160deg, rgba(15,23,42,0.98), rgba(3,7,18,0.98)); border:1px solid rgba(148,163,184,0.12); padding:12px; border-radius:12px; box-shadow:0 12px 36px rgba(0,0,0,0.7); z-index:2200;">
+          <div style="display:flex; justify-content:space-between; align-items:center; gap:8px; margin-bottom:8px;">
+            <div style="font-size:13px; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.12em;">Filters</div>
+            <button id="clear-filters-btn" class="close-button" style="padding:6px 10px; font-size:11px;">Clear</button>
+          </div>
+          <div style="max-height:260px; overflow:auto; padding-right:6px;">
+            <div>
+              <div style="font-size:12px; color:var(--text-muted); margin-bottom:6px;">Platform</div>
+              <label style="display:flex; align-items:center; gap:8px; margin-bottom:6px;">
+                <input type="checkbox" id="filter-web-ports" style="width:16px; height:16px;">
+                <span style="font-size:13px; color:var(--text-main);">Web Ports</span>
+              </label>
+            </div>
+            <div style="margin-top:10px;">
+              <div style="font-size:12px; color:var(--text-muted); margin-bottom:6px;">Genres</div>
+              <div id="genre-filters" style="display:flex; flex-wrap:wrap; gap:8px;"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <input
+        id="game-search"
+        type="search"
+        placeholder="Search games..."
+        style="padding:8px 12px; border-radius:999px; border:1px solid transparent; background:transparent; color:inherit; font-family: system-ui, -apple-system, BlinkMacSystemFont, 'SF Pro Text', Arial, sans-serif;"
+      >
+    </div>
+
     <div class="header-buttons">
       <button class="nav-tab" id="proxy-hub-btn">Proxy Hub</button>
       <button class="nav-tab" id="chat-btn" style="display: none;">Chat</button>
@@ -2870,7 +2901,8 @@
         </div>
       </div>
       <select id="orderSelect" class="dropdown-select">
-        <option value="year">By Year</option>
+        <option value="year-asc">By Year (Old to New)</option>
+        <option value="year-desc">By Year (New to Old)</option>
         <option value="name">By Name</option>
       </select>
     </div>
@@ -3046,6 +3078,24 @@
       </label>
     </div>
 
+    <!-- Runtime Mode (Embedded vs File) -->
+    <div class="settings-option">
+      <div class="settings-label-group">
+        <span>Runtime Mode</span>
+        <div class="info-icon">
+          ⓘ
+          <span class="tooltip-text">
+            Choose whether this Local Player should be treated as embedded inside another site (iframe) or as a local file run directly from disk.
+          </span>
+        </div>
+      </div>
+      <select id="runtimeModeSelect" class="dropdown-select">
+        <option value="auto">Auto-detect</option>
+        <option value="embedded">Embedded (iframe)</option>
+        <option value="file">Local file</option>
+      </select>
+    </div>
+
     <!-- Import / Export Data -->
     <div class="settings-option" style="margin-top: 18px; border-top: 1px solid rgba(148,163,184,0.3); padding-top: 12px;">
       <div class="settings-label-group">
@@ -3136,6 +3186,7 @@
     <div class="popup-tabs">
         <div class="popup-tab active" data-tab="overview">Overview</div>
         <div class="popup-tab" data-tab="details">Details</div>
+        <div class="popup-tab" data-tab="mods">Mods</div>
     </div>
     <div class="popup-content">
         <div class="popup-tab-content active" id="tab-overview">
@@ -3161,6 +3212,9 @@
                 </div>
             </div>
         </div>
+        <div class="popup-tab-content" id="tab-mods">
+            <!-- Mods will be listed here (HTML mods coming soon) -->
+        </div>
     </div>
     <div class="popup-footer">
         <button class="download-game-button" id="download-game-button">Download HTML</button>
@@ -3178,6 +3232,42 @@
         <button class="close-modal-btn">&times;</button>
     </div>
     <div class="modal-content">
+        <div class="changelog-entry">
+            <div class="update-version">V6.0.0 - The Biggest Update Yet</div>
+            <ul class="update-details">
+                <li><strong>New Games</strong> |
+                    <ul>
+                        <li>Added Doki Doki Literature Club! +</li>
+                        <li>Added Half Life: Opposing Forces</li>
+                        <li>Added Iron Lung</li>
+                        <li>Added Portal</li>
+                        <li>Added Please Don't Touch Anything</li>
+                        <li>Added Rooftop Snipers</li>
+                        <li>Added Sonic Robo Blast 2</li>
+                        <li>Added FNF Mods (Specifically Bop City)</li>
+                        <li>Added Breaking the Bank</li>
+                        <li>Added Escaping the Prison</li>
+                        <li>Added Stealing the Diamond</li>
+                        <li>Added Infiltrating the Airship</li>
+                        <li>Added Fleeing the Complex</li>
+                        <li>Added Five Night's at Epstein's</li>
+                        <li>Added Upload Labs</li>
+                        <li>Added Brotato</li>
+                        <li>Added Untitled Goose Game</li>
+                    </ul>
+                </li>
+                <li><strong>General changes and bug fixes</strong> |
+                    <ul>
+                        <li>Made a Filters button to help find games</li>
+                        <li>Fixed a bug where a game would keep playing after exiting it</li>
+                        <li>Fixed a few games (ongoing maintenance)</li>
+                        <li>Fixed Snow Rider 3D's cover art being missing</li>
+                        <li>COMPLETELY OVERHAULED Mario 64's UI and Gameplay</li>
+                        <li>Added a Refresh button to the In-Game drop down menu</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
         <div class="changelog-entry">
             <div class="update-version">V2.0.0 - The New UI Update</div>
             <ul class="update-details">
@@ -3225,6 +3315,7 @@
     <div id="in-game-overlay">
         <div id="in-game-menu">
             <button id="in-game-fullscreen-btn">Fullscreen</button>
+            <button id="in-game-refresh-btn">Refresh</button>
             <button id="in-game-back-btn">Back to Collection</button>
             <div class="in-game-debug-group">
                 <button id="debug-toggle-btn">Debug Displays: Off</button>
@@ -3238,7 +3329,7 @@
             <span>▼</span>
         </div>
     </div>
-    <iframe id="game-iframe" allowfullscreen></iframe>
+    <iframe id="game-iframe" allowfullscreen sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-modals" allow="autoplay; fullscreen; clipboard-read; clipboard-write"></iframe>
   </div>
 
   <div id="rom-hub-popup" class="modal rom-hub-modal">
@@ -3286,7 +3377,8 @@
         <pre id="proxy-raw" style="background: rgba(15,23,42,0.98); border-radius: 12px; border: 1px solid rgba(55,65,81,0.9); padding: 10px; font-size: 12px; color: #e5e7eb; max-height: 260px; overflow-y: auto; white-space: pre-wrap; word-wrap: break-word; margin: 0;">
 Loading proxies...
         </pre>
-        <div class="bottom" style="text-align: right; margin-top: 20px;">
+        <div class="bottom" style="text-align: right; margin-top: 20px; display:flex; gap:8px; justify-content:flex-end; align-items:center;">
+             <button id="proxy-refresh-btn" class="submit-btn" style="padding:7px 10px; font-size:11px;">Refresh</button>
              <button class="close-button" onclick="closeProxyHub()">Close</button>
         </div>
     </div>
@@ -3316,15 +3408,37 @@ Loading proxies...
 
   <script src="https://cdn.jsdelivr.net/npm/@babel/standalone/babel.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script> <!-- Added JSZip -->
-  <script src="https://cdn.jsdelivr.net/npm/emulatorjs@1.2.1/data/loader.js"></script>
+  
   <script>
     // NOTE: A lot of JS logic was rewritten or refactored to support the new UI.
     // Existing functionality like settings, proto mode, and secrets are preserved.
 
-    window.EJS_player = '#emulator';
-    window.EJS_pathtodata = 'https://cdn.jsdelivr.net/npm/emulatorjs@1.2.1/data/';
+    // EmulatorJS removed: previous globals EJS_player / EJS_pathtodata were removed to avoid loading
+    // an external loader script with an incorrect MIME type which caused console errors.
 
     // Audio setup
+    // Safety patch: guard against games/scripts trying to double-close ReadableStream controllers
+    // (some third-party game bundles call controller.close() repeatedly which throws in modern browsers).
+    try {
+      if (window.ReadableStreamDefaultController && !window.__t4_safe_rsdc_patched__) {
+        const _origRSClose = window.ReadableStreamDefaultController.prototype.close;
+        window.ReadableStreamDefaultController.prototype.close = function() {
+          try {
+            // Best-effort: call original close, but swallow "already closed/requested" errors.
+            return _origRSClose.call(this);
+          } catch (err) {
+            // Silently log a concise debug hint (does not spam).
+            console.warn('ReadableStreamDefaultController.close suppressed error:', err && err.message ? err.message : err);
+            return;
+          }
+        };
+        window.__t4_safe_rsdc_patched__ = true;
+      }
+    } catch (e) {
+      // Non-fatal; continue without the patch if something goes wrong.
+      console.warn('Failed to apply ReadableStream controller safety patch:', e);
+    }
+
     const bgMusic = document.getElementById('bgMusic');
     const hoverSound = document.getElementById('hoverSound');
     const selectSound = document.getElementById('selectSound');
@@ -3580,6 +3694,45 @@ Loading proxies...
     const splashTextEl = document.getElementById('splash-text');
     const openCollectionBtn = document.getElementById('open-collection-btn');
 
+    // Centralized "open collection" action so it can be invoked/attached early
+    function openCollectionAction() {
+      try {
+        if (entranceScreen) smoothHide(entranceScreen);
+        document.querySelectorAll('.app-hidden').forEach(el => el.classList.remove('app-hidden'));
+
+        // Mark that the user has entered the collection so music can be allowed
+        hasEnteredCollection = true;
+
+        // Start background music only after entering the collection, if enabled
+        if (musicToggle && musicToggle.checked) {
+          bgMusic.play().then(() => {
+            musicStarted = true;
+          }).catch(e => {
+            console.log("Audio autoplay blocked by browser.");
+            musicStarted = false;
+          });
+        }
+
+        // Start the optimized title + overlay effects when Intro is On
+        // and the current BG music is TEMPO.
+        if (
+          window.startEntranceEffects &&
+          introToggleButton &&
+          introToggleButton.textContent.includes('On') &&
+          bgMusicSelect && bgMusicSelect.value === 'TEMPO.mp3'
+        ) {
+          window.startEntranceEffects();
+        }
+      } catch (e) {
+        console.error('Failed to open collection:', e);
+      }
+    }
+
+    // Attach handler early so clicks after skipping the loading screen still work
+    if (openCollectionBtn) {
+      openCollectionBtn.addEventListener('click', openCollectionAction);
+    }
+
     // Database setup
     // Fallback stubs so the page still works when Websim is not available (e.g. running locally)
     if (typeof WebsimSocket === 'undefined') {
@@ -3679,6 +3832,11 @@ Loading proxies...
         title: 'Half-Life', year: '1998', system: 'PC', genre: 'FPS, Action, Sci-Fi',
         cover: 'half_life_cover.png',
         description: "A landmark sci-fi first-person shooter. As scientist Gordon Freeman, you must fight your way out of a secret research facility after an experiment goes horribly wrong."
+      },
+      'HLop.html': {
+        title: 'Half-Life: Opposing Forces', year: '1999', system: 'PC', genre: 'FPS, Action',
+        cover: 'HLop.png',
+        description: "A standalone expansion to Half-Life where you play as Adrian Shephard, a Marine caught in the Black Mesa incident."
       },
       'Minecraft 1.12.2.html': {
         title: 'Minecraft 1.12.2', year: '2017', system: 'PC', genre: 'Sandbox, Survival',
@@ -4307,12 +4465,12 @@ Loading proxies...
         features: "Flash (Ruffle), Conclusion.",
       },
       'Super Mario 64.html': {
-        title: 'Super Mario 64',
+        title: 'Super Mario 64 PC Port / Classic',
         year: '1996',
         system: 'N64',
         genre: 'Platformer',
         cover: 'SM64.png',
-        description: "The groundbreaking 3D platformer that redefined the genre. Run, jump, and fly through Peach's Castle.",
+        description: "The groundbreaking 3D platformer that redefined the genre. Run, jump, and fly through Peach's Castle. Now experience this classic in a newer more modern way with the newly added PC Port of this game added along side the original port!",
         features: "Full 3D movement, WASM port.",
       },
       'Deltatraveler.html': {
@@ -4494,6 +4652,15 @@ Loading proxies...
         cover: 'Tattletail.jpg',
         description: "A short, story-driven survival horror game about an evil toy.",
         features: "Unity WebGL, Horror.",
+      },
+      '4-Halloween.html': {
+        title: "Five Nights at Freddy's 4: Halloween Update",
+        year: '2015',
+        system: 'PC',
+        genre: 'Survival Horror',
+        cover: '4-Halloween.jpg',
+        description: "A Halloween-themed update to FNAF4 featuring spooky skins, seasonal maps, and themed challenges — survive the night!",
+        features: "PC, Horror, Seasonal Update"
       },
       'Tunnel Rush.html': {
         title: 'Tunnel Rush',
@@ -5152,7 +5319,7 @@ Loading proxies...
         year: '2025',
         system: 'Unity',
         genre: 'Arcade, Runner',
-        cover: 'Snow Rider 3D.jpg',
+        cover: 'Snow Rider 3D.webp',
         description: "sledding game where you race down endless snowy slopes at high speed.."
       },
       'Baldurs Gate 2.html': {
@@ -5182,6 +5349,24 @@ Loading proxies...
   description: "a 2D sandbox adventure where you dig, build, fight, and explore a vast world filled with monsters, bosses, and endless possibilities.",
   features: "Sandbox, Crafting, Exploration, Boss Fights, Multiplayer.",
 },
+'rooftopsnipers.html': {
+  title: 'Rooftop Snipers',
+  year: '2013',
+  system: 'PC',
+  genre: 'Arcade / Shooter',
+  cover: 'rooftopsnipers.webp',
+  description: "A frantic two-player duel on rooftop arenas—bounce bullets off walls, pick up power-ups, and be the last sniper standing.",
+  features: "Local Multiplayer, Fast-paced duels, HTML5 arcade."
+},
+'SRB2.html': {
+  title: 'Sonic Robo Blast 2',
+  year: '2006',
+  system: 'PC',
+  genre: 'Platformer, Fan Game',
+  cover: 'SRB2.png',
+  description: "A 3D Sonic fangame built on a modified Doom engine — SRB2 brings classic Sonic platforming into 3D levels.",
+  features: "Open-source, Multiplayer, 3D Platformer.",
+},
 'Gunblood.html': {
   title: 'Gunblood',
   year: '2009',
@@ -5209,6 +5394,115 @@ Loading proxies...
   description: "a fast-paced movement game where you swing, climb, and chase other players using only your arms to move like a gorilla.",
   features: "Multiplayer, Physics Movement, Tag Game."
 },
+      'ironlung.html': {
+        title: 'Iron Lung',
+        year: '2023',
+        system: 'PC',
+        genre: 'Horror, Simulation',
+        cover: 'ironlung.png',
+        description: "Pilot a tiny submersible through a vast ocean of blood in this claustrophobic experimental horror experience."
+      },
+      'fnae.html': {
+        title: 'Five Nights At Epsteins',
+        year: '2015',
+        system: 'PC',
+        genre: 'Survival Horror, Creepypasta',
+        cover: 'fnae.webp',
+        description: "A disturbing fan-made survival horror inspired by the Five Nights series — survive the nights and uncover unsettling secrets."
+      },
+      'portal.html': {
+        title: 'Portal',
+        year: '2007',
+        system: 'PC',
+        genre: 'Puzzle, Portal',
+        cover: 'portal.jpg',
+        description: "Solve physics-based puzzles using the Aperture Science Handheld Portal Device while navigating increasingly bizarre test chambers."
+      },
+      'PDTA.html': {
+        title: 'Please Dont Touch Anything',
+        year: '2015',
+        system: 'PC',
+        genre: 'Puzzle, Experimental',
+        cover: 'PDTA.png',
+        description: "A surreal single-screen puzzle with multiple endings — you stand before a mysterious control panel, and are told: please don't touch anything."
+      },
+      'Doki.html': {
+        title: 'Doki Doki Literature Club! +',
+        year: '2017',
+        system: 'PC',
+        genre: 'Visual Novel, Psychological Horror, Metafiction',
+        cover: 'Doki.png',
+        description: "A deceptive dating-sim turned psychological horror; join the literature club, bond with its members, and experience unsettling metafictional twists that break the fourth wall.",
+        features: "Ren'Py port, Save-aware events, Disturbing themes"
+      },
+
+      /* Henry Stickmin Flash games (Flash / Ruffle ports) */
+      'BTB.html': {
+        title: 'Breaking the Bank',
+        year: '2008',
+        system: 'Flash (Ruffle) - Henry Stickmin',
+        genre: 'Point & Click, Flash, Henry Stickmin',
+        cover: 'BTB.png',
+        description: "The first Henry Stickmin adventure: plan and attempt an elaborate bank heist using a variety of laughably interactive choices."
+      },
+      'ETP.html': {
+        title: 'Escaping the Prison',
+        year: '2010',
+        system: 'Flash (Ruffle) - Henry Stickmin',
+        genre: 'Point & Click, Flash, Henry Stickmin',
+        cover: 'ETP.png',
+        description: "Help Henry break out of prison with a series of absurd escape attempts and branching comedic outcomes."
+      },
+      'STD.html': {
+        title: 'Stealing the Diamond',
+        year: '2011',
+        system: 'Flash (Ruffle) - Henry Stickmin',
+        genre: 'Point & Click, Flash, Henry Stickmin',
+        cover: 'STD.png',
+        description: "A stealthy and humorous mission where Henry attempts to steal a famous diamond—expect multiple goofy solutions."
+      },
+      'ITA.html': {
+        title: 'Infiltrating the Airship',
+        year: '2013',
+        system: 'Flash (Ruffle) - Henry Stickmin',
+        genre: 'Point & Click, Flash, Henry Stickmin',
+        cover: 'ITA.png',
+        description: "Infiltrate a high-tech airship with countless silly gadget choices and branching paths leading to chaotic results."
+      },
+      'FTC.html': {
+        title: 'Fleeing the Complex',
+        year: '2015',
+        system: 'Flash (Ruffle) - Henry Stickmin',
+        genre: 'Point & Click, Flash, Henry Stickmin',
+        cover: 'FTC.png',
+        description: "A high-energy escape adventure from a fortified complex where each decision yields a different hilarious outcome."
+      },
+
+      /* Added user-requested games */
+      'Untitledgg.html': {
+        title: 'Untitled Goose Game',
+        year: '2019',
+        system: 'PC',
+        genre: 'Puzzle, Stealth, Comedy',
+        cover: 'Untitledgg.png',
+        description: "Wreak adorable havoc as a mischievous goose in a sleepy village — honk, steal, and complete objectives while avoiding capture."
+      },
+      'Uplab.html': {
+        title: 'Upload Lab',
+        year: '2021',
+        system: 'PC',
+        genre: 'Puzzle, Sandbox',
+        cover: 'Uplab.png',
+        description: "Experiment with programmable contraptions and logic puzzles in a playful lab sandbox focused on creativity and problem solving."
+      },
+      'Brotato.html': {
+        title: 'Brotato',
+        year: '2022',
+        system: 'PC',
+        genre: 'Roguelite, Action, Shooter',
+        cover: 'Brotato.png',
+        description: "Top-down arena roguelite where you play as a potato wielding many weapons, fighting waves of enemies and upgrading between runs."
+      }
     };
     // --- CORE UI LOGIC ---
     const gameSearchInput = document.getElementById('game-search');
@@ -5239,25 +5533,148 @@ Loading proxies...
       }
     }
 
+    // SEARCH + FILTERS: apply text search and active filter constraints
     function applyGameSearch() {
          const query = (gameSearchInput && gameSearchInput.value || '').toLowerCase().trim();
+
+         // Gather active genre filters
+         const activeGenres = Array.from(document.querySelectorAll('#genre-filters input[type="checkbox"]:checked')).map(n => n.value.toLowerCase());
+
          const grids = gameContainer.querySelectorAll('.game-grid');
          if (!grids.length) return;
+
          grids.forEach(grid => {
              const cards = grid.querySelectorAll('.game-card');
              cards.forEach(card => {
                  const titleEl = card.querySelector('.game-card-title');
                  const title = titleEl ? titleEl.textContent.toLowerCase() : '';
-                 card.style.display = (query === '' || title.includes(query)) ? '' : 'none';
+                 const gameKey = card.dataset.game;
+                 const info = (gameInfo && gameInfo[gameKey]) ? gameInfo[gameKey] : null;
+
+                 // Text match
+                 const textMatch = (query === '' || title.includes(query));
+
+                 // Genre match: if no genre filters active -> pass; else game must include at least one active genre
+                 let genreMatch = true;
+                 if (activeGenres.length > 0 && info && info.genre) {
+                     const gameGenres = info.genre.toLowerCase().split(/[,|\/]/).map(g => g.trim());
+                     genreMatch = activeGenres.some(gf => gameGenres.some(gg => gg.includes(gf)));
+                 } else if (activeGenres.length > 0) {
+                     genreMatch = false;
+                 }
+
+                 // Platform filter: only "Web Ports" remains
+                 let webMatch = true;
+                 const webPortsFilter = document.getElementById('filter-web-ports')?.checked;
+
+                 // If the Web Ports checkbox is checked, show games that are NOT web ports (invert previous behavior)
+                 if (webPortsFilter) {
+                     webMatch = true;
+                     if (info) {
+                         const system = (info.system || '').toLowerCase();
+
+                         // Define what counts as a "web port" (Unity/WebGL/HTML5/WASM/HTML)
+                         const isWebPort = (() => {
+                             // Strictly detect explicit web ports only (WebGL, WASM, HTML5, "Web Port", "Unity WebGL", "Ported to Web")
+                             if (!info) return false;
+                             const sys = (info.system || '').toLowerCase();
+                             const feats = (info.features || '').toLowerCase();
+
+                             // search for clear indicators that a game was ported to run on the web
+                             const portIndicators = /webgl|wasm|wasm port|html5|web port|ported to web|unity webgl/i;
+                             return portIndicators.test(sys) || portIndicators.test(feats);
+                         })();
+
+                         // If this game is a web port, exclude it when the checkbox is checked
+                         if (isWebPort) webMatch = false;
+                     } else {
+                         // If no info object, treat HTML files as web ports and exclude them when checkbox is set
+                         if (typeof gameKey === 'string' && gameKey.toLowerCase().endsWith('.html')) {
+                             webMatch = false;
+                         }
+                     }
+                 }
+
+                 card.style.display = (textMatch && genreMatch && webMatch) ? '' : 'none';
              });
          });
      }
- 
+
      if (gameSearchInput) {
          gameSearchInput.addEventListener('input', () => {
              applyGameSearch();
          });
      }
+
+     // Build genres list in filters panel based on gameInfo at runtime
+     (function buildGenreFilters() {
+         const genreContainer = document.getElementById('genre-filters');
+         if (!genreContainer || !gameInfo) return;
+
+         // Count genres and only include genres that are common enough (>= 3 games)
+         const genreCount = {};
+         Object.values(gameInfo).forEach(info => {
+             if (!info || !info.genre) return;
+             info.genre.split(/[,|\/]/).map(g => g.trim()).forEach(g => {
+                 if (!g) return;
+                 genreCount[g] = (genreCount[g] || 0) + 1;
+             });
+         });
+
+         // Only keep genres with a minimum occurrence to avoid highly targeted single-game filters
+         const MIN_GENRE_COUNT = 3;
+         const genres = Object.keys(genreCount)
+             .filter(g => genreCount[g] >= MIN_GENRE_COUNT)
+             .sort((a,b) => a.localeCompare(b));
+
+         // Build checkboxes for the filtered genre list
+         genres.forEach(g => {
+             const id = 'genre-' + g.replace(/\s+/g,'-').replace(/[^\w-]/g,'').toLowerCase();
+             const label = document.createElement('label');
+             label.style = 'display:flex; align-items:center; gap:8px; margin-bottom:6px; width:100%;';
+             label.innerHTML = `<input type="checkbox" id="${id}" value="${g}"><span style="font-size:13px; color:var(--text-main);">${g}</span>`;
+             genreContainer.appendChild(label);
+         });
+
+         // Wire up change listener to all checkboxes to re-run filtering
+         genreContainer.querySelectorAll('input[type="checkbox"]').forEach(cb => {
+             cb.addEventListener('change', applyGameSearch);
+         });
+
+         // Wire up Web Ports checkbox so platform filtering re-applies
+         const webPortsCheckbox = document.getElementById('filter-web-ports');
+         if (webPortsCheckbox) webPortsCheckbox.addEventListener('change', applyGameSearch);
+
+         // Clear filters button now clears genres and both platform checkboxes
+         const clearBtn = document.getElementById('clear-filters-btn');
+         if (clearBtn) {
+             clearBtn.addEventListener('click', () => {
+                 genreContainer.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.checked = false);
+                 if (webCheckbox) webCheckbox.checked = false;
+                 if (webPortsCheckbox) webPortsCheckbox.checked = false;
+                 applyGameSearch();
+             });
+         }
+
+         // Toggle panel open/close
+         const filtersButton = document.getElementById('filters-button');
+         const filtersPanel = document.getElementById('filters-panel');
+         if (filtersButton && filtersPanel) {
+             filtersButton.addEventListener('click', (e) => {
+                 e.stopPropagation();
+                 const open = filtersPanel.style.display !== 'none';
+                 filtersPanel.style.display = open ? 'none' : 'block';
+                 filtersButton.setAttribute('aria-expanded', String(!open));
+             });
+             // Close when clicking outside
+             document.addEventListener('click', (e) => {
+                 if (!filtersPanel.contains(e.target) && !filtersButton.contains(e.target)) {
+                     filtersPanel.style.display = 'none';
+                     filtersButton.setAttribute('aria-expanded', 'false');
+                 }
+             });
+         }
+     })();
 
     function createGameCard(gameUrl, info) {
         const card = document.createElement('div');
@@ -5344,8 +5761,17 @@ Loading proxies...
 
         // Sort games
         allGames.sort((a, b) => {
-            if (sortOrder === 'name') return a.title.localeCompare(b.title);
-            return parseInt(a.year) - parseInt(b.year); // Default to year
+            if (sortOrder === 'name') {
+                return a.title.localeCompare(b.title);
+            }
+            // Year-based sorts (handle missing/NaN years gracefully)
+            const ay = parseInt(a.year) || 0;
+            const by = parseInt(b.year) || 0;
+            if (sortOrder === 'year-desc') {
+                return by - ay; // New to Old
+            }
+            // Default/ 'year-asc' -> Old to New
+            return ay - by;
         });
 
         const favoriteList = [];
@@ -5384,7 +5810,8 @@ Loading proxies...
 
         const allTitle = document.createElement('h2');
         allTitle.className = 'section-title';
-        allTitle.textContent = 'All Games';
+        // Show total number of games available in the collection
+        allTitle.textContent = `All Games - ${allGames.length}`;
         allWrapper.appendChild(allTitle);
 
         const grid = document.createElement('div');
@@ -5405,66 +5832,196 @@ Loading proxies...
     // Track current Blob URL for game HTML so we can clean it up
     let currentGameObjectUrl = null;
 
+    // Robustly stop and unload the currently running embedded game.
+    // Ensures src/srcdoc are cleared, blob URLs revoked, onload handlers removed,
+    // iframe document is cleared where possible, and UI/audio/debug state is restored.
+    function closeActiveGame() {
+        try {
+            const iframeContainer = document.getElementById('game-iframe-container');
+            const iframe = document.getElementById('game-iframe');
+
+            // Remove onload handler to avoid re-injection races
+            try { iframe.onload = null; } catch (e) {}
+
+            // Try to notify iframe to stop any media or loops (best-effort)
+            try {
+                if (iframe.contentWindow && typeof iframe.contentWindow.postMessage === 'function') {
+                    iframe.contentWindow.postMessage({ type: '__t4_stop_all_media__' }, '*');
+                }
+            } catch (e) { /* ignore cross-origin */ }
+
+            // Clear srcdoc if present (avoids persistent execution in some browsers)
+            try { if ('srcdoc' in iframe) iframe.srcdoc = ''; } catch (e) {}
+
+            // Remove src then set to about:blank as a fallback
+            try {
+                iframe.removeAttribute('src');
+                iframe.src = 'about:blank';
+            } catch (e) {}
+
+            // Attempt to clear the iframe document (same-origin only; wrapped safely)
+            try {
+                const doc = iframe.contentDocument || (iframe.contentWindow && iframe.contentWindow.document);
+                if (doc) {
+                    doc.open();
+                    doc.write('');
+                    doc.close();
+                }
+            } catch (e) {
+                // cross-origin or denied - ignore
+            }
+
+            // Revoke any blob/object URL we created
+            if (currentGameObjectUrl) {
+                try { URL.revokeObjectURL(currentGameObjectUrl); } catch (e) {}
+                currentGameObjectUrl = null;
+            }
+
+            // Hide the iframe container and close overlays/menus
+            if (iframeContainer) iframeContainer.style.display = 'none';
+            try { inGameOverlay.classList.remove('open'); } catch (e) {}
+
+            // Reapply background UI state and resume music if appropriate
+            try { applyBackgroundStyle(); } catch (e) {}
+            if (musicStarted && musicToggle && musicToggle.checked) {
+                try { bgMusic.play().catch(()=>{}); } catch (e) {}
+            }
+
+            // Ensure debug displays are cleared
+            try { disableAllDebugDisplays(); } catch (e) {}
+        } catch (e) {
+            console.error('closeActiveGame failed:', e);
+        }
+    }
+
     // Load a game HTML file from the CDN, rewrite its asset URLs, and run it via a local Blob URL
     async function loadGameIntoIframe(gamePath) {
         const iframe = document.getElementById('game-iframe');
 
-        // Clean up any previous Blob URL
+        // Clear previous blob/object URL if present
         if (currentGameObjectUrl) {
-            try {
-                URL.revokeObjectURL(currentGameObjectUrl);
-            } catch (_) {}
+            try { URL.revokeObjectURL(currentGameObjectUrl); } catch (_) {}
             currentGameObjectUrl = null;
         }
 
         try {
-            const response = await fetch(CDN_BASE + gamePath + (gamePath.includes('?') ? `&_=${Date.now()}` : `?_=${Date.now()}`), {
+            // Fetch the game's HTML from the CDN
+            const res = await fetch(CDN_BASE + gamePath + (gamePath.includes('?') ? `&_=${Date.now()}` : `?_=${Date.now()}`), {
                 credentials: 'omit',
                 cache: 'no-store'
             });
-            if (!response.ok) {
-                throw new Error(`Failed to fetch game HTML: ${response.status} ${response.statusText}`);
+            if (!res.ok) throw new Error(`Failed to fetch game HTML: ${res.status} ${res.statusText}`);
+            let html = await res.text();
+
+            // Sanitize problematic legacy meta tags (e.g. target-densitydpi) that cause warnings or layout issues
+            // and remove any duplicate <meta name="viewport"> that uses obsolete properties.
+            try {
+              // Remove any meta tags that mention target-densitydpi (older mobile-only tag)
+              html = html.replace(/<meta[^>]*target-densitydpi[^>]*>/gi, '');
+              // Normalize viewport tag: remove target-densitydpi attributes if accidentally embedded inside viewport
+              html = html.replace(/(<meta[^>]*name=["']viewport["'][^>]*content=["'])([^"']*)(["'][^>]*>)/gi, (m, start, content, end) => {
+                const cleaned = content.replace(/target-densitydpi\s*:\s*[^;]+;?/gi, '').replace(/,+/g, ',').trim();
+                // Ensure at least a standard viewport exists
+                const finalContent = cleaned.length ? cleaned : 'width=device-width, initial-scale=1';
+                return `${start}${finalContent}${end}`;
+              });
+
+              // Also remove any inline meta that uses the obsolete target-densitydpi syntax anywhere
+              html = html.replace(/target-densitydpi\s*=\s*["'][^"']*["']/gi, '');
+            } catch (e) {
+              console.warn('Meta sanitization failed (continuing):', e);
             }
-            let html = await response.text();
 
-            // Rewrite relative src/href URLs to absolute CDN URLs so assets still load correctly
-            const cdn = CDN_BASE;
-            // Cache‑buster for all in‑game asset URLs to force the latest version from jsDelivr
-            const assetBuster = Date.now();
+            // Insert a <base> tag so relative asset paths resolve against the game's folder on the CDN.
+            // This preserves games that expect local-relative paths instead of forcing every URL to be rewritten.
+            try {
+                // Determine base directory for the game (e.g. CDN_BASE + 'games/foo/')
+                const gameDir = (CDN_BASE + gamePath).replace(/[^\/]+$/, '');
+                const baseTag = `<base href="${gameDir}">`;
 
-            // src="..." (skip data:, http, https, blob)
-            html = html.replace(
-                /(\s(?:src|data-src)\s*=\s*["'])(?!https?:|data:|blob:|\/\/)([^"']+)["']/gi,
-                (match, prefix, url) => {
-                    const trimmed = url.trim();
-                    if (!trimmed) return match;
-                    const base = `${cdn}${trimmed.replace(/^(\.\/|\/)/, '')}`;
-                    const withBuster = base + (base.includes('?') ? '&' : '?') + '_ts=' + assetBuster;
-                    return `${prefix}${withBuster}"`;
+                // If a <head> exists, inject base into it; otherwise prepend a simple head with base.
+                if (/<head[^>]*>/i.test(html)) {
+                    html = html.replace(/(<head[^>]*>)/i, `$1\n    ${baseTag}`);
+                } else {
+                    // Add minimal head with base
+                    html = `<!doctype html><head>${baseTag}</head>\n` + html;
                 }
-            );
 
-            // href="..." (skip http, https, mailto, tel, blob, #, javascript:)
-            html = html.replace(
-                /(\s(?:href)\s*=\s*["'])(?!https?:|mailto:|tel:|blob:|javascript:|#|\/\/)([^"']+)["']/gi,
-                (match, prefix, url) => {
-                    const trimmed = url.trim();
-                    if (!trimmed) return match;
-                    const base = `${cdn}${trimmed.replace(/^(\.\/|\/)/, '')}`;
-                    const withBuster = base + (base.includes('?') ? '&' : '?') + '_ts=' + assetBuster;
-                    return `${prefix}${withBuster}"`;
+                // Ensure charset meta exists to avoid encoding issues
+                if (!/meta\s+charset=/i.test(html)) {
+                    html = html.replace(/<head[^>]*>/i, match => `${match}\n<meta charset="utf-8">`);
                 }
-            );
+            } catch (e) {
+                console.warn('Failed to inject <base> tag (continuing):', e);
+            }
 
-            const blob = new Blob([html], { type: 'text/html' });
-            const objectUrl = URL.createObjectURL(blob);
-            currentGameObjectUrl = objectUrl;
-            iframe.src = objectUrl;
+            // Try using srcdoc first (keeps relative URLs working with injected <base>), but fall back to a Blob URL
+            // if srcdoc is blocked by browser restrictions or CSP.
+            iframe.removeAttribute('src');
+
+            let usedBlob = false;
+            try {
+              // Some browsers require srcdoc to be set as a string; ensure proper escaping if necessary
+              iframe.srcdoc = html;
+
+              // Ensure iframe has the required permissions when running srcdoc games so embedded scripts,
+              // autoplay, and same-origin features used by some ports are allowed.
+              try {
+                iframe.setAttribute('sandbox', 'allow-scripts allow-same-origin allow-forms allow-popups allow-modals');
+                iframe.setAttribute('allow', 'autoplay; fullscreen; clipboard-read; clipboard-write');
+              } catch (e) {
+                console.warn('Failed to set iframe attributes:', e);
+              }
+
+              // Give the browser a moment to apply srcdoc; if it throws synchronously we'll catch and fallback.
+              currentGameObjectUrl = null;
+            } catch (srcdocErr) {
+              console.warn('srcdoc failed, falling back to Blob URL:', srcdocErr);
+              try {
+                const blob = new Blob([html], { type: 'text/html' });
+                const objectUrl = URL.createObjectURL(blob);
+                iframe.src = objectUrl;
+                // Remember to revoke later when unloading the game
+                currentGameObjectUrl = objectUrl;
+                usedBlob = true;
+              } catch (blobErr) {
+                console.error('Blob fallback failed:', blobErr);
+                throw blobErr;
+              }
+            }
+
+            // As an additional safety: if srcdoc was applied but the iframe remains empty for a moment,
+            // create a short timeout that checks document readiness and fallback to blob if needed.
+            if (!usedBlob && !currentGameObjectUrl) {
+              setTimeout(() => {
+                try {
+                  const doc = iframe.contentDocument || (iframe.contentWindow && iframe.contentWindow.document);
+                  // If iframe document is null or blank (some restrictive hosts), try blob fallback
+                  if (!doc || doc.documentElement === null || !doc.documentElement.innerHTML.trim()) {
+                    // Create blob fallback
+                    const blob = new Blob([html], { type: 'text/html' });
+                    const objectUrl = URL.createObjectURL(blob);
+                    try { iframe.src = objectUrl; } catch (e) { iframe.setAttribute('src', objectUrl); }
+                    // revoke previous blob if any
+                    if (currentGameObjectUrl && currentGameObjectUrl !== objectUrl) {
+                      try { URL.revokeObjectURL(currentGameObjectUrl); } catch (_) {}
+                    }
+                    currentGameObjectUrl = objectUrl;
+                  }
+                } catch (e) {
+                  // If accessing contentDocument is blocked (cross-origin/CSP), we can't reliably detect state; skip fallback here.
+                }
+              }, 350);
+            }
         } catch (err) {
             console.error('Error loading game into iframe:', err);
-            alert('Failed to load game HTML from GitHub. Check the console for details.');
-            // Fallback: direct CDN navigation
-            iframe.src = CDN_BASE + gamePath;
+            alert('Failed to load game HTML from GitHub. Falling back to direct CDN navigation.');
+            // Fallback: navigate iframe directly to CDN-hosted HTML (may be blocked by MIME or CORS)
+            try {
+                iframe.src = CDN_BASE + gamePath + (gamePath.includes('?') ? `&_=${Date.now()}` : `?_=${Date.now()}`);
+            } catch (e) {
+                console.error('Fallback iframe navigation failed:', e);
+            }
         }
     }
 
@@ -5741,6 +6298,132 @@ Loading proxies...
              altLinkButton.dataset.altAction = '';
         }
 
+        // Only show the Mods tab for the Friday Night Funkin entry
+        const modsTab = document.querySelector('.popup-tab[data-tab="mods"]');
+        const modsContent = document.getElementById('tab-mods');
+        if (modsTab && modsContent) {
+            const isFNF = (gameUrl === 'FridayNightFunk.html' || gameUrl === 'FridayNightFunkin.html' || (info.title && info.title.toLowerCase().includes('friday night funk')));
+            if (isFNF) {
+                // Show the Mods tab and populate it with available mods (logo tile linking to mod HTML)
+                modsTab.style.display = '';
+                modsContent.style.display = '';
+
+                // Build a simple grid of mods; Bop City entry uses bobcity.png as the logo and links to bobcity.html
+                const modGridHtml = `
+                  <div style="display:flex; gap:10px; flex-wrap:wrap; align-items:flex-start;">
+                    <a href="#" data-mod="bobcity" class="mod-entry" style="display:inline-flex; flex-direction:column; align-items:center; text-decoration:none;">
+                      <img src="${CDN_BASE}bobcity.png" alt="BopCity" style="width:190px; height:auto; border-radius:12px; border:1px solid rgba(148,163,184,0.28); box-shadow:0 12px 30px rgba(0,0,0,0.6);">
+                    </a>
+                  </div>
+                  <p style="margin-top:10px; color:var(--text-muted); font-size:12px;"></p>
+                `;
+                modsContent.innerHTML = modGridHtml;
+
+                // Attach click behavior for mod tiles (open in same handling as Play -> use blank tab setting / iframe)
+                const modLinks = modsContent.querySelectorAll('.mod-entry');
+                modLinks.forEach(link => {
+                    link.addEventListener('click', (ev) => {
+                        ev.preventDefault();
+                        const modId = link.dataset.mod;
+                        if (!modId) return;
+                        // Map mod id to its html filename
+                        let modHtml = '';
+                        if (modId === 'bobcity') modHtml = 'bopcity.html';
+                        if (!modHtml) return;
+
+                        // Follow same blank-tab vs iframe logic used by the Play button
+                        if (blankTabToggle && blankTabToggle.checked) {
+                            // Open in new tab via rewritten Blob (reuse logic used earlier)
+                            (async () => {
+                                try {
+                                    const cacheBuster = Date.now();
+                                    const response = await fetch(CDN_BASE + modHtml + (modHtml.includes('?') ? `&_=${cacheBuster}` : `?_=${cacheBuster}`), { credentials: 'omit', cache: 'no-store' });
+                                    if (!response.ok) throw new Error('Failed to fetch mod HTML');
+                                    let html = await response.text();
+
+                                    const cdn = CDN_BASE;
+                                    const assetBuster = Date.now();
+
+                                    html = html.replace(
+                                      /(\s(?:src|data-src)\s*=\s*["'])(?!https?:|data:|blob:|\/\/)([^"']+)["']/gi,
+                                      (match, prefix, url) => {
+                                        const trimmed = url.trim();
+                                        if (!trimmed) return match;
+                                        const base = `${cdn}${trimmed.replace(/^(\.\/|\/)/, '')}`;
+                                        const withBuster = base + (base.includes('?') ? '&' : '?') + '_ts=' + assetBuster;
+                                        return `${prefix}${withBuster}"`;
+                                      }
+                                    );
+
+                                    html = html.replace(
+                                      /(\s(?:href)\s*=\s*["'])(?!https?:|mailto:|tel:|blob:|javascript:|#|\/\/)([^"']+)["']/gi,
+                                      (match, prefix, url) => {
+                                        const trimmed = url.trim();
+                                        if (!trimmed) return match;
+                                        const base = `${cdn}${trimmed.replace(/^(\.\/|\/)/, '')}`;
+                                        const withBuster = base + (base.includes('?') ? '&' : '?') + '_ts=' + assetBuster;
+                                        return `${prefix}${withBuster}"`;
+                                      }
+                                    );
+
+                                    const blob = new Blob([html], { type: 'text/html' });
+                                    const objectUrl = URL.createObjectURL(blob);
+                                    const win = window.open(objectUrl, '_blank');
+                                    if (!win) {
+                                      alert("Failed to open new tab. Please allow popups for this site.");
+                                    } else {
+                                      setTimeout(() => { try { URL.revokeObjectURL(objectUrl); } catch(_){} }, 60000);
+                                    }
+                                } catch (err) {
+                                    console.error('Error opening mod in new tab:', err);
+                                    alert('Failed to open mod. Check console for details.');
+                                }
+                            })();
+                        } else {
+                            // Load into the embedded iframe
+                            const iframeContainer = document.getElementById('game-iframe-container');
+                            loadGameIntoIframe(modHtml).then(() => {
+                                iframeContainer.style.display = 'block';
+                                setupIframePanicKey(gameIframe);
+                                gameIframe.focus();
+                                enterGameMode();
+                            });
+                        }
+
+                        // Close the popup overlay after launching the mod
+                        hideGameInfo();
+                    });
+                });
+
+            } else {
+                // Hide the tab and its content for all other games
+                modsTab.style.display = 'none';
+                modsContent.style.display = 'none';
+                // If the mods tab was active, switch to overview/details appropriately
+                if (modsTab.classList.contains('active')) {
+                    // Remove active class from mods tab
+                    modsTab.classList.remove('active');
+                    // Ensure overview tab is active instead
+                    const overviewTab = document.querySelector('.popup-tab[data-tab="overview"]');
+                    const overviewContent = document.getElementById('tab-overview');
+                    const detailsTab = document.querySelector('.popup-tab[data-tab="details"]');
+                    const detailsContent = document.getElementById('tab-details');
+                    // Prefer overview; if overview missing, pick details
+                    if (overviewTab && overviewContent) {
+                        overviewTab.classList.add('active');
+                        overviewContent.classList.add('active');
+                        if (detailsTab && detailsContent) {
+                            detailsTab.classList.remove('active');
+                            detailsContent.classList.remove('active');
+                        }
+                    } else if (detailsTab && detailsContent) {
+                        detailsTab.classList.add('active');
+                        detailsContent.classList.add('active');
+                    }
+                }
+            }
+        }
+
         popupOverlay.style.display = 'block';
         gameInfoPopup.style.display = 'block';
         resetPopupTabs();
@@ -5868,27 +6551,8 @@ Loading proxies...
     });
 
     document.getElementById('back-button')?.addEventListener('click', () => {
-        const iframeContainer = document.getElementById('game-iframe-container');
-        const iframe = document.getElementById('game-iframe');
-
-        iframe.src = 'about:blank'; // Stop the game
-        // Revoke current Blob URL if any
-        if (currentGameObjectUrl) {
-            try { URL.revokeObjectURL(currentGameObjectUrl); } catch (_) {}
-            currentGameObjectUrl = null;
-        }
-        iframeContainer.style.display = 'none';
-        inGameOverlay.classList.remove('open');
-        
-        applyBackgroundStyle(); // FIX: Reapply background attachment property
-
-        // Resume background music only if it was started via the entrance button
-        if (musicStarted && musicToggle.checked) {
-            bgMusic.play().catch(e => {});
-        }
-
-        // Also clear any debug overlays if the legacy back button is used
-        disableAllDebugDisplays();
+        // Use centralized cleanup to ensure the embedded game fully stops
+        closeActiveGame();
     });
     
     document.getElementById('alt-link-button').addEventListener('click', (e) => {
@@ -5966,6 +6630,7 @@ Loading proxies...
     const inGameOverlay = document.getElementById('in-game-overlay');
     const inGameHandle = document.getElementById('in-game-handle');
     const inGameFullscreenBtn = document.getElementById('in-game-fullscreen-btn');
+    const inGameRefreshBtn = document.getElementById('in-game-refresh-btn');
     const inGameBackBtn = document.getElementById('in-game-back-btn');
 
     // In‑game debug display controls
@@ -6185,32 +6850,39 @@ Loading proxies...
         inGameOverlay.classList.remove('open');
     });
 
+    // Refresh button reloads the currently embedded game iframe (best-effort)
+    if (inGameRefreshBtn) {
+      inGameRefreshBtn.addEventListener('click', () => {
+        try {
+          const iframe = document.getElementById('game-iframe');
+          // Try a normal reload first (works when same-origin)
+          if (iframe && iframe.contentWindow && typeof iframe.contentWindow.location.reload === 'function') {
+            iframe.contentWindow.location.reload();
+          } else if (iframe && iframe.src) {
+            // Fallback: reassign src to force navigation (works cross-origin)
+            const cur = iframe.src;
+            iframe.src = 'about:blank';
+            setTimeout(() => { iframe.src = cur; }, 50);
+          }
+        } catch (e) {
+          console.warn('In-game refresh failed, attempting fallback:', e);
+          try {
+            const iframe = document.getElementById('game-iframe');
+            const cur = iframe.src;
+            iframe.src = 'about:blank';
+            setTimeout(() => { iframe.src = cur; }, 100);
+          } catch (ignored) {}
+        } finally {
+          inGameOverlay.classList.remove('open');
+        }
+      });
+    }
+
     inGameBackBtn.addEventListener('click', () => {
-        const iframeContainer = document.getElementById('game-iframe-container');
-        const iframe = document.getElementById('game-iframe');
-
-        iframe.src = 'about:blank'; // Stop the game
-        // Revoke current Blob URL if any
-        if (currentGameObjectUrl) {
-            try { URL.revokeObjectURL(currentGameObjectUrl); } catch (_) {}
-            currentGameObjectUrl = null;
-        }
-        iframeContainer.style.display = 'none';
-        inGameOverlay.classList.remove('open');
-        
-        applyBackgroundStyle(); // FIX: Reapply background attachment property
-
-        // Resume background music only if it was started via the entrance button
-        if (musicStarted && musicToggle.checked) {
-            bgMusic.play().catch(e => {});
-        }
-
-        // Turn off any active debug overlays when leaving a game
-        disableAllDebugDisplays();
-
-        // >>> EXIT GAME MODE restore UI/resources
+        // Ensure the iframe/game is fully stopped and cleaned up
+        closeActiveGame();
+        // Restore app UI / resources mode
         exitGameMode();
-        // <<< END
     });
     
     // --- SETTINGS ---
@@ -6870,6 +7542,7 @@ Loading proxies...
     function saveSettings() {
         // Ensure keys are stored as non-null if checked
         const panicKeyValue = panicKeyToggle.checked ? panicKeyInput.value.trim() : null;
+        const runtimeModeValue = (typeof runtimeModeSelect !== 'undefined' && runtimeModeSelect) ? runtimeModeSelect.value : 'auto';
         
         localStorage.setItem('settings', JSON.stringify({
             music: musicToggle.checked,
@@ -6887,6 +7560,8 @@ Loading proxies...
             tabTitle: tabTitleInput ? tabTitleInput.value : '',
             tabLogo: tabLogoInput ? tabLogoInput.value : '',
             debugMode: debugModeToggle ? debugModeToggle.checked : false,
+            // Runtime mode override: 'auto'|'embedded'|'file'
+            runtimeMode: runtimeModeValue,
             // If user ever left TEMPO, remember not to play intro again
             disableIntro: disableIntro
         }));
@@ -6896,7 +7571,7 @@ Loading proxies...
         const settings = JSON.parse(localStorage.getItem('settings')) || {};
         musicToggle.checked = settings.music ?? true;
         soundToggle.checked = settings.sound ?? true;
-        orderSelect.value = settings.order ?? 'year';
+        orderSelect.value = settings.order ?? 'year-asc';
         if (themeSelect) {
             themeSelect.value = settings.theme || 'dark';
         }
@@ -6929,6 +7604,16 @@ Loading proxies...
         panicKeyInput.value = settings.panicKey ?? '';
         panicKeyUrl.value = settings.panicKeyUrl ?? 'https://google.com';
         blankTabToggle.checked = settings.openInBlankTab ?? false; // NEW
+
+        // Runtime mode override (auto / embedded / file)
+        try {
+          const runtimeSelectEl = document.getElementById('runtimeModeSelect');
+          if (runtimeSelectEl) {
+            runtimeSelectEl.value = settings.runtimeMode || 'auto';
+          }
+        } catch (e) {
+          // ignore if element not present
+        }
 
         // Tab cloaker settings
         if (typeof settings.tabCloakEnabled === 'boolean' && tabCloakToggle) {
@@ -7167,6 +7852,7 @@ Loading proxies...
     let currentRoms = [];
     let unsubscribeRoms = null; // kept for compatibility elsewhere
     let unsubscribeProxies = null; // unchanged proxy behavior
+    let unsubscribeVotes = null; // reserved for vote-subscription cleanup (prevents ReferenceError)
 
     function setupProxySubscription() {
         // Intentionally left blank (Proxy Hub uses static Proxy.txt)
@@ -7254,12 +7940,14 @@ Loading proxies...
     let proxiesLoaded = false;
     let proxiesLoading = false;
 
-    async function loadStaticProxies() {
-        if (proxiesLoaded || proxiesLoading) return;
+    async function loadStaticProxies(force = false) {
+        // If already loading, wait out the current load; if already loaded and not forced, skip.
+        if (proxiesLoading) return;
+        if (proxiesLoaded && !force) return;
         proxiesLoading = true;
 
         if (proxyRaw) {
-            proxyRaw.textContent = 'Loading proxies...';
+            proxyRaw.textContent = force ? 'Refreshing proxies...' : 'Loading proxies...';
         }
 
         try {
@@ -7288,6 +7976,32 @@ Loading proxies...
         popupOverlay.style.display = 'block';
         loadStaticProxies();
     }
+
+    // Wire up the Proxy Hub "Refresh" button to reload the Proxy.txt content
+    (function attachProxyRefreshButton() {
+      try {
+        const refreshBtn = document.getElementById('proxy-refresh-btn');
+        if (!refreshBtn) return;
+        refreshBtn.addEventListener('click', async () => {
+          try {
+            const proxyRawEl = document.getElementById('proxy-raw');
+            if (proxyRawEl) proxyRawEl.textContent = 'Refreshing proxies...';
+            // Force a fresh fetch even if we previously loaded proxies
+            await loadStaticProxies(true);
+            // Provide a short visual confirmation if desired
+            if (proxyRawEl && proxyRawEl.textContent && proxyRawEl.textContent.trim().length === 0) {
+              proxyRawEl.textContent = 'No proxies found.';
+            }
+          } catch (e) {
+            console.error('Error refreshing proxies:', e);
+            const proxyRawEl = document.getElementById('proxy-raw');
+            if (proxyRawEl) proxyRawEl.textContent = 'Failed to refresh proxies. See console.';
+          }
+        });
+      } catch (e) {
+        console.error('Failed to attach proxy refresh button listener:', e);
+      }
+    })();
 
     function closeProxyHub() {
         smoothHide(proxyHubPopup);
@@ -7894,6 +8608,28 @@ Loading proxies...
     }
 
     // --- Initialization ---
+    // Prune localStorage on startup: keep only essential keys (settings, favorites, plays, and known game data keys)
+    function pruneLocalStorage() {
+      try {
+        const keepPrefixes = ['plays_', 'favorites', 'settings', 'game_', 'gameData', 'indexeddb_', 'tabCloak']; // add any other essential prefixes you want preserved
+        const keepExact = new Set(['settings', 'favorites']);
+        const keys = Object.keys(localStorage || {});
+        for (const k of keys) {
+          const lower = k.toString();
+          let keep = keepExact.has(lower);
+          if (!keep) {
+            for (const p of keepPrefixes) {
+              if (lower.startsWith(p)) { keep = true; break; }
+            }
+          }
+          if (!keep) {
+            try { localStorage.removeItem(k); } catch (e) { /* ignore */ }
+          }
+        }
+      } catch (e) {
+        console.warn('Prune localStorage failed:', e);
+      }
+    }
     window.addEventListener('load', async () => {
       const loadingScreen = document.getElementById('loading-screen');
       const skipButton = document.getElementById('loading-skip-btn');
@@ -7914,6 +8650,9 @@ Loading proxies...
         });
       }
 
+      // Remove non‑essential persisted site data so it is reloaded dynamically each visit.
+      // This keeps only user settings and essential game-related keys (plays_, favorites, etc.)
+      pruneLocalStorage();
       loadSettings();
       applyBackgroundStyle();
       loadFavorites();
@@ -7981,39 +8720,7 @@ Loading proxies...
       // Initialize Github Repo button listener
       document.getElementById('github-repo-btn').addEventListener('click', showExternalLinksModal);
 
-      if (openCollectionBtn) {
-        openCollectionBtn.addEventListener('click', () => {
-          smoothHide(entranceScreen);
-          document.querySelectorAll('.app-hidden').forEach(el => {
-            el.classList.remove('app-hidden');
-          });
-
-          // Mark that the user has entered the collection so music can be allowed
-          hasEnteredCollection = true;
-
-          // Start background music only after entering the collection, if enabled
-          if (musicToggle.checked) {
-            bgMusic.play().then(() => {
-              musicStarted = true;
-            }).catch(e => {
-              console.log("Audio autoplay blocked by browser.");
-              // Even if blocked, consider music 'started' only after a successful play
-              musicStarted = false;
-            });
-          }
-
-          // Start the optimized title + overlay effects when Intro is On
-          // and the current BG music is TEMPO.
-          if (
-            window.startEntranceEffects &&
-            introToggleButton &&
-            introToggleButton.textContent.includes('On') &&
-            bgMusicSelect.value === 'TEMPO.mp3'
-          ) {
-            window.startEntranceEffects();
-          }
-        });
-      }
+      // openCollectionBtn click is attached earlier (so skipping the loading screen won't disable the button)
     });
 
 
@@ -8222,26 +8929,262 @@ Loading proxies...
 
   </script>
   <script>
-    // Add a persistent version label inside the settings drawer and ensure it stays at the bottom.
-    (function appendSettingsVersion() {
+    // Add a persistent runtime-info + version label inside the settings drawer and ensure they stay at the bottom.
+    (function appendSettingsRuntimeAndVersion() {
       try {
         const settings = document.querySelector('.settings-menu');
         if (!settings) return;
-        // Create container to pin to bottom visually
-        const versionEl = document.createElement('div');
-        versionEl.style.cssText = [
+
+        // Container wrapper for runtime info + version to keep them visually grouped at the bottom
+        const bottomWrapper = document.createElement('div');
+        bottomWrapper.style.cssText = [
           'margin-top:12px',
           'border-top:1px solid rgba(148,163,184,0.12)',
           'padding-top:10px',
           'color:var(--text-muted)',
           'font-size:12px',
           'text-align:right',
-          'font-family: system-ui, sans-serif'
+          'font-family: system-ui, sans-serif',
+          'display:flex',
+          'flex-direction:column',
+          'gap:6px',
+          'align-items:flex-end'
         ].join(';');
-        versionEl.textContent = 'Version 5.0.2';
-        settings.appendChild(versionEl);
+
+        // Runtime info element (hidden by default; shown when Debug Mode is enabled)
+        const runtimeEl = document.createElement('div');
+        runtimeEl.id = 'runtime-info';
+        runtimeEl.style.cssText = [
+          'width:100%',
+          'text-align:right',
+          'font-size:12px',
+          'color:var(--text-muted)',
+          'display:none' // shown only when debug mode is on
+        ].join(';');
+        runtimeEl.textContent = 'Runtime: detecting...';
+
+        // Version element (always visible)
+        const versionEl = document.createElement('div');
+        versionEl.style.cssText = [
+          'width:100%',
+          'text-align:right',
+          'font-size:12px',
+          'color:var(--text-muted)'
+        ].join(';');
+        versionEl.textContent = 'Version 5.0.3B';
+
+        bottomWrapper.appendChild(runtimeEl);
+        bottomWrapper.appendChild(versionEl);
+        settings.appendChild(bottomWrapper);
+
+        // Helper to produce a concise runtime summary from window.runtimeContext
+        function buildRuntimeSummary() {
+          try {
+            const ctx = window.runtimeContext || {};
+            // Check user override from settings (localStorage)
+            let settings = {};
+            try {
+              settings = JSON.parse(localStorage.getItem('settings')) || {};
+            } catch (e) {
+              settings = {};
+            }
+            const override = settings.runtimeMode || 'auto'; // 'auto'|'embedded'|'file'
+
+            if (override === 'embedded') {
+              return { summary: 'Embedded (iframe)', parent: (ctx.parentOrigin || ctx.embedSource || 'Unknown') };
+            } else if (override === 'file') {
+              return { summary: 'Local File', parent: null };
+            } else {
+              // auto-detect fallback
+              const protocol = ctx.parentProtocol || (ctx.origin ? (ctx.origin.split(':')[0]) : null);
+              const runningFrom = (protocol === 'file' || ctx.runningLocal) ? 'File' : (protocol === 'https' ? 'HTTPS' : (protocol === 'http' ? 'HTTP' : protocol || 'Unknown'));
+              const inIframe = ctx.inIframe ? 'In iframe' : 'Top window';
+              return { summary: `${runningFrom} · ${inIframe}`, parent: (ctx.parentOrigin || ctx.embedSource || null) };
+            }
+          } catch (e) {
+            return { summary: 'Unknown runtime', parent: null };
+          }
+        }
+
+        // Refresh the runtime element text
+        function refreshRuntimeInfo() {
+          const runtimeElLocal = document.getElementById('runtime-info');
+          if (!runtimeElLocal) return;
+          const info = buildRuntimeSummary();
+          // Show runtime summary and explicit parent origin when available (only visible in Debug Mode)
+          if (info.parent) {
+            runtimeElLocal.innerHTML = 'Runtime: ' + info.summary + '<br><span style="font-size:11px; color:var(--text-muted);">Parent: ' + info.parent + '</span>';
+          } else {
+            runtimeElLocal.innerHTML = 'Runtime: ' + info.summary + '<br><span style="font-size:11px; color:var(--text-muted);">Parent: N/A</span>';
+          }
+        }
+
+        // Toggle visibility based on Debug Mode checkbox if present
+        function updateRuntimeVisibility() {
+          const runtimeElLocal = document.getElementById('runtime-info');
+          if (!runtimeElLocal) return;
+          const debugToggle = document.getElementById('debugModeToggle');
+          if (debugToggle && debugToggle.checked) {
+            runtimeElLocal.style.display = 'block';
+            refreshRuntimeInfo();
+          } else {
+            runtimeElLocal.style.display = 'none';
+          }
+        }
+
+        // Hook up to the debug toggle if available; otherwise just show detection for debugging in console
+        const debugToggleEl = document.getElementById('debugModeToggle');
+        if (debugToggleEl) {
+          debugToggleEl.addEventListener('change', () => {
+            updateRuntimeVisibility();
+          });
+        }
+
+        // Update once on insertion
+        refreshRuntimeInfo();
+        updateRuntimeVisibility();
+
+        // Also update if runtimeContext changes later (best-effort)
+        window.addEventListener('runtimeContextUpdated', refreshRuntimeInfo);
+        // As a fallback, refresh when the page becomes visible again (in case parent/protocol access changed)
+        document.addEventListener('visibilitychange', () => {
+          if (!document.hidden) refreshRuntimeInfo();
+        });
+
       } catch (e) {
-        console.error('Failed to append settings version label', e);
+        console.error('Failed to append settings runtime/version label', e);
+      }
+    })();
+  </script>
+  <script>
+    // Runtime context detection: iframe, parent origin/protocol detection (safe), and local file detection
+    (function detectRuntimeContext() {
+      try {
+        const inIframe = window.self !== window.top;
+        const runningLocal = (location.protocol === 'file:') || (location.origin === 'null');
+
+        // Try best-effort detection of the parent/origin and protocol.
+        // Accessing window.top.location may throw when cross-origin, so we handle that gracefully.
+        let parentProtocol = null;
+        let parentOrigin = null;
+        let parentHostname = null;
+        let embedSource = null; // human-friendly parent site string
+
+        if (inIframe) {
+          try {
+            // If same-origin, we can read full parent location
+            if (window.top.location && window.top.location.protocol) {
+              parentProtocol = window.top.location.protocol.replace(':', '');
+              parentOrigin = window.top.location.origin || null;
+              parentHostname = window.top.location.hostname || null;
+              embedSource = parentOrigin || parentHostname;
+            }
+          } catch (e) {
+            // cross-origin access blocked -> fallback to document.referrer which often contains the embedding page URL
+            parentProtocol = 'cross-origin';
+            try {
+              const ref = document.referrer || '';
+              if (ref) {
+                try {
+                  const u = new URL(ref);
+                  parentOrigin = u.origin;
+                  parentHostname = u.hostname;
+                  embedSource = parentOrigin;
+                } catch (_) {
+                  // If referrer is not a full URL, just store the raw referrer
+                  embedSource = ref;
+                }
+              } else {
+                embedSource = 'cross-origin';
+              }
+            } catch (_) {
+              embedSource = 'cross-origin';
+            }
+          }
+        } else {
+          // Not in an iframe, parent is self
+          parentProtocol = location.protocol ? location.protocol.replace(':', '') : null;
+          parentOrigin = location.origin || null;
+          parentHostname = location.hostname || null;
+          embedSource = parentOrigin;
+        }
+
+        // Expose a convenient global summary object
+        window.runtimeContext = {
+          inIframe: !!inIframe,
+          runningLocal: !!runningLocal,
+          parentProtocol: parentProtocol, // 'https', 'http', 'file', 'cross-origin', or null
+          parentOrigin: parentOrigin,     // full origin when available
+          parentHostname: parentHostname, // hostname when available
+          embedSource: embedSource,       // best-effort human friendly identifier (origin/referrer/cross-origin)
+          origin: location.origin || null,
+          href: location.href || null,
+          referrer: document.referrer || null
+        };
+
+        // Add non-intrusive attributes to the document body for CSS/logic hooks
+        try {
+          document.body.setAttribute('data-in-iframe', window.runtimeContext.inIframe ? 'true' : 'false');
+          document.body.setAttribute('data-running-local', window.runtimeContext.runningLocal ? 'true' : 'false');
+          document.body.setAttribute('data-parent-protocol', window.runtimeContext.parentProtocol || 'unknown');
+          if (window.runtimeContext.parentHostname) {
+            document.body.setAttribute('data-parent-host', window.runtimeContext.parentHostname);
+          }
+        } catch (e) {
+          // ignore if document not available for some reason
+        }
+
+        // Prune UI elements based on detected runtime:
+        // - If embedded in an iframe (and not running as a local file), remove Local Player UI (header button + modal).
+        // - If running locally from file, remove features relevant only to being embedded (the "Open in new tab" / blank tab toggle).
+        try {
+          // Helper to safely remove an element if present
+          function removeIfExists(selectorOrEl) {
+            try {
+              let el = null;
+              if (!selectorOrEl) return;
+              if (typeof selectorOrEl === 'string') el = document.querySelector(selectorOrEl);
+              else el = selectorOrEl;
+              if (el && el.parentNode) el.parentNode.removeChild(el);
+            } catch (e) {
+              // ignore
+            }
+          }
+
+          // If running embedded (iframe) and NOT a local file, remove Local Player related UI
+          if (window.runtimeContext.inIframe && !window.runtimeContext.runningLocal) {
+            // Remove header "What is the Local Player?" button
+            removeIfExists('#local-player-info-btn');
+            // Remove the Local Player info modal popup
+            removeIfExists('#local-player-info-popup');
+            // Also remove any references in menus that mention "Local Player" (best-effort)
+            const navCandidates = document.querySelectorAll('[id*="local-player"], [data-feature*="local-player"]');
+            navCandidates.forEach(n => removeIfExists(n));
+          }
+
+          // If running from a local file, remove settings only useful when embedded
+          if (window.runtimeContext.runningLocal) {
+            // Remove the "Open in new tab" setting row that contains the blankTabToggle
+            const blankToggle = document.getElementById('blankTabToggle');
+            if (blankToggle) {
+              const settingsRow = blankToggle.closest('.settings-option');
+              removeIfExists(settingsRow);
+            }
+            // Also hide any UI that depends on parent/iframe context (for safety)
+            const iframeOnlySelectors = [
+              '#open-collection-btn[title="Open Fullpage"]',
+              '[data-needs-iframe="true"]'
+            ];
+            iframeOnlySelectors.forEach(sel => removeIfExists(sel));
+          }
+        } catch (e) {
+          console.warn('Failed to prune runtime-specific UI:', e);
+        }
+
+        // Console summary so it's easy to spot during debugging
+        console.info('Runtime context detected:', window.runtimeContext);
+      } catch (err) {
+        console.error('Runtime context detection failed:', err);
       }
     })();
   </script>
