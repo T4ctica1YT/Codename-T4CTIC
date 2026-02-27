@@ -3782,7 +3782,7 @@ Loading proxies...
     let defaultFaviconHref = null;
     
     // Game information data
-    const gameInfo = {
+   const gameInfo = {
       'Kindergarten.html': {
         title: 'Kindergarten', year: '2017', system: 'PC', genre: 'Adventure, Indie, Puzzle',
         cover: 'kindergarten_cover.png',
@@ -3845,10 +3845,11 @@ Loading proxies...
         cover: 'minecraft_cover.png',
         description: "The 1.12.2 version of Minecraft Java Edition."
       },
-      'Bendy and the Ink Machine.html': {
+      'BATIM.html': {
         title: 'Bendy and the Ink Machine', year: '2017', system: 'PC', genre: 'Horror, Puzzle, Adventure',
         cover: 'bendy_cover.png',
-        description: "A first-person puzzle action horror game with a unique cartoon atmosphere. Uncover the secrets of an old animation studio. Only the first 2 chapters are avalible at this time."
+        description: "A first-person puzzle action horror game with a unique cartoon atmosphere. Uncover the secrets of an old animation studio. All 5 Chapters are avalible to play!",
+        warning: "DONT OPEN THE OPTIONS MENU, IT WILL SOFT LOCK YOUR GAME!"
       },
       'Hollow Knight.html': {
         title: 'Hollow Knight', year: '2017', system: 'PC', genre: 'Metroidvania, Action-Adventure',
@@ -5504,7 +5505,217 @@ Loading proxies...
         genre: 'Roguelite, Action, Shooter',
         cover: 'Brotato.png',
         description: "Top-down arena roguelite where you play as a potato wielding many weapons, fighting waves of enemies and upgrading between runs."
-      }
+      },
+      'cloverpit.html': {
+  title: 'Clover Pit',
+  year: '2023',
+  system: 'PC',
+  genre: 'Indie / Action',
+  cover: 'cloverpit.png',
+  description: "a fast-paced indie action experience focused on tight movement, quick reflexes, and challenging encounters.",
+  features: "Indie, Action, Singleplayer, Fast-Paced.",
+  warning: "Mouse dosent lock so if you cant turn all the way try turnig up sensitivity when in game."
+},
+
+'p3D.html': {
+  title: 'Pixel Gun 3D',
+  year: '2013',
+  system: 'PC',
+  genre: 'Shooter',
+  cover: 'p3D.png',
+  description: "a blocky first-person shooter featuring multiplayer battles, creative maps, and a wide variety of weapons.",
+  features: "Multiplayer, FPS, Online, Block-Style.",
+},
+
+'sam.html': {
+  title: 'Shift At Midnight',
+  year: '2024',
+  system: 'PC',
+  genre: 'Horror',
+  cover: 'sam.jpg',
+  description: "a suspenseful horror experience set during a late-night shift where tension builds with every passing minute.",
+  features: "Horror, Atmospheric, Singleplayer, Story-Driven.",
+},
+
+'fnac.html': {
+  title: 'Five Nights At Candys',
+  year: '2015',
+  system: 'PC',
+  genre: 'Horror / Survival',
+  cover: 'fnac.jpg',
+  description: "a point-and-click survival horror game where you monitor security cameras to survive against animatronic threats.",
+  features: "Survival, Horror, Strategy, Singleplayer.",
+},
+
+'fnac2.html': {
+  title: 'Five Nights At Candys 2',
+  year: '2016',
+  system: 'PC',
+  genre: 'Horror / Survival',
+  cover: 'fnac2.jpg',
+  description: "a sequel expanding the tense camera-based survival gameplay with new mechanics and animatronics.",
+  features: "Survival, Horror, Strategy, Singleplayer.",
+},
+
+'doom3.html': {
+  title: 'Doom 3',
+  year: '2004',
+  system: 'PC',
+  genre: 'FPS',
+  cover: 'doom3.png',
+  description: "a first-person shooter featuring intense combat, atmospheric environments, and challenging enemy encounters.",
+  features: "FPS, Singleplayer, Challenging, Classic.",
+  warning: "May not work, idrk tho (I didnt make this port)",
+},
+
+'antondemo.html': {
+  title: 'Anton Blast Demo',
+  year: '2023',
+  system: 'PC',
+  genre: 'Action / Platformer',
+  cover: 'antondemo.png',
+  description: "a chaotic action-platformer demo focused on explosive movement, destruction, and high-speed level design.",
+  features: "Platformer, Fast-Paced, Indie, Singleplayer.",
+},
+
+'survivor.html': {
+  title: 'Survivor.IO',
+  year: '2022',
+  system: 'PC',
+  genre: 'Action / Roguelike',
+  cover: 'survivor.png',
+  description: "a top-down survival action game where you battle endless waves of enemies while upgrading powerful abilities.",
+  features: "Roguelike, Survival, Upgrades, Singleplayer.",
+},
+
+'tboir.html': {
+  title: 'The Binding of Isaac Rebirth',
+  year: '2014',
+  system: 'PC',
+  genre: 'Roguelike / Action',
+  cover: 'tboir.png',
+  description: "a dark roguelike dungeon crawler featuring procedurally generated levels, unique items, and intense boss fights.",
+  features: "Roguelike, Dungeon Crawler, Challenging, Singleplayer.",
+},
+
+'legostarwars.html': {
+  title: 'Lego Star Wars',
+  year: '2005',
+  system: 'PC',
+  genre: 'Action / Adventure',
+  cover: 'legostarwars.png',
+  description: "a family-friendly action adventure that retells iconic space saga moments with humor and cooperative gameplay.",
+  features: "Co-Op, Action, Adventure, Family-Friendly.",
+},
+
+'cm.html': {
+  title: 'Cooking Mama 1',
+  year: '2006',
+  system: 'PC',
+  genre: 'Simulation',
+  cover: 'cm.png',
+  description: "a cooking simulation game where you prepare meals through interactive mini-games and timed challenges.",
+  features: "Simulation, Mini-Games, Casual, Singleplayer.",
+},
+
+'cm2.html': {
+  title: 'Cooking Mama 2',
+  year: '2007',
+  system: 'PC',
+  genre: 'Simulation',
+  cover: 'cm2.png',
+  description: "a sequel adding new recipes, mini-games, and cooking challenges to the lighthearted culinary experience.",
+  features: "Simulation, Casual, Mini-Games, Singleplayer.",
+},
+
+'cm3.html': {
+  title: 'Cooking Mama 3',
+  year: '2009',
+  system: 'PC',
+  genre: 'Simulation',
+  cover: 'cm3.jpg',
+  description: "an expanded cooking simulation with more dishes, creative modes, and interactive preparation steps.",
+  features: "Simulation, Casual, Creative, Singleplayer.",
+},
+
+'slowroads.html': {
+  title: 'Slowroads',
+  year: '2022',
+  system: 'PC',
+  genre: 'Driving / Relaxing',
+  cover: 'slowroads.jpg',
+  description: "a calming endless driving experience focused on relaxing scenery, smooth roads, and stress-free exploration.",
+  features: "Relaxing, Driving, Endless, Singleplayer.",
+},
+
+'wwDIY.html': {
+  title: 'Wario Ware D.I.Y',
+  year: '2009',
+  system: 'PC',
+  genre: 'Party / Creation',
+  cover: 'wwDIY.png',
+  description: "a quirky microgame collection that lets you create and share your own fast-paced mini-games.",
+  features: "Mini-Games, Creation, Party, Singleplayer.",
+},
+
+'FFVII.html': {
+  title: 'Final Fantasy VII',
+  year: '1997',
+  system: 'PC',
+  genre: 'RPG',
+  cover: 'FFVII.png',
+  description: "a legendary role-playing game featuring a deep story, memorable characters, and strategic turn-based combat.",
+  features: "RPG, Story-Driven, Turn-Based, Singleplayer.",
+},
+
+'alchemy.html': {
+  title: 'Little Alchemy',
+  year: '2010',
+  system: 'PC',
+  genre: 'Puzzle',
+  cover: 'alchemy.png',
+  description: "a creative puzzle game where you combine elements to discover hundreds of new items and reactions.",
+  features: "Puzzle, Creative, Casual, Singleplayer.",
+},
+
+'marioparty.html': {
+  title: 'Mario Party 1',
+  year: '1998',
+  system: 'PC',
+  genre: 'Party',
+  cover: 'marioparty.png',
+  description: "a competitive party game filled with board-game mechanics and entertaining mini-games.",
+  features: "Party, Mini-Games, Multiplayer, Classic.",
+},
+
+'marioparty2.html': {
+  title: 'Mario Party 2',
+  year: '1999',
+  system: 'PC',
+  genre: 'Party',
+  cover: 'marioparty2.jpg',
+  description: "a sequel expanding the board-game fun with new mini-games, themes, and multiplayer chaos.",
+  features: "Party, Mini-Games, Multiplayer, Classic.",
+},
+
+'marioparty3.html': {
+  title: 'Mario Party 3',
+  year: '2000',
+  system: 'PC',
+  genre: 'Party',
+  cover: 'marioparty3.png',
+  description: "a classic party experience featuring competitive boards, creative mini-games, and chaotic multiplayer fun.",
+  features: "Party, Mini-Games, Multiplayer, Classic.",
+},
+      'silenthill.html': {
+  title: 'Silent Hill',
+  year: '1999',
+  system: 'PC',
+  genre: 'Horror / Survival',
+  cover: 'silenthill.png',
+  description: "a psychological survival horror game set in a fog-covered town filled with disturbing creatures, cryptic puzzles, and a haunting story.",
+  features: "Psychological Horror, Survival, Puzzles, Story-Driven, Singleplayer.",
+},
     };
     // --- CORE UI LOGIC ---
     const gameSearchInput = document.getElementById('game-search');
