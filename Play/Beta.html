@@ -3566,6 +3566,17 @@ Loading proxies...
     }
 
     const bgMusic = document.getElementById('bgMusic');
+    // ensure crossOrigin to improve earlier fetch/start behavior for some browsers and CDNs
+    try { bgMusic.crossOrigin = 'anonymous'; } catch (e) {}
+    // Ensure the background audio attempts to preload as soon as possible using the <source> children already present.
+    try {
+      bgMusic.preload = 'auto';
+      // Trigger a load() to prompt the browser to begin fetching audio resources early.
+      bgMusic.load();
+    } catch (e) {
+      // non-fatal if the browser blocks or doesn't support programmatic load
+      console.warn('bgMusic preload/init failed:', e);
+    }
     const hoverSound = document.getElementById('hoverSound');
     const selectSound = document.getElementById('selectSound');
 
@@ -8171,7 +8182,15 @@ iframe {
       }
       lastBgMusicSelection = bgMusicSelect.value;
 
-      bgMusic.src = CDN_BASE + bgMusicSelect.value;
+      // Set new source and immediately call load() so the browser begins fetching the selected track.
+      // Some browsers require load() before an immediate play() call to reduce delays.
+      try {
+        bgMusic.src = CDN_BASE + bgMusicSelect.value;
+        bgMusic.load();
+      } catch (e) {
+        console.warn('Failed to set bgMusic src/load:', e);
+      }
+
       // Only auto-play when the user has entered the collection AND music has been started via the entrance button
       if (hasEnteredCollection && musicStarted && musicToggle.checked) {
         bgMusic.play().catch(()=>{});
@@ -10131,9 +10150,13 @@ iframe {
 
 
       try {
-        await preloadAssets();
+        // Start preloading assets asynchronously as soon as possible (non-blocking).
+        // This ensures the loader begins fetching immediately instead of waiting for other load tasks.
+        preloadAssets().catch((e) => {
+          console.error('Asset preloading encountered an error (continuing anyway):', e);
+        });
       } catch (e) {
-        console.error('Asset preloading encountered an error (continuing anyway):', e);
+        console.error('Asset preload startup failed (continuing anyway):', e);
       }
 
       // Swap from loading screen to entrance screen if user hasn't already skipped
