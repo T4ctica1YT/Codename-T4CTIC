@@ -6354,7 +6354,7 @@ Loading proxies...
         // If the currently selected source is Truffled, simply iframe the provided game link and return.
         try {
           const src = sources[currentSourceIndex];
-          const isTruffledSource = src && (String(src.name).toLowerCase().includes('truffled') || (src.json && String(src.json).includes('howtotech.infotechnology.com')));
+          const isTruffledSource = src && (String(src.name).toLowerCase().includes('truffled') || (src.json && String(src.json).includes('security.takh.ee')));
           if (isTruffledSource) {
             // Resolve the Truffled link: if gamePath is absolute use it, otherwise prefix with the Truffled html base.
             let truffledLink = gamePath;
@@ -6399,9 +6399,9 @@ Loading proxies...
               if (!res.ok) throw new Error(`Failed to fetch GN-Math HTML: ${res.status} ${res.statusText}`);
               let html = await res.text();
 
-              // If this GN-Math HTML references office.bostoncareercounselor.com, rewrite to howtotech.infotechnology.com
+              // If this GN-Math HTML references office.bostoncareercounselor.com, rewrite to security.takh.ee
               try {
-                html = html.replace(/https?:\/\/office\.bostoncareercounselor\.com/gi, 'https://howtotech.infotechnology.com');
+                html = html.replace(/https?:\/\/office\.bostoncareercounselor\.com/gi, 'https://security.takh.ee');
               } catch (e) {
                 console.warn('Failed to rewrite office.bostoncareercounselor links for GN-Math HTML:', e);
               }
@@ -6511,9 +6511,9 @@ Loading proxies...
         if (!res.ok) throw new Error(`Failed to fetch game HTML: ${res.status} ${res.statusText}`);
         let html = await res.text();
 
-        // If HTML fetched from CDN references office.bostoncareercounselor.com, rewrite to howtotech.infotechnology.com
+        // If HTML fetched from CDN references office.bostoncareercounselor.com, rewrite to security.takh.ee
         try {
-          html = html.replace(/https?:\/\/office\.bostoncareercounselor\.com/gi, 'https://howtotech.infotechnology.com');
+          html = html.replace(/https?:\/\/office\.bostoncareercounselor\.com/gi, 'https://security.takh.ee');
         } catch (e) {
           console.warn('Failed to rewrite office.bostoncareercounselor links in fetched HTML:', e);
         }
@@ -7238,7 +7238,7 @@ Loading proxies...
                 try {
                     const src = sources[currentSourceIndex];
                     if (!src) return false;
-                    return String(src.name).toLowerCase().includes('truffled') || (src.json && src.json.includes('howtotech.infotechnology.com'));
+                    return String(src.name).toLowerCase().includes('truffled') || (src.json && src.json.includes('security.takh.ee'));
                 } catch (e) {
                     return false;
                 }
@@ -7702,11 +7702,11 @@ iframe {
         name: "Truffled",
         type: "json",
         // Manifest JSON provided by Truffled (absolute URL)
-        json: "https://howtotech.infotechnology.com/js/json/g.json",
+        json: "https://security.takh.ee/js/json/g.json",
         // Base for cover thumbnails (will be prepended when entries contain relative paths)
-        cover: "https://howtotech.infotechnology.com/",
+        cover: "https://security.takh.ee/",
         // Base for HTML/game links (we will iframe the provided link; do NOT use CDN_BASE)
-        html: "https://howtotech.infotechnology.com/"
+        html: "https://security.takh.ee/"
       }
     ];
     let currentSourceIndex = 0;
