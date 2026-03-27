@@ -1,0 +1,1935 @@
+ {
+      'Kindergarten.html': {
+        title: 'Kindergarten', year: '2017', system: 'PC', genre: 'Adventure, Indie, Puzzle',
+        cover: 'kindergarten_cover.png',
+        description: "A twisted puzzle adventure game where you play as a student in a school that's... a little off. Complete missions for classmates, uncover dark secrets, and try to survive the day."
+      },
+      'Kindergarten 2.html': {
+        title: 'Kindergarten 2', year: '2019', system: 'PC', genre: 'Adventure, Indie, Puzzle',
+        cover: 'kindergarten_2_cover.png',
+        description: "The sequel to Kindergarten. After the events of the first game, you find yourself in a new school with new classmates and new dangers. Unravel a deeper conspiracy and try to make it to Tuesday."
+      },
+      'R.E.P.O.html': {
+        title: 'R.E.P.O', year: '2023', system: 'PC', genre: 'Horror, Indie',
+        cover: 'repo_cover.png',
+        description: "An indie horror game experience. Navigate mysterious environments and solve puzzles while being pursued by an unknown entity. Can you survive?"
+      },
+      'That_s Not My Neighbor.html': {
+        title: "That's Not My Neighbor", year: '2024', system: 'PC', genre: 'Puzzle, Horror, Simulation',
+        cover: 'thats_not_my_neighbor_cover.png',
+        description: "It's 1955, and you're the new doorman. Your job is to check IDs and make sure only real residents get in. But be careful, doppelgangers are on the loose!"
+      },
+      'ULTRAKILL.html': {
+        title: 'ULTRAKILL', year: '2020', system: 'PC', genre: 'Action, FPS, Indie',
+        cover: 'ultrakill_cover.png',
+        description: "A fast-paced ultraviolent retro FPS combining score-based action with raw speed. Rip and tear through hordes of demons and machines."
+      },
+      'OMORI.html': {
+        title: 'OMORI', year: '2020', system: 'PC', genre: 'RPG, Horror, Psychological',
+        cover: 'omori_cover.png',
+        description: "A surreal psychological horror RPG. Explore a strange world full of colorful friends and foes. The path you choose will determine your fate."
+      },
+      'Cuphead2.html': {
+        title: 'Cuphead', year: '2017', system: 'PC', genre: 'Run and Gun, Action',
+        cover: 'cuphead_cover.png',
+        description: "A classic run and gun action game heavily focused on boss battles, inspired by cartoons of the 1930s.",
+        warning: "May take really long load times, or just may not load at all."
+      },
+      'RSDKv5.html': {
+        title: 'Sonic Mania', year: '2017', system: 'PC', genre: 'Platformer, Action',
+        cover: 'Mania.png',
+        description: "The definitive 2D Sonic experience with all-new zones and remixed classics running on the RSDKv5 engine.",
+        warning: "May take a while to load. Avoid the in-game title screen crash by pressing ESC once loaded."
+      },
+      'Buckshot Roulette.html': {
+        title: 'Buckshot Roulette', year: '2023', system: 'PC', genre: 'Strategy, Horror, Indie',
+        cover: 'buckshot_roulette_cover.png',
+        description: "A tabletop horror game that attempts to redesign the infamous game of Russian Roulette, replacing the traditional revolver with a 12-gauge pump-action shotgun."
+      },
+      'Half Life.html': {
+        title: 'Half-Life', year: '1998', system: 'PC', genre: 'FPS, Action, Sci-Fi',
+        cover: 'half_life_cover.png',
+        description: "A landmark sci-fi first-person shooter. As scientist Gordon Freeman, you must fight your way out of a secret research facility after an experiment goes horribly wrong."
+      },
+      'HLop.html': {
+        title: 'Half-Life: Opposing Forces', year: '1999', system: 'PC', genre: 'FPS, Action',
+        cover: 'HLop.png',
+        description: "A standalone expansion to Half-Life where you play as Adrian Shephard, a Marine caught in the Black Mesa incident."
+      },
+      'Minecraft 1.12.2.html': {
+        title: 'Minecraft 1.12.2', year: '2017', system: 'PC', genre: 'Sandbox, Survival',
+        cover: 'minecraft_cover.png',
+        description: "The 1.12.2 version of Minecraft Java Edition."
+      },
+      'BATIM.html': {
+        title: 'Bendy and the Ink Machine', year: '2017', system: 'PC', genre: 'Horror, Puzzle, Adventure',
+        cover: 'bendy_cover.png',
+        description: "A first-person puzzle action horror game with a unique cartoon atmosphere. Uncover the secrets of an old animation studio. All 5 Chapters are avalible to play!",
+        warning: "DONT OPEN THE OPTIONS MENU, IT WILL SOFT LOCK YOUR GAME!"
+      },
+      'Hollow Knight.html': {
+        title: 'Hollow Knight', year: '2017', system: 'PC', genre: 'Metroidvania, Action-Adventure',
+        cover: 'hollow_knight_cover.png',
+        description: "A challenging 2D action-adventure. Explore the vast interconnected world of Hallownest, battle tainted creatures, and befriend bizarre bugs."
+      },
+      'Undertale.html': {
+        title: 'Undertale', year: '2015', system: 'PC', genre: 'RPG, Bullet Hell',
+        cover: 'undertale_cover.png',
+        description: "An RPG where you don't have to kill anyone. Navigate a world of monsters, solve puzzles, and decide the fate of both friends and foes."
+      },
+      'People Playground.html': {
+        title: 'People Playground', year: '2019', system: 'PC', genre: 'Sandbox, Simulation, Physics',
+        cover: 'people_playground_cover.png',
+        description: "A physics sandbox game where you can shoot, stab, burn, poison, tear, vaporize, or crush ragdolls in a large open space.",
+        warning: "Includes Gore and Violence, this game is NOT suitable for Kids. Don't play if you are sensitive to this topic."
+      },
+      'Baldi_s Basics Plus.html': {
+        title: "Baldi's Basics Plus", year: '2020', system: 'PC', genre: 'Horror, Strategy, Educational',
+        cover: 'baldi_cover.png',
+        description: "An educational horror game that's a procedurally generated adventure. Explore randomly generated levels, collect notebooks, and escape Baldi."
+      },
+      'Deltarune.html': {
+        title: 'Deltarune',
+        year: '2018',
+        system: 'PC',
+        genre: 'RPG, Indie, Bullet Hell',
+        cover: 'Deltarune.png',
+        description: "An RPG from the creator of Undertale. Create your own avatar, meet strange friends, and jump into the darkness. Chapters 1, 2, 3, & 4 are currently available.",
+        altLinkUrl: 'https://deltarune.win/play', // <-- ADDED
+        downloadDataFile: 'data.win' // <-- ADDED
+      },
+      'Undertale Yellow.html': {
+        title: 'Undertale Yellow',
+        year: '2023',
+        system: 'PC',
+        genre: 'RPG, Indie, Fan Game',
+        cover: 'Undertale Yellow.png',
+        description: "A fan-made prequel to the popular RPG Undertale, following the story of Clover, a human child who falls into the Underground before Frisk."
+      },
+      'Fears to Fathom_ Home Alone.html': {
+        title: 'Fears to Fathom: Home Alone',
+        year: '2021',
+        system: 'PC',
+        genre: 'Horror, Psychological Horror',
+        cover: 'Fears of fathom.jpg',
+        description: "The first episode of the Fears to Fathom series. You are Miles, a 14-year-old home alone when strange things begin to happen. A short, atmospheric horror experience."
+      },
+      'Kindergarten 3.html': {
+        title: 'Kindergarten 3',
+        year: '2024',
+        system: 'PC',
+        genre: 'Adventure, Indie, Puzzle',
+        cover: 'Kindergarten 3.png',
+        description: "The third installment in the Kindergarten series. Follow new adventures in a strange and dangerous school environment."
+      },
+      'Endoparasitic.html': {
+        title: 'Endoparasitic',
+        year: '2022',
+        system: 'PC',
+        genre: 'Horror, Action, Indie',
+        cover: 'Endoparasitic.png',
+        description: "You've lost your arm, your supplies are dwindling, and you're being hunted. A top-down survival horror game where you must carefully manage what little you have left to escape an infected research facility. Every bullet counts."
+      },
+      'Hotline Miami.html': {
+        title: 'Hotline Miami',
+        year: '2012',
+        system: 'PC',
+        genre: 'Action, Top-down shooter',
+        cover: 'Hotline.png',
+        description: "A high-octane action game overflowing with raw brutality, hard-boiled gunplay and skull crushing close combat. Set in an alternative 1989 Miami, you will assume the role of a mysterious antihero on a murderous rampage against the shady underworld at the behest of voices on your answering machine.",
+        warning: "This game contains intense violence, blood, and gore. Player discretion is advised. Also, may take a while to load."
+      },
+      'Pizza Tower.html': {
+        title: 'Pizza Tower',
+        year: '2023',
+        system: 'PC',
+        genre: 'Platformer, Action, Indie',
+        cover: 'Pizza.png',
+        description: "A fast-paced 2D platformer inspired by 90s cartoons, where you play as Peppino Spaghetti, a fat and bald chef, trying to save his restaurant from a flying pizza monster."
+      },
+      'Geometry Dash Lite.html': {
+        title: 'Geometry Dash Lite',
+        year: '2013',
+        system: 'PC',
+        genre: 'Rhythm, Platformer',
+        cover: 'GeometryDash.png',
+        description: "A rhythm-based platformer where you jump and fly your way through danger in a stripped-down version of the original game."
+      },
+      'Cookie Clicker.html': {
+        title: 'Cookie Clicker', 
+        year: '2013', 
+        system: 'PC', 
+        genre: 'Idle, Clicker, Strategy',
+        cover: 'Cookie Clicker.png',
+        description: "A classic idle game where you bake cookies to earn more cookies and buy structures that bake more cookies for you."
+      },
+      'RetroArch Web Emulator.html': {
+        title: 'RetroArch Web Emulator',
+        year: '2023',
+        system: 'PC',
+        genre: 'Emulator',
+        cover: 'RetroArchWebEmulator.png',
+        description: "A comprehensive frontend for game console emulation, supporting various systems via libretro cores. Requires ROM files to play games.",
+        warning: "Note: This is an emulator frontend. You must load your own ROM files after launching the game."
+      },
+      'BitLife.html': {
+        title: 'BitLife - Life Simulator',
+        year: '2017',
+        system: 'PC',
+        genre: 'Simulation, Life Simulator',
+        cover: 'Bitlife.jpg',
+        description: "A text-based life simulator game where you can live out the life of your dreams or nightmares."
+      },
+      'Sandboxels.html': {
+        title: 'Sandboxels',
+        year: '2023',
+        system: 'PC',
+        genre: 'Sandbox, Physics Simulation',
+        cover: 'Sandboxels.png',
+        description: "An advanced cellular automaton physics sandbox game where you can play with various elements, reactions, and interactions."
+      },
+      'Block Blast.html': {
+        title: 'Block Blast', year: '2023', system: 'PC', genre: 'Puzzle, Arcade',
+        cover: 'BlockBlast.png',
+        description: 'A classic block puzzle game to train your brain.'
+      },
+      'Doge Miner.html': {
+        title: 'Doge Miner', year: '2014', system: 'PC', genre: 'Idle, Clicker',
+        cover: 'dogeminer.png',
+        description: 'The Dogecoin Mining Simulator. Very wow. To the moon!'
+      },
+      // --- Newly added games based on prompt ---
+      '1v1.LoL.html': {
+        title: '1v1.LoL', year: '2019', system: 'PC', genre: 'Action, Shooter, Building',
+        cover: '1V1Lol.jpg',
+        description: 'A fast-paced online third-person shooter and building game.'
+      },
+      'Retro Bowl.html': {
+        title: 'Retro Bowl', year: '2020', system: 'PC', genre: 'Sports, Simulation',
+        cover: 'RetroBowl.png',
+        description: 'A retro-style football game experience, mixing simple management and on-field action.'
+      },
+      'Retro Bowl College.html': {
+        title: 'Retro Bowl College', year: '2023', system: 'PC', genre: 'Sports, Simulation',
+        cover: 'RetroBowlCollege.png',
+        description: 'Experience college football in the style of Retro Bowl.'
+      },
+      'Flip Master.html': {
+        title: 'Flip Master', year: '2017', system: 'PC', genre: 'Sports, Physics',
+        cover: 'FlipMaster.png',
+        description: 'The #1 mobile trampoline game now on web! Master the trampoline with flips and tricks.'
+      },
+      'Basket Random.html': {
+        title: 'Basket Random', year: '2020', system: 'PC', genre: 'Sports, Physics, Arcade',
+        cover: 'BasketballRandom.jpg',
+        description: 'A funny 2-player physics-based basketball game with random twists.'
+      },
+      'A Dance of Fire and Ice.html': {
+        title: 'A Dance of Fire and Ice', year: '2019', system: 'PC', genre: 'Rhythm, Indie',
+        cover: 'FireAndIce.png',
+        description: 'A simple one-button rhythm game where you guide two orbiting planets along a winding path without breaking their perfect tempo.'
+      },
+      'Karlson.html': {
+        title: 'Karlson', year: '2020', system: 'PC', genre: 'Action, FPS, Parkour',
+        cover: 'KARLSON.png',
+        description: 'A physics-based parkour FPS, inspired by Milk.'
+      },
+      '8 Ball Pool.html': {
+        title: '8 Ball Pool', year: '2010', system: 'Flash', genre: 'Sports, Arcade',
+        cover: 'Pool.png',
+        description: 'The classic multiplayer pool game.'
+      },
+      'Sonic the Hedgehog 3_ Angel Island Remastered.html': {
+        title: 'Sonic 3 A.I.R.', year: '2019', system: 'PC', genre: 'Platformer, Action',
+        cover: 'Sonic3AIR.png',
+        description: 'Sonic 3 & Knuckles re-imagined with modern features and enhancements. Requires the original ROM data to play.'
+      },
+      '10 Minutes Till Dawn.html': {
+        title: '10 Minutes Till Dawn', year: '2022', system: 'PC', genre: 'Action, Roguelite, Survival',
+        cover: '10MinTillDawn.png',
+        description: 'A rogue-lite survival game where you face endless hordes of creatures for 10 minutes.'
+      },
+      'Amanda the Adventurer.html': {
+        title: 'Amanda the Adventurer', year: '2023', system: 'PC', genre: 'Horror, Puzzle, Found Footage',
+        cover: 'AmandaTheAdventurer.png',
+        description: 'A short, spooky horror game where you watch and interact with an old children\'s TV show.'
+      },
+      'Slope.html': {
+        title: 'Slope',
+        year: '2014',
+        system: 'Unity',
+        genre: 'Arcade, Runner',
+        cover: 'Slope.jpg',
+        description: "A fast-paced, addictive running game where you steer a ball down a steep slope, trying to avoid obstacles and falling off the edge."
+      },
+      'Slender The 8 Pages.html': {
+        title: 'Slender The 8 Pages',
+        year: '2012',
+        system: 'Unity',
+        genre: 'Survival Horror',
+        cover: 'Slender.png',
+        description: "A classic indie survival horror game. Collect all 8 pages scattered in a dark forest while avoiding the Slender Man."
+      },
+      'Run 1.html': {
+        title: 'Run 1', year: '2008', system: 'Flash', genre: 'Platformer, Runner',
+        cover: 'Run.png',
+        description: "The original game in the cosmic running series. Run or skate through space tunnels and shift gravity to avoid falling off the path."
+      },
+      'Run 2.html': {
+        title: 'Run 2', year: '2010', system: 'Flash', genre: 'Platformer, Runner',
+        cover: 'Run 2.png',
+        description: "The sequel introduces new characters and levels, expanding on the challenging gravity-shifting gameplay."
+      },
+      'Run 3.html': {
+        title: 'Run 3', year: '2014', system: 'PC', genre: 'Platformer, Runner',
+        cover: 'Run 3.png',
+        description: "A 3D endless runner game set in space. Run along walls and defy gravity to navigate complex, evolving tunnels."
+      },
+      'Papa\'s Bakeria.html': {
+        title: "Papa's Bakeria", year: '2016', system: 'Flash', genre: 'Simulation, Time Management',
+        cover: 'Papas Bake.png',
+        description: "Work as a baker, taking orders, preparing pie crusts, baking, and adding toppings to create custom pies for customers."
+      },
+      'Papa\'s Cheeseria.html': {
+        title: "Papa's Cheeseria", year: '2015', system: 'Flash', genre: 'Simulation, Time Management',
+        cover: 'Papa Cheese.png',
+        description: "Serve gourmet grilled cheese sandwiches in this time management cooking game by Papa Louie."
+      },
+      'Subway Surfers.html': {
+        title: 'Subway Surfers: Miami', year: '2012', system: 'PC', genre: 'Endless Runner',
+        cover: 'Subway Surfers.png',
+        description: "A classic endless runner game set in the Miami subways. Escape the grumpy inspector and his dog."
+      },
+      'Five Nights at Freddy\'s.html': {
+        title: 'Five Nights at Freddy\'s 1', year: '2014', system: 'PC', genre: 'Survival Horror',
+        cover: 'FNAF1.png',
+        description: "The original survival horror game where you must survive five nights at Freddy Fazbear's Pizza, constantly watchful of the animatronics."
+      },
+      'Five Nights at Freddy\'s 2.html': {
+        title: 'Five Nights at Freddy\'s 2', year: '2014', system: 'PC', genre: 'Survival Horror',
+        cover: 'FNAF2.png',
+        description: "A prequel to the first game, featuring new and old animatronics, and no doors. Use the Freddy head mask to fool them.",
+      },
+      'Five Nights at Freddy\'s 3.html': {
+        title: 'Five Nights at Freddy\'s 3', year: '2015', system: 'PC', genre: 'Survival Horror',
+        cover: 'FNAF3.png',
+        description: "Set thirty years after the closure of Freddy Fazbear's Pizza, you must survive a single terrifying animatronic, Springtrap, at Fazbear's Fright: The Horror Attraction."
+      },
+      'Five Nights at Freddy\'s 4.html': {
+        title: 'Five Nights at Freddy\'s 4', year: '2015', system: 'PC', genre: 'Survival Horror',
+        cover: 'FNAF4.png',
+        description: "The final chapter of the original story, where you must defend yourself from Nightmare animatronics from your own home."
+      },
+      'Five Nights at Freddy\'s_ Sister Location.html': {
+        title: 'FNAF: Sister Location', year: '2016', system: 'PC', genre: 'Survival Horror, Adventure',
+        cover: 'FNAFSister.png',
+        description: "Work as a late-night technician at Circus Baby's Pizza World, navigating through dark ventilation shafts and surviving new animatronics."
+      },
+      'Five Nights at Freddy\'s_ Pizza Simulator.html': {
+        title: 'FNAF: Pizzeria Simulator (FNAF 6)', year: '2017', system: 'PC', genre: 'Management, Survival Horror',
+        cover: 'FNAFPizzaSim.png',
+        description: "A mix of management simulation and survival horror. Build your pizzeria by day and survive hostile animatronics by night."
+      },
+      'Five Nights at Freddy\'s_ Ultimate Custom Night.html': {
+        title: 'Ultimate Custom Night (UCN)', year: '2018', system: 'PC', genre: 'Customizable Survival Horror',
+        cover: 'FNAFUltCustomNight.png',
+        description: "Trapped in purgatory, face 50 customizable animatronics from across the FNAF series in this ultimate challenge."
+      },
+      'FNAFWorld.html': {
+        title: 'FNAF World', year: '2016', system: 'PC', genre: 'RPG, Adventure',
+        cover: 'FNAFWorld.png',
+        description: "A spin-off RPG adventure featuring a roster of characters from the first four FNAF games."
+      },
+      'osu!.html': {
+        title: 'WebOsu 2.0!', year: '2022', system: 'PC', genre: 'Rhythm, Music',
+        cover: 'Osu!.png',
+        description: "A browser-based rhythm game inspired by osu!std. Experience fast-paced gameplay with an extensive beatmap library."
+      },
+      'Flappy Bird.html': {
+        title: 'Flappy Bird Multiplayer', year: '2013', system: 'PC', genre: 'Arcade, Flappy Game',
+        cover: 'Flappy bird.png',
+        description: "The frustratingly addictive mobile hit now playable in a web version with potential multiplayer elements."
+      },
+      'Raft.html': {
+        title: 'Raft', year: '2018', system: 'PC', genre: 'Survival, Sandbox',
+        cover: 'Raft.png',
+        description: "Stranded on a small raft, you must survive a vast ocean, gathering debris, expanding your home, and avoiding hungry sharks."
+      },
+      'Sandtris.html': {
+        title: 'SANDTRIS', year: '2023', system: 'PC', genre: 'Puzzle, Falling Block',
+        cover: 'Sandtrix.png',
+        description: "A unique twist on the classic falling block puzzle game, inspired by setris, where blocks behave like sand."
+      },
+      'GettingOverIt.html': {
+        title: 'Getting Over It',
+        year: '2017',
+        system: 'PC',
+        genre: 'Platformer, Indie, Rage Game',
+        cover: 'GettingOverIt.jpg',
+        description: "A punishing climbing game where you move a hammer with a mouse, trying to ascend a mountain of junk. Experience new kinds of frustration."
+      },
+      'Binding of Issac_ Wrath of the Lamb.html': {
+        title: 'Binding of Isaac: Wrath of the Lamb', year: '2011', system: 'Flash', genre: 'Roguelike, Shooter',
+        cover: 'BindingOfIsaacWrathOfTheLamb.png',
+        description: "A randomly generated action RPG shooter with heavy roguelike elements. Play as Isaac and descend into the basement."
+      },
+      'Celeste PICO.html': {
+        title: 'Celeste PICO-8', year: '2015', system: 'PICO-8', genre: 'Platformer',
+        cover: 'CelestePICO.png',
+        description: "The original PICO-8 version of the celebrated platformer. Climb the mountain."
+      },
+      'Big NEON Tower Tiny Square.html': {
+        title: 'Big NEON Tower Tiny Square', year: '2020', system: 'PC', genre: 'Platformer',
+        cover: 'bigneontowertinysquare.png',
+        description: "The third installment of the Tiny Square series, featuring neon aesthetics and extreme difficulty."
+      },
+      'The World\'s Hardest Game.html': {
+        title: "The World's Hardest Game", year: '2008', system: 'Flash', genre: 'Puzzle, Maze',
+        cover: 'HardestGame.png',
+        description: "An infamously challenging maze game. Navigate the blue square through difficult levels without touching the red circles."
+      },
+      'Line Rider.html': {
+        title: 'Line Rider', year: '2006', system: 'Flash', genre: 'Sandbox, Physics',
+        cover: 'LineRider.png',
+        description: "Draw a track for a sledder named Bosh to ride. A classic physics-based sandbox game."
+      },
+      'Papers, Please.html': {
+        title: 'Papers, Please', year: '2013', system: 'Flash', genre: 'Simulation, Puzzle',
+        cover: 'PapersPlease.png',
+        description: "A Dystopian document thriller. Your job is to process immigrants and travelers entering the fictional communist state of Arstotzka."
+      },
+      'Crossy Road.html': {
+        title: 'Crossy Road', year: '2014', system: 'PC', genre: 'Arcade, Endless Runner',
+        cover: 'CrossyRoad.png',
+        description: "Why did the chicken cross the road? Find out in this endless arcade hopper."
+      },
+      'Big Tower Tiny Square 2.html': {
+        title: 'Big Tower Tiny Square 2', year: '2019', system: 'PC', genre: 'Platformer',
+        cover: 'BigTowerTinySquare2.jpg',
+        description: "The sequel to Big Tower Tiny Square. Climb a massive tower to rescue your pineapple friend."
+      },
+      'Do NOT Take This Cat Home.html': {
+        title: 'Do NOT Take This Cat Home', year: '2022', system: 'PC', genre: 'Visual Novel, Horror',
+        cover: 'DoNotTakeThisCatHome.png',
+        description: "A short, disturbing visual novel about bringing home a stray cat."
+      },
+      'Fruit Ninja.html': {
+        title: 'Fruit Ninja', year: '2010', system: 'PC', genre: 'Arcade, Action',
+        cover: 'FruitNinja.jpg',
+        description: "Slice fruit, avoid bombs, and achieve high scores in this fast-paced slicing game."
+      },
+      'Angry Birds.html': {
+        title: 'Angry Birds', year: '2009', system: 'Unity', genre: 'Puzzle, Physics',
+        cover: 'AngryBirds.jpg',
+        description: "The original Angry Birds game. Launch birds at pigs' structures to retrieve stolen eggs."
+      },
+      'Slither.io.html': {
+        title: 'Slither.io', year: '2016', system: 'PC', genre: 'Multiplayer, Arcade',
+        cover: 'SlitherIO.png',
+        description: "Eat dots to grow your snake. Avoid running into other players, or you'll become food!"
+      },
+      'Tomb Of The Mask.html': {
+        title: 'Tomb Of The Mask', year: '2016', system: 'PC', genre: 'Arcade, Maze',
+        cover: 'TombOfTheMask.png',
+        description: "An arcade game with an endless procedurally generated vertical maze. Swipe to move and collect points."
+      },
+      'Big ICE Tower Tiny Square.html': {
+        title: 'Big ICE Tower Tiny Square', year: '2020', system: 'PC', genre: 'Platformer',
+        cover: 'BigiceTowerTinySquare.jpg',
+        description: "The frosty variant of the classic Big Tower Tiny Square climbing game."
+      },
+      'Drive Mad.html': {
+        title: 'Drive Mad', year: '2021', system: 'Unity', genre: 'Driving, Physics',
+        cover: 'DriveMad.png',
+        description: "A challenging physics-based driving game where you must navigate insane courses without crashing."
+      },
+      'Jetpack Joyride.html': {
+        title: 'Jetpack Joyride', year: '2011', system: 'HTML5', genre: 'Endless Runner, Action',
+        cover: 'JetpackJoyride.png',
+        description: "Endless running action! Hop onto a jetpack and avoid lasers, zappers, and missiles."
+      },
+      
+      'DOOM.html': {
+        title: 'DOOM',
+        year: '1993',
+        system: 'PC (DOSBOX)',
+        genre: 'FPS/Action',
+        cover: 'DOOM.png',
+        description: "The grandfather of all first-person shooters, running via DOSBOX emulation.",
+        features: "DOSBOX Emulator, Classic FPS.",
+      },
+      'Doom 2.html': {
+        title: 'DOOM II',
+        year: '1994',
+        system: 'PC (DOSBOX)',
+        genre: 'FPS/Action',
+        cover: 'DOOM2.webp',
+        description: "The highly anticipated sequel to DOOM, bringing even more demons and intense action, running via DOSBOX emulation.",
+        features: "DOSBOX Emulator, Classic FPS.",
+      },
+      'Gladihoppers.html': {
+        title: 'Gladihoppers',
+        year: '2020',
+        system: 'PC',
+        genre: 'Action/Fighting',
+        cover: 'Gladhoppers.png',
+        description: "A physics-based gladiator fighting simulator set in ancient Rome.",
+        features: "Unity WebGL, Physics Fighter.",
+      },
+      'BLOODMONEY!.html': {
+        title: 'BLOODMONEY!',
+        year: '2020',
+        system: 'PC',
+        genre: 'RPG Maker/Adventure',
+        cover: 'Bloodmoney!.png',
+        description: "An RPG Maker MV game focusing on adventure and dark fantasy themes.",
+        features: "RPG Maker MV.",
+      },
+      'Drift Hunters.html': {
+        title: 'Drift Hunters',
+        year: '2017',
+        system: 'PC',
+        genre: 'Racing/Drifting',
+        cover: 'DriftHunters.webp',
+        description: "A popular 3D car drifting simulation game featuring customizable cars and tracks.",
+        features: "Unity WebGL, 3D Racing.",
+      },
+      'Jelly Drift.html': {
+        title: 'Jelly Drift',
+        year: '2022',
+        system: 'PC',
+        genre: 'Racing/Drifting',
+        cover: 'JellyDrift.png',
+        description: "A silly and fun physics-based 3D drifting game where your car is made of jelly.",
+        features: "Unity WebGL, Physics, 3D Racing.",
+      },
+      'Achievement Unlocked.html': {
+        title: 'Achievement Unlocked',
+        year: '2008',
+        system: 'PC',
+        genre: 'Puzzle/Meta',
+        cover: 'AchievementUnlocked.png',
+        description: "The original satirical puzzle game centered entirely around earning achievements for mundane tasks.",
+        features: "Flash (Ruffle), Original.",
+      },
+      'Achievement Unlocked 2.html': {
+        title: 'Achievement Unlocked 2',
+        year: '2010',
+        system: 'PC',
+        genre: 'Puzzle/Meta',
+        cover: 'AchievementUnlocked2.png',
+        description: "The sequel to the notorious meta-puzzle game, offering new challenges and more achievements to unlock.",
+        features: "Flash (Ruffle), Sequel.",
+      },
+      'Achievement Unlocked 3.html': {
+        title: 'Achievement Unlocked 3',
+        year: '2012',
+        system: 'PC',
+        genre: 'Puzzle/Meta',
+        cover: 'achievementunlocked3.webp',
+        description: "The third installment of the satirical meta-puzzle game dedicated to unlocking achievements.",
+        features: "Flash (Ruffle), Meta-puzzle.",
+      },
+      'Plants vs. Zombies 2 Gardenless.html': {
+        title: 'Plants vs Zombies 2 Gardenless',
+        year: '2023',
+        system: 'PC',
+        genre: 'Tower Defense',
+        cover: 'PlantsVsZombies2.png',
+        description: "A challenging fan-made modification of PvZ 2, offering a unique \"Gardenless\" mode.",
+        features: "HTML5, Fan Mod, Difficult.",
+      },
+      'Fancy Pants Adventure 3.html': {
+        title: 'Fancy Pants Adventure 3',
+        year: '2009',
+        system: 'PC',
+        genre: 'Platformer',
+        cover: 'FancyPants3.png',
+        description: "The third main installment of the beloved Flash platformer series.",
+        features: "Flash (Ruffle), Classic.",
+      },
+      'Fancy Pants Adventure 4 Part 1.html': {
+        title: 'Fancy Pants Adventure W4 P1',
+        year: '2012',
+        system: 'PC',
+        genre: 'Platformer',
+        cover: 'FancyPants4PT1.png',
+        description: "Part 1 of World 4, introducing new levels and mechanics to the fluid platformer.",
+        features: "Flash (Ruffle), New World.",
+      },
+      'Fancy Pants Adventure 4 Part 2.html': {
+        title: 'Fancy Pants Adventure W4 P2',
+        year: '2012',
+        system: 'PC',
+        genre: 'Platformer',
+        cover: 'FancyPants4PT2.png',
+        description: "Part 2 of World 4, continuing the stylish, doodle-inspired platforming adventure.",
+        features: "Flash (Ruffle), Action.",
+      },
+      'A Bite at Freddy\'s.html': {
+        title: 'A Bite at Freddy\'s',
+        year: '2023',
+        system: 'PC',
+        genre: 'Horror/Adventure',
+        cover: 'ABiteAtFreddys.png',
+        description: "A fan-made adventure game based on the Five Nights at Freddy's universe, using the Godot engine.",
+        features: "Godot Engine, Horror, Fan Game.",
+      },
+      'Alien Hominid.html': {
+        title: 'Alien Hominid',
+        year: '2002',
+        system: 'PC',
+        genre: 'Run & Gun/Action',
+        cover: 'AlienHominid.png',
+        description: "The legendary 2D side-scrolling run-and-gun flash game developed by The Behemoth.",
+        features: "Flash (Ruffle), Classic.",
+      },
+      'A Small World Cup.html': {
+        title: 'A Small World Cup',
+        year: '2018',
+        system: 'PC',
+        genre: 'Sports/Arcade',
+        cover: 'asmallworldcup.webp',
+        description: "A quirky, physics-based 2D soccer/football game focusing on fast matches and chaotic gameplay.",
+        features: "HTML5, Physics-based.",
+      },
+      'Bloons TD 2.html': {
+        title: 'Bloons TD 2',
+        year: '2007',
+        system: 'PC',
+        genre: 'Tower Defense',
+        cover: 'BloonsTD2.png',
+        description: "The classic sequel to Bloons Tower Defense, featuring monkeys and towers defending against waves of balloons.",
+        features: "Flash (Ruffle), Strategy.",
+      },
+      'Bloons TD 4.html': {
+        title: 'Bloons TD 4',
+        year: '2009',
+        system: 'PC',
+        genre: 'Tower Defense',
+        cover: 'BloonsTD4.png',
+        description: "The fourth installment in the popular tower defense series, introducing new towers, enemies, and maps.",
+        features: "Flash (Ruffle), Upgrades, Strategy.",
+      },
+      'Human Expenditure Program.html': {
+        title: 'Human Expenditure Program',
+        year: '2025',
+        system: 'PC',
+        genre: 'Clicker,Sequel',
+        cover: 'humanexpenditureprogram.webp',
+        description: "This is a really touching game that teaches us a lot about not being greedy for money.",
+        features: "Custom HTML5 Engine, Mobile Controls.",
+      },
+      'Riddle School.html': {
+        title: 'Riddle School',
+        year: '2006',
+        system: 'PC',
+        genre: 'Point & Click/Puzzle',
+        cover: 'RiddleSchool.png',
+        description: "The original game where Phil sets out on his mission to escape from school.",
+        features: "Flash (Ruffle), Starter Game.",
+      },
+      'Riddle School 2.html': {
+        title: 'Riddle School 2',
+        year: '2006',
+        system: 'PC',
+        genre: 'Point & Click/Puzzle',
+        cover: 'RiddleSchool2.png',
+        description: "Phil is back in school, trying to escape by solving various puzzles and interacting with students and teachers.",
+        features: "Flash (Ruffle), Puzzle.",
+      },
+      'Riddle School 3.html': {
+        title: 'Riddle School 3',
+        year: '2008',
+        system: 'PC',
+        genre: 'Point & Click/Puzzle',
+        cover: 'RiddleSchool3.png',
+        description: "Phil continues his quest to escape school, navigating strange classrooms and challenging puzzles.",
+        features: "Flash (Ruffle), Adventure.",
+      },
+      'Riddle School 4.html': {
+        title: 'Riddle School 4',
+        year: '2009',
+        system: 'PC',
+        genre: 'Point & Click/Puzzle',
+        cover: 'RiddleSchool4.png',
+        description: "Phil must evade the mysterious alien presence while still attempting to escape the increasingly strange school environment.",
+        features: "Flash (Ruffle), Sci-Fi Twist.",
+      },
+      'Riddle School 5.html': {
+        title: 'Riddle School 5',
+        year: '2010',
+        system: 'PC',
+        genre: 'Point & Click/Puzzle',
+        cover: 'RiddleSchool5.png',
+        description: "The supposed final installment of the main Riddle School saga, concluding Phil's escape attempts with a climactic finale.",
+        features: "Flash (Ruffle), Finale.",
+      },
+      'Riddle Transfer.html': {
+        title: 'Riddle Transfer',
+        year: '2011',
+        system: 'PC',
+        genre: 'Point & Click/Adventure',
+        cover: 'RiddleTransfer.png',
+        description: "The first spin-off in the Riddle School series, featuring the main character Phil after the events of Riddle School 5.",
+        features: "Flash (Ruffle), Story Rich.",
+      },
+      'Riddle Transfer 2.html': {
+        title: 'Riddle Transfer 2',
+        year: '2012',
+        system: 'PC',
+        genre: 'Point & Click/Adventure',
+        cover: 'RiddleTransfer2.png',
+        description: "The sequel to Riddle Transfer, continuing Phil's bizarre adventure after escaping the school system.",
+        features: "Flash (Ruffle), Conclusion.",
+      },
+      'Super Mario 64.html': {
+        title: 'Super Mario 64 PC Port / Classic',
+        year: '1996',
+        system: 'N64',
+        genre: 'Platformer',
+        cover: 'SM64.png',
+        description: "The groundbreaking 3D platformer that redefined the genre. Run, jump, and fly through Peach's Castle. Now experience this classic in a newer more modern way with the newly added PC Port of this game added along side the original port!",
+        features: "Full 3D movement, WASM port.",
+      },
+      'Deltatraveler.html': {
+        title: 'Deltatraveler',
+        year: '2024',
+        system: 'PC',
+        genre: 'RPG/Crossover',
+        cover: 'Deltatravaler.png',
+        description: "A massive fan-made crossover game utilizing the style of Deltarune/Undertale, featuring chapters inspired by various games.",
+        features: "Fan Game, Large Content.",
+      },
+      'Fancy Pants Adventure 2.html': {
+        title: 'Fancy Pants Adventure 2',
+        year: '2007',
+        system: 'PC',
+        genre: 'Platformer',
+        cover: 'FancyPants2.png',
+        description: "A popular, physics-based stick-figure platformer from the golden age of Flash gaming.",
+        features: "Flash (Ruffle), Fast-paced movement."
+      },
+      'Idle Breakout.html': {
+        title: 'Idle Breakout',
+        year: '2016',
+        system: 'PC',
+        genre: 'Idle/Arcade',
+        cover: 'IdleBreakout.webp',
+        description: "An addictive incremental game combining classic brick-breaking mechanics with idle progression.",
+        features: "Incremental, Saves progress."
+      },
+      'This Is The Only Level.html': {
+        title: 'This Is The Only Level',
+        year: '2009',
+        system: 'PC',
+        genre: 'Puzzle/Platformer',
+        cover: 'ThisIsTheOnlyLevel.png',
+        description: "A unique puzzle-platformer where the level geometry never changes, but the rules and objective shift with every challenge.",
+        features: "Flash (Ruffle), Meta-puzzle."
+      },
+      'Awesome Tanks 2.html': {
+        title: 'Awesome Tanks 2',
+        year: '2011',
+        system: 'PC',
+        genre: 'Action/Shooter',
+        cover: 'awesometanks2.png',
+        description: "Sequel to the top-down tank combat game with new maps, enemies, and upgrades.",
+        features: "Flash (Ruffle), Upgrades."
+      },
+      'Stickman Hook.html': {
+        title: 'Stickman Hook',
+        year: '2017',
+        system: 'PC',
+        genre: 'Arcade/Physics',
+        cover: 'StickmanHook.png',
+        description: "A fast-paced physics game where you swing a stickman through levels using grappling hooks.",
+        features: "Endless swinging."
+      },
+      'Idle Mining Empire.html': {
+        title: 'Idle Mining Empire',
+        year: '2020',
+        system: 'PC',
+        genre: 'Idle/Strategy',
+        cover: 'idleminingempire.webp',
+        description: "A cheerful, cartoonish idle game about digging and expanding a mining operation.",
+        features: "Incremental, Resource Management."
+      },
+      'Tiny Fishing.html': {
+        title: 'Tiny Fishing',
+        year: '2019',
+        system: 'PC',
+        genre: 'Casual',
+        cover: 'tinyfishing.jpg',
+        description: "A simple, highly addictive casual fishing game where you upgrade your gear to catch deeper and rarer fish.",
+        features: "Upgrades, High Score."
+      },
+      'Temple Run 2.html': {
+        title: 'Temple Run 2',
+        year: '2013',
+        system: 'PC',
+        genre: 'Endless Runner',
+        cover: 'TempleRun2.jpg',
+        description: "The sequel to the iconic mobile endless runner. Avoid traps and monsters while collecting coins.",
+        features: "3D Graphics, Mobile Port."
+      },
+      'Plants vs Zombies.html': {
+        title: 'Plants vs Zombies',
+        year: '2009',
+        system: 'PC',
+        genre: 'Tower Defense',
+        cover: 'PVZ.png',
+        description: "Classic PopCap tower defense where you use specialized plants to defend your home from hordes of zombies.",
+        features: "Flash (Ruffle), Strategy."
+      },
+      'Little Runmo.html': {
+        title: 'Little Runmo',
+        year: '2019',
+        system: 'PC',
+        genre: 'Platformer',
+        cover: 'LittleRunmo.png',
+        description: "A minimalist yet charming auto-runner platformer known for its unique aesthetic and narrative.",
+        features: "Auto-runner, Godot Engine."
+      },
+      'Awesome Tanks.html': {
+        title: 'Awesome Tanks',
+        year: '2010',
+        system: 'PC',
+        genre: 'Action/Shooter',
+        cover: 'AwesomeTanks.jpg',
+        description: "The original top-down tank shooter game, featuring explosive action and challenging levels.",
+        features: "Flash (Ruffle), Action."
+      },
+      'Adventure Capatalist.html': {
+        title: 'Adventure Capitalist',
+        year: '2014',
+        system: 'PC',
+        genre: 'Idle/Incremental',
+        cover: 'AdventureCapitalist.png',
+        description: "A popular incremental game where you invest in lemonade stands and eventually global enterprises. Runs via Unity WebGL.",
+        features: "Unity WebGL, Incremental, Saves progress."
+      },
+      'Fallout.html': {
+        title: 'Fallout',
+        year: '1997',
+        system: 'PC',
+        genre: 'RPG',
+        cover: 'Fallout.png',
+        description: "The classic 1997 post-apocalyptic role-playing game, running via DOSBOX emulation.",
+        features: "DOSBOX Emulator, CRPG."
+      },
+      'Monkey Mart.html': {
+        title: 'Monkey Mart',
+        year: '2022',
+        system: 'PC',
+        genre: 'Management/Casual',
+        cover: 'monkeymart.webp',
+        description: "A fast-paced market management game where you run a store with a monkey.",
+        features: "Defold Engine, Management."
+      },
+      'RE_RUN.html': {
+        title: 'RE:RUN',
+        year: '2023',
+        system: 'PC',
+        genre: 'Platformer',
+        cover: 'RERUN.png',
+        description: "A stylish indie platformer, utilizing Unity WebGL.",
+        features: "Unity WebGL, Platformer."
+      },
+      'Schoolboy Runaway.html': {
+        title: 'Schoolboy Runaway',
+        year: '2021',
+        system: 'PC',
+        genre: 'Endless Runner',
+        cover: 'SchoolboyRunaway.webp',
+        description: "puzzle game where your a schoolboy who has to flee from his abusive parents without being caught.",
+        features: "Unity WebGL, Runner."
+      },
+      'Slime Rancher.html': {
+        title: 'Slime Rancher',
+        year: '2016',
+        system: 'PC',
+        genre: 'Adventure/Farming',
+        cover: 'SlimeRancher.png',
+        description: "The adorable first-person farming adventure, running a prototype version via Unity WebGL.",
+        features: "Unity WebGL, Adventure/Farming."
+      },
+      'Sonic.EXE.html': {
+        title: 'Sonic.EXE',
+        year: '2011',
+        system: 'PC',
+        genre: 'Horror',
+        cover: 'SonicEXE.png',
+        description: "A notorious fan-made horror creepypasta game based on the Sonic universe.",
+        features: "GXC, Horror.",
+      },
+      'Tattletail.html': {
+        title: 'Tattletail',
+        year: '2016',
+        system: 'PC',
+        genre: 'Horror',
+        cover: 'Tattletail.jpg',
+        description: "A short, story-driven survival horror game about an evil toy.",
+        features: "Unity WebGL, Horror.",
+      },
+      '4-Halloween.html': {
+        title: "Five Nights at Freddy's 4: Halloween Update",
+        year: '2015',
+        system: 'PC',
+        genre: 'Survival Horror',
+        cover: '4-Halloween.jpg',
+        description: "A Halloween-themed update to FNAF4 featuring spooky skins, seasonal maps, and themed challenges — survive the night!",
+        features: "PC, Horror, Seasonal Update"
+      },
+      'Tunnel Rush.html': {
+        title: 'Tunnel Rush',
+        year: '2018',
+        system: 'PC',
+        genre: 'Arcade/Avoidance',
+        cover: 'TunnelRush.webp',
+        description: "A fast-paced 3D avoidance game where you rush through tunnels.",
+        features: "Unity WebGL, High Speed."
+      },
+
+      /* NEWLY ADDED GAMES */
+      'Adventure Drivers.html': {
+        title: 'Adventure Drivers',
+        year: '2016',
+        system: 'PC',
+        genre: 'Racing/Adventure',
+        cover: 'Adventure Drivers.webp',
+        description: "Race across tropical islands and wild tracks in a colorful car adventure full of stunts and shortcuts.",
+        features: "HTML5, Vehicle upgrades."
+      },
+      'Ages of Conflict.html': {
+        title: 'Ages of Conflict',
+        year: '2022',
+        system: 'PC',
+        genre: 'Strategy/Simulation',
+        cover: 'Ages of Conflict.webp',
+        description: "A world war simulator where countless factions battle on a pixelated world map, creating chaotic alternate histories.",
+        features: "Unity WebGL, Sandbox warfare."
+      },
+      'The Deadseat.html': {
+        title: 'The Deadseat',
+        year: '2024',
+        system: 'PC',
+        genre: 'Horror/Adventure',
+        cover: 'Deadseat.png',
+        description: "A story-driven horror adventure set around a cursed handheld console and the strange events surrounding it.",
+        features: "Godot Web, Narrative-focused."
+      },
+      'Basket Battle.html': {
+        title: 'Basket Battle',
+        year: '2023',
+        system: 'PC',
+        genre: 'Sports/Arcade',
+        cover: 'Basket Battle.webp',
+        description: "A simple 1v1 basketball game where you time jumps and throws to outscore your opponent.",
+        features: "Unity WebGL, Quick matches."
+      },
+      'Attack Hole.html': {
+        title: 'Attack Hole',
+        year: '2022',
+        system: 'PC',
+        genre: 'Arcade',
+        cover: 'attack-hole.webp',
+        description: "Guide a hungry void around the arena, swallowing bullets and objects to power up before the boss fight.",
+        features: "PlayCanvas, Physics-based collecting."
+      },
+      'Burrito Bison.html': {
+        title: 'Burrito Bison',
+        year: '2011',
+        system: 'PC',
+        genre: 'Arcade/Launcher',
+        cover: 'Burrito Bison.jpg',
+        description: "Launch Burrito Bison through hordes of gummy bears, bouncing, smashing, and upgrading to reach insane distances.",
+        features: "Unity WebGL, Upgrades, Endless launcher."
+      },
+      'DEAD PLATE.html': {
+        title: 'Dead Plate',
+        year: '2023',
+        system: 'PC',
+        genre: 'Horror/Adventure',
+        cover: 'Deadplate.png',
+        description: "A dark story about a restaurant, obsession, and what’s really being served behind the scenes.",
+        features: "RPG Maker MV, Story-rich horror."
+      },
+      'Doodle Jump.html': {
+        title: 'Doodle Jump',
+        year: '2009',
+        system: 'PC',
+        genre: 'Arcade/Platformer',
+        cover: 'DoodleJump.jpg',
+        description: "Bounce ever upward as the Doodler, dodging enemies and gaps while grabbing power-ups on endless platforms.",
+        features: "HTML5, Tilt-style jumping."
+      },
+      'Choppy Orc.html': {
+        title: 'Choppy Orc',
+        year: '2018',
+        system: 'PC',
+        genre: 'Puzzle/Platformer',
+        cover: 'Choppy orc.webp',
+        description: "Use your throwable axe, platforming skills, and clever timing to rescue your friends in bite-sized puzzle levels.",
+        features: "HTML5, Precision platforming."
+      },
+      'Side Effects.html': {
+        title: 'Side Effects',
+        year: '2023',
+        system: 'PC',
+        genre: 'Horror/Puzzle',
+        cover: 'SideEffects.webp',
+        description: "A bizarre Unity WebGL horror game featuring strange characters and psychological elements.",
+        features: "Unity WebGL, Horror."
+      },
+      'BERGENTRUCK 201x.html': {
+        title: 'BERGENTRUCK 201x',
+        year: '2015', 
+        system: 'PC',
+        genre: 'Adventure/RPG',
+        cover: 'BERGENTRUCK201x.webp',
+        description: "A surreal, fan-made adventure game utilizing the Godot engine.",
+        features: "Godot Engine, Surreal."
+      },
+      'They Are Coming.html': {
+        title: 'They Are Coming',
+        year: '2021',
+        system: 'PC',
+        genre: 'Action/Shooter',
+        cover: 'TheyAreComing.webp',
+        description: "A survival game where you fight off relentless waves of zombies in a pixelated post-apocalyptic world.",
+        features: "Unity WebGL, Horde survival."
+      },
+      'BlackJack.html': {
+        title: 'BlackJack',
+        year: '2024',
+        system: 'PC',
+        genre: 'Card',
+        cover: 'Blackjack.jpg',
+        description: "Classic blackjack playable in your browser.",
+        features: "HTML5, Touch/Mouse."
+      },
+      'Duck Life.html': {
+        title: 'Duck Life',
+        year: '2007',
+        system: 'PC',
+        genre: 'Simulation/Runner',
+        cover: 'Ducklife.png',
+        description: "Train your duck across disciplines and win races.",
+        features: "Flash (Ruffle)."
+      },
+      'Duck Life 2.html': {
+        title: 'Duck Life 2',
+        year: '2010',
+        system: 'PC',
+        genre: 'Simulation/Runner',
+        cover: 'Ducklife 2.png',
+        description: "Continue training and racing your duck in new regions.",
+        features: "Flash (Ruffle)."
+      },
+      'Duck Life 3.html': {
+        title: 'Duck Life 3: Evolution',
+        year: '2011',
+        system: 'PC',
+        genre: 'Simulation/Runner',
+        cover: 'Ducklife 3.png',
+        description: "Evolve your duck's abilities and dominate the races.",
+        features: "Flash (Ruffle)."
+      },
+      'Minesweeper Mania.html': {
+        title: 'Minesweeper Mania',
+        year: '2015',
+        system: 'PC',
+        genre: 'Puzzle',
+        cover: 'Mindsweeper.png',
+        description: "A slick, mobile-friendly take on the classic Minesweeper.",
+        features: "HTML5."
+      },
+      'The Oregon Trail.html': {
+        title: 'The Oregon Trail',
+        year: '1990',
+        system: 'PC (DOSBOX)',
+        genre: 'Simulation/Strategy',
+        cover: 'The Oregan Trail.png',
+        description: "Lead your party westward across America, managing resources and surviving the frontier in this classic DOS title.",
+        features: "DOSBOX Emulator, Strategy."
+      },
+
+      /* ADDED: Vex series */
+      'Vex 1.html': {
+        title: 'Vex',
+        year: '2012',
+        system: 'PC',
+        genre: 'Platformer',
+        cover: 'Vex.png',
+        description: "The first entry of the stickman platformer series featuring trap-filled levels and precise movement.",
+        features: "Flash (Ruffle), Challenging platforming."
+      },
+      'Vex 2.html': { title: 'Vex 2', year: '2013', system: 'PC', genre: 'Platformer', cover: 'Vex 2.png', description: 'The second entry in the stickman platformer series, with tougher stages and new mechanics.', features: 'Flash (Ruffle), Challenging platforming.' },
+      'Vex 3.html': { title: 'Vex 3', year: '2014', system: 'PC', genre: 'Platformer', cover: 'Vex 3.png', description: 'Run, jump, and dodge hazards across refined obstacle courses in the third Vex game.', features: 'HTML5, Fast-paced platforming.' },
+      'Vex 4.html': {
+        title: 'Vex 4',
+        year: '2018',
+        system: 'PC',
+        genre: 'Platformer',
+        cover: 'vex 4.webp',
+        description: "Run, jump, and slide through deadly obstacle courses with refined controls and new hazards.",
+        features: "HTML5, Fast-paced platforming."
+      },
+      'Vex 3 XMAS.html': {
+        title: 'Vex 3 Xmas',
+        year: '2015',
+        system: 'PC',
+        genre: 'Platformer',
+        cover: 'Vex 3 XMAS.webp',
+        description: "A festive edition of Vex 3 with winter-themed levels and holiday hazards.",
+        features: "HTML5, Seasonal edition."
+      },
+
+      /* ADDED: Moto X3M series */
+      'Moto X3M 2.html': {
+        title: 'Moto X3M 2',
+        year: '2015',
+        system: 'PC',
+        genre: 'Racing/Stunt',
+        cover: 'Moto X3M 2.jpg',
+        description: "High-speed bike stunt racing with physics-based obstacles and time trials.",
+        features: "HTML5, Physics-based."
+      },
+      'Moto X3M 3.html': {
+        title: 'Moto X3M 3',
+        year: '2016',
+        system: 'PC',
+        genre: 'Racing/Stunt',
+        cover: 'Moto X3M 3.jpg',
+        description: "More explosive tracks and tricky stunts in the third installment of Moto X3M.",
+        features: "HTML5, Physics-based."
+      },
+      'Moto X3M Spooky.html': {
+        title: 'Moto X3M Spooky Land',
+        year: '2019',
+        system: 'PC',
+        genre: 'Racing/Stunt',
+        cover: 'moto x3m spooky.webp',
+        description: "Ride through a spooky set of levels filled with Halloween-themed obstacles and jumps.",
+        features: "HTML5, Themed tracks."
+      },
+      'Moto X3M Pool Party.html': {
+        title: 'Moto X3M: Pool Party',
+        year: '2018',
+        system: 'PC',
+        genre: 'Racing/Stunt',
+        cover: 'Moto X3M Pool Party.jpg',
+        description: "Dive into summer with water-themed stunt tracks and challenging ramps.",
+        features: "HTML5, Physics-based."
+      },
+
+      // ADDED: New games present in project files
+      'Google Feud.html': {
+        title: 'Google Feud',
+        year: '2013',
+        system: 'PC',
+        genre: 'Trivia',
+        cover: 'Google Feud.png',
+        description: "Guess Google's autocomplete results across categories like Culture, People, Names, and Questions.",
+        features: "HTML5, Autocomplete guessing."
+      },
+      'Cut the Rope.html': {
+        title: 'Cut the Rope',
+        year: '2010',
+        system: 'PC',
+        genre: 'Puzzle',
+        cover: 'CutTheRope.jpg',
+        description: "Feed Om Nom by cutting ropes and solving physics-based puzzles through creative levels.",
+        features: "HTML5, Physics puzzle."
+      },
+      'UNDERWHEELS.html': {
+        title: 'UNDERWHEELS',
+        year: '2024',
+        system: 'PC',
+        genre: 'Action/Platformer',
+        cover: 'underwheels.webp',
+        description: "A fast-paced action platformer with a unique aesthetic and challenging encounters.",
+        features: "Godot/Web, Keyboard controls."
+      },
+      'Slime.io.html': {
+        title: 'Slime.io',
+        year: '2021',
+        system: 'PC',
+        genre: 'Arcade/IO',
+        cover: 'SlimeIo.webp',
+        description: "Absorb and grow as a cheerful slime in a colorful arena, dodging and outplaying rivals.",
+        features: "HTML5, Arena arcade."
+      },
+      'Yume Nikki.html': {
+        title: 'Yume Nikki',
+        year: '2004',
+        system: 'PC',
+        genre: 'Adventure/Exploration',
+        cover: "YumeNikki'.png",
+        description: "Explore surreal dream worlds in this cult classic, discovering secrets and eerie atmospheres.",
+        features: "EasyRPG/Web, Exploration."
+      },
+      'Candy Crush.html': {
+        title: 'Candy Crush',
+        year: '2012',
+        system: 'PC',
+        genre: 'Match-3 Puzzle',
+        cover: "Candy Cruah'.jpg",
+        description: "Match colorful candies and clear objectives across hundreds of levels.",
+        features: "HTML5, Match-3."
+      },
+      'WebFishing.html': {
+        title: 'Webfishing',
+        year: '2023',
+        system: 'PC',
+        genre: 'Fishing/Simulation',
+        cover: 'Webfishing.png',
+        description: "Relaxed fishing with charming visuals and a cozy vibe in a lightweight web port.",
+        features: "Godot/Web, Casual simulation."
+      },
+
+      // NEW: Angry Birds Showdown
+      'Angry Birds Showdown.html': {
+        title: 'Angry Birds Showdown',
+        year: '2023',
+        system: 'PC',
+        genre: 'Action/Puzzle',
+        cover: 'Angry Birds Showdown.webp',
+        description: "A physics-driven Angry Birds battle game where birds and pigs clash in fast-paced showdowns.",
+        features: "HTML5, Physics-based, Touch/Mouse."
+      },
+
+      // NEW: Bank Robbery 2
+      'Bank Robbery 2.html': {
+        title: 'Bank Robbery 2',
+        year: '2022',
+        system: 'PC',
+        genre: 'Action/Shooter',
+        cover: 'Bank Robbery 2.webp',
+        description: "A 3D heist action game where you plan and execute robberies with your crew while avoiding the cops.",
+        features: "Unity WebGL, 3D Shooter."
+      },
+
+      // NEW: Bouncemasters
+      'Bouncemasters.html': {
+        title: 'Bouncemasters',
+        year: '2019',
+        system: 'PC',
+        genre: 'Arcade/Launcher',
+        cover: 'Bouncemasters.webp',
+        description: "Launch a penguin and bounce it across icy landscapes, upgrading your power to set new records.",
+        features: "HTML5, Upgrades, Casual."
+      },
+
+      // NEW: 99 Balls
+      '99 Balls.html': {
+        title: '99 Balls',
+        year: '2017',
+        system: 'PC',
+        genre: 'Arcade/Puzzle',
+        cover: '99 Balls.webp',
+        description: "A minimalist ball-shooter where you bounce balls to break numbered blocks before they reach the bottom.",
+        features: "HTML5, Aim & shoot, Endless."
+      },
+
+      // NEW: Chess Classic
+      'Chess Classic.html': {
+        title: 'Chess Classic',
+        year: '2018',
+        system: 'PC',
+        genre: 'Board/Strategy',
+        cover: 'Chess Classic.webp',
+        description: "Play classic chess against the computer or a friend with clean visuals and smooth controls.",
+        features: "HTML5, Singleplayer & Local Multiplayer."
+      },
+
+      // NEW: Boxing Random
+      'Boxing Random.html': {
+        title: 'Boxing Random',
+        year: '2020',
+        system: 'PC',
+        genre: 'Sports/Party',
+        cover: 'Boxing Random.webp',
+        description: "A chaotic physics boxing game where each round changes the arena and your fighters’ behavior.",
+        features: "HTML5, 2-Player, Physics-based."
+      },
+
+      // NEW: Station 141
+      'Station 141.html': {
+        title: 'Station 141',
+        year: '2024',
+        system: 'PC',
+        genre: 'Horror/Adventure',
+        cover: 'Station 141.png',
+        description: "Explore the eerie corridors of Station 141 in a story-driven horror experience.",
+        features: "Unity WebGL, Narrative-focused."
+      },
+      
+          'Time Shooter 1.html': {
+        title: 'Time Shooter',
+        year: '2020',
+        system: 'PC',
+        genre: 'FPS/Action',
+        cover: 'Time Shooter 1.webp',
+        description: "A stylish slow-motion FPS where time only moves when you do, letting you dodge bullets and line up precise shots.",
+        features: "Unity WebGL, Time-manipulation shooter."
+      },
+    
+      'Time Shooter 2.html': {
+        title: 'Time Shooter 2',
+        year: '2021',
+        system: 'PC',
+        genre: 'FPS/Action',
+        cover: 'Time Shooter 2webp.webp',
+        description: "The sequel to Time Shooter with more weapons, enemies, and complex arenas built around time-stopping mechanics.",
+        features: "Unity WebGL, Slow-motion gunplay."
+      },
+    
+      'Time Shooter 3_ SWAT.html': {
+        title: 'Time Shooter 3: SWAT',
+        year: '2022',
+        system: 'PC',
+        genre: 'FPS/Action',
+        cover: 'Time Shooter 3.webp',
+        description: "Join a SWAT team in a tactical time-control FPS, using shields, shotguns, and careful planning to clear rooms.",
+        features: "Unity WebGL, Tactical time-based FPS."
+      },
+    
+      // Newly added Celeste, Oneshot, Happy Wheels
+      'Celeste.html': {
+        title: 'Celeste',
+        year: '2018',
+        system: 'PC',
+        genre: 'Platformer',
+        cover: 'Celeste.png',
+        description: "Climb Celeste Mountain in this precise, story-driven platformer about overcoming anxiety and self-doubt.",
+        features: "WASM port, Precision platforming."
+      },
+    
+      'Oneshot.html': {
+        title: 'OneShot Legacy',
+        year: '2016',
+        system: 'PC',
+        genre: 'Adventure/Puzzle',
+        cover: 'Oneshot.png',
+        description: "Guide Niko through a strange world to restore its sun in this meta adventure that breaks the fourth wall.",
+        features: "EasyRPG/Web, Narrative-focused adventure."
+      },
+    
+      'Happy Wheels.html': {
+        title: 'Happy Wheels',
+        year: '2010',
+        system: 'PC',
+        genre: 'Physics/Platformer',
+        cover: 'Happy Wheels.png',
+        description: "A brutal physics-based obstacle course game featuring ragdoll carnage and user-created levels.",
+        features: "HTML5 port, Physics-based mayhem." 
+      },
+            'Papa\'s Pizeria.html': {
+        title: "Papa's Pizzeria",
+        year: '2010',
+        system: 'PC',
+        genre: 'Time Management/Simulator',
+        cover: 'Papa\'s Pizzeria.png',
+        description: "Run a pizza restaurant, prepare orders and keep the customers happy.",
+        features: "Flash (Ruffle), Management."
+      },
+      'Papa\'s Freezeria.html': {
+        title: "Papa's Freezeria",
+        year: '2011',
+        system: 'PC',
+        genre: 'Time Management/Simulator',
+        cover: 'Papa\'s Freezeria.png',
+        description: "Manage an ice cream shop on the boardwalk and serve customers tasty concoctions.",
+        features: "Flash (Ruffle), Management."
+      },
+      'Papa\'s Donuteria.html': {
+        title: "Papa's Donuteria",
+        year: '2012',
+        system: 'PC',
+        genre: 'Time Management/Simulator',
+        cover: 'Papa\'s Donuteria.png',
+        description: "Make creative donuts and manage orders in a busy donut shop.",
+        features: "Flash (Ruffle), Management."
+      },
+      'Papa\'s Burgeria.html': {
+        title: "Papa's Burgeria",
+        year: '2012',
+        system: 'PC',
+        genre: 'Time Management/Simulator',
+        cover: 'Papa\'s Burgeria.png',
+        description: "Cook burgers to order and build up your burger franchise.",
+        features: "Flash (Ruffle), Management."
+      },
+      'Papa\'s Scooperia.html': {
+        title: "Papa's Scooperia",
+        year: '2013',
+        system: 'PC',
+        genre: 'Time Management/Simulator',
+        cover: 'Papa\'s Scooperia.png',
+        description: "Serve ice cream creations quickly to impatient customers on a busy street.",
+        features: "Flash (Ruffle), Management."
+      },
+      'Papa\'s Cupcakeria.html': {
+        title: "Papa's Cupcakeria",
+        year: '2013',
+        system: 'PC',
+        genre: 'Time Management/Simulator',
+        cover: 'Papa\'s Cupcakeria.png',
+        description: "Bake and decorate cupcakes to satisfy customer orders on time.",
+        features: "Flash (Ruffle), Management."
+      },
+      'Papa\'s Wingeria.html': {
+        title: "Papa's Wingeria",
+        year: '2014',
+        system: 'PC',
+        genre: 'Time Management/Simulator',
+        cover: 'Papa\'s Wingeria.png',
+        description: "Run a wing stand and manage sauces, sides, and speedy customers.",
+        features: "Flash (Ruffle), Management."
+      },
+      'Papa\'s Hot Doggeria.html': {
+        title: "Papa's Hot Doggeria",
+        year: '2014',
+        system: 'PC',
+        genre: 'Time Management/Simulator',
+        cover: 'Papa\'s Hot Doggeria.png',
+        description: "Serve hot dogs in a stadium-style environment and satisfy the crowd.",
+        features: "Flash (Ruffle), Management."
+      },
+      'Papa\'s Sushiria.html': {
+        title: "Papa\'s Sushiria",
+        year: '2015',
+        system: 'PC',
+        genre: 'Time Management/Simulator',
+        cover: 'Papa\'s Sushiria.png',
+        description: "Prepare sushi orders quickly and manage an efficient sushi kitchen.",
+        features: "Flash (Ruffle), Management."
+      },
+      'Karlson2D.html': {
+        title: 'Karlson 2D',
+        year: '2024',
+        system: 'PC',
+        genre: 'Platformer',
+        cover: 'Karlson2D.png',
+        description: "A 2D adaptation of Karlson with platforming and fast-paced action.",
+        features: "HTML5, Platformer."
+      },
+      'ClassOf09.html': {
+        title: 'Class of 09 (All 3 Games!)',
+        year: '2020',
+        system: 'PC',
+        genre: 'Adventure',
+        cover: 'ClassOf09.png',
+        description: "A narrative-driven adventure with striking character art and dialogue.",
+        features: "HTML5, Story."
+      },
+      'LaceyFlashDemo.html': {
+        title: 'Lacey Flash Games (Demo)',
+        year: '2022',
+        system: 'PC',
+        genre: 'Demo/Flash',
+        cover: 'LaceyFlashDemo.webp',
+        description: "A demo wrapper for curated Flash content and creative experiments.",
+        features: "Flash (Ruffle), Demo."
+      },
+      'Milkman Karlson.html': {
+        title: 'Milkman Karlson',
+        year: '2023',
+        system: 'PC',
+        genre: 'Action',
+        cover: 'Milkman Karlson.png',
+        description: "A quirky action experience inspired by indie platform mechanics.",
+        features: "HTML5, Action."
+      },
+      'Google Baseball.html': {
+        title: 'Google Baseball',
+        year: '2016',
+        system: 'PC',
+        genre: 'Sports/Arcade',
+        cover: 'Google Baseball.webp',
+        description: "A silly baseball-themed doodle game.",
+        features: "HTML5, Casual."
+      },
+      'Duck Life 4.html': {
+        title: 'Duck Life 4',
+        year: '2018',
+        system: 'PC',
+        genre: 'Simulation/Runner',
+        cover: 'Duck Life 4.png',
+        description: "Raise and train your ducks through races and evolution systems.",
+        features: "HTML5, Simulation."
+      },
+      'Karlson2D.html': {
+        title: 'Karlson 2D',
+        year: '2023',
+        system: 'PC',
+        genre: 'Platformer',
+        cover: 'Karlson2D.png',
+        description: "A pixel-platformer inspired by Karlson.",
+        features: "HTML5, Platformer."
+      },
+            'Karlson2D.html': {
+        title: 'Karlson 2D',
+        year: '2023',
+        system: 'PC',
+        genre: 'Platformer',
+        cover: 'Karlson2D.png',
+        description: "A pixel-platformer inspired by Karlson.",
+        features: "HTML5, Shooter."
+      },
+      'Balatro.html': {
+        title: 'Balatro',
+        year: '2023',
+        system: 'PC',
+        genre: 'Strategy',
+        cover: 'Balatro.png',
+        description: "roguelike deck-builder where you create powerful poker hands, stack wild synergies, and break the rules to chase absurdly high scores.",
+        features: "Cards, Strategy."
+      },
+      'Postal.html': {
+        title: 'Postal',
+        year: '1997',
+        system: 'PC',
+        genre: 'Shooter',
+        cover: 'Postal.png',
+        description: "isometric top-down shooter video game developed by Running with Scissors and published by Ripcord Games.",
+        features: "Top-down, Shooter."
+      },
+      'MeatBoy.html': {
+        title: 'MeatBoy',
+        year: '2008',
+        system: 'PC',
+        genre: 'Platformer',
+        cover: 'MeatBoy.png',
+        description: "challenging precision platformer where a small, skinless cube jumps and wall-slides through short, trap-filled levels, focusing on tight controls and trial-and-error gameplay.",
+        features: "HTML5, Platformer."
+      },
+      'FridayNightFunk.html': {
+        title: 'Friday Night Funkin',
+        year: '2020',
+        system: 'PC',
+        genre: 'Rhythm',
+        cover: 'FridayNightFunk.png',
+        description: "Rhythm game where you battle rivals in musical showdowns, hitting notes in time to the beat to prove your skills and impress your girlfriend.",
+        features: "HTML5, Rhythm."
+      },
+      'Basket Bros.html': {
+        title: 'Basket Bros',
+        year: '2020',
+        system: 'PC',
+        genre: 'Basketball',
+        cover: 'Basket Bros.webp',
+        description: "fast-paced arcade basketball game where you pull off wild dunks, flashy moves, and over-the-top plays in chaotic one-on-one matches.",
+        features: "HTML5, Basketball."
+      },
+      '2048.html': {
+        title: '2048',
+        year: '2014',
+        system: 'PC',
+        genre: 'Puzzle',
+        cover: '2048.png',
+        description: "single-player sliding tile puzzle video game written by Italian web developer Gabriele Cirulli and published on GitHub.",
+        features: "HTML5, Puzzle."
+      },
+      'Snow Rider 3D.html': {
+        title: 'Snow Rider 3D',
+        year: '2025',
+        system: 'Unity',
+        genre: 'Arcade, Runner',
+        cover: 'Snow Rider 3D.webp',
+        description: "sledding game where you race down endless snowy slopes at high speed.."
+      },
+      'Baldurs Gate 2.html': {
+        title: 'Baldur\'s Gate II',
+        year: '2013',
+        system: 'PC/Console',
+        genre: 'RPG',
+        cover: 'Baldurs Gate 2.png',
+        description: "The classic D&D role-playing game, following the Bhaalspawn saga in the realms of Amn and Tethyr.",
+        features: "Isometric, Real-time-with-pause, High Fantasy, Single-player, Narrative-heavy.",
+      },
+      'Poly Track.html': {
+        title: 'Poly Track',
+        year: '2023',
+        system: 'PC',
+        genre: 'Racing',
+        cover: 'Poly Track.webp',
+        description: "minimalist racing game where you drift through low-poly tracks, mastering tight turns and clean lines to beat your best times.",
+        features: "Low-Poly, Singleplayer, Racing.",
+      },
+'Terraria.html': {
+  title: 'Terraria',
+  year: '2011',
+  system: 'PC',
+  genre: 'Sandbox / Adventure',
+  cover: 'Terraria.png',
+  description: "a 2D sandbox adventure where you dig, build, fight, and explore a vast world filled with monsters, bosses, and endless possibilities.",
+  features: "Sandbox, Crafting, Exploration, Boss Fights, Multiplayer.",
+},
+'rooftopsnipers.html': {
+  title: 'Rooftop Snipers',
+  year: '2013',
+  system: 'PC',
+  genre: 'Arcade / Shooter',
+  cover: 'rooftopsnipers.webp',
+  description: "A frantic two-player duel on rooftop arenas—bounce bullets off walls, pick up power-ups, and be the last sniper standing.",
+  features: "Local Multiplayer, Fast-paced duels, HTML5 arcade."
+},
+'SRB2.html': {
+  title: 'Sonic Robo Blast 2',
+  year: '2006',
+  system: 'PC',
+  genre: 'Platformer, Fan Game',
+  cover: 'SRB2.png',
+  description: "A 3D Sonic fangame built on a modified Doom engine — SRB2 brings classic Sonic platforming into 3D levels.",
+  features: "Open-source, Multiplayer, 3D Platformer.",
+},
+'Gunblood.html': {
+  title: 'Gunblood',
+  year: '2009',
+  system: 'PC',
+  genre: 'Shooter',
+  cover: 'Gunblood.png',
+  description: "a fast-paced western dueling game where split-second reactions decide victory as you face off against increasingly skilled gunslingers.",
+  features: "Western, Reflex-Based, Duels, Singleplayer.",
+},
+'Grand Theft Auto Vice City.html': {
+  title: 'Grand Theft Auto Vice City',
+  year: '2002',
+  system: 'PC',
+  genre: 'Action / Open-World',
+  cover: 'Grand Theft Auto Vice City.png',
+  description: "an open-world action game set in a neon-soaked 1980s city where you rise through the criminal underworld with fast cars, guns, and style.",
+  features: "Open-World, Story-Driven, Crime, Vehicles, Singleplayer.",
+},
+'GorillaTag.html': {
+  title: 'Gorilla Tag',
+  year: '2021',
+  system: 'PC',
+  genre: 'Multiplayer / VR Platformer',
+  cover: 'GorillaTag.png',
+  description: "a fast-paced movement game where you swing, climb, and chase other players using only your arms to move like a gorilla.",
+  features: "Multiplayer, Physics Movement, Tag Game."
+},
+      'ironlung.html': {
+        title: 'Iron Lung',
+        year: '2023',
+        system: 'PC',
+        genre: 'Horror, Simulation',
+        cover: 'ironlung.png',
+        description: "Pilot a tiny submersible through a vast ocean of blood in this claustrophobic experimental horror experience."
+      },
+      'fnae.html': {
+        title: 'Five Nights At Epsteins',
+        year: '2015',
+        system: 'PC',
+        genre: 'Survival Horror, Creepypasta',
+        cover: 'fnae.webp',
+        description: "A disturbing fan-made survival horror inspired by the Five Nights series — survive the nights and uncover unsettling secrets."
+      },
+      'portal.html': {
+        title: 'Portal',
+        year: '2007',
+        system: 'PC',
+        genre: 'Puzzle, Portal',
+        cover: 'portal.jpg',
+        description: "Solve physics-based puzzles using the Aperture Science Handheld Portal Device while navigating increasingly bizarre test chambers."
+      },
+      'PDTA.html': {
+        title: 'Please Dont Touch Anything',
+        year: '2015',
+        system: 'PC',
+        genre: 'Puzzle, Experimental',
+        cover: 'PDTA.png',
+        description: "A surreal single-screen puzzle with multiple endings — you stand before a mysterious control panel, and are told: please don't touch anything."
+      },
+      'Doki.html': {
+        title: 'Doki Doki Literature Club! +',
+        year: '2017',
+        system: 'PC',
+        genre: 'Visual Novel, Psychological Horror, Metafiction',
+        cover: 'Doki.png',
+        description: "A deceptive dating-sim turned psychological horror; join the literature club, bond with its members, and experience unsettling metafictional twists that break the fourth wall.",
+        features: "Ren'Py port, Save-aware events, Disturbing themes"
+      },
+
+      /* Henry Stickmin Flash games (Flash / Ruffle ports) */
+      'BTB.html': {
+        title: 'Breaking the Bank',
+        year: '2008',
+        system: 'Flash (Ruffle) - Henry Stickmin',
+        genre: 'Point & Click, Flash, Henry Stickmin',
+        cover: 'BTB.png',
+        description: "The first Henry Stickmin adventure: plan and attempt an elaborate bank heist using a variety of laughably interactive choices."
+      },
+      'ETP.html': {
+        title: 'Escaping the Prison',
+        year: '2010',
+        system: 'Flash (Ruffle) - Henry Stickmin',
+        genre: 'Point & Click, Flash, Henry Stickmin',
+        cover: 'ETP.png',
+        description: "Help Henry break out of prison with a series of absurd escape attempts and branching comedic outcomes."
+      },
+      'STD.html': {
+        title: 'Stealing the Diamond',
+        year: '2011',
+        system: 'Flash (Ruffle) - Henry Stickmin',
+        genre: 'Point & Click, Flash, Henry Stickmin',
+        cover: 'STD.png',
+        description: "A stealthy and humorous mission where Henry attempts to steal a famous diamond—expect multiple goofy solutions."
+      },
+      'ITA.html': {
+        title: 'Infiltrating the Airship',
+        year: '2013',
+        system: 'Flash (Ruffle) - Henry Stickmin',
+        genre: 'Point & Click, Flash, Henry Stickmin',
+        cover: 'ITA.png',
+        description: "Infiltrate a high-tech airship with countless silly gadget choices and branching paths leading to chaotic results."
+      },
+      'FTC.html': {
+        title: 'Fleeing the Complex',
+        year: '2015',
+        system: 'Flash (Ruffle) - Henry Stickmin',
+        genre: 'Point & Click, Flash, Henry Stickmin',
+        cover: 'FTC.png',
+        description: "A high-energy escape adventure from a fortified complex where each decision yields a different hilarious outcome."
+      },
+
+      /* Added user-requested games */
+      'Untitledgg.html': {
+        title: 'Untitled Goose Game',
+        year: '2019',
+        system: 'PC',
+        genre: 'Puzzle, Stealth, Comedy',
+        cover: 'Untitledgg.png',
+        description: "Wreak adorable havoc as a mischievous goose in a sleepy village — honk, steal, and complete objectives while avoiding capture."
+      },
+      'Uplab.html': {
+        title: 'Upload Lab',
+        year: '2021',
+        system: 'PC',
+        genre: 'Puzzle, Sandbox',
+        cover: 'Uplab.png',
+        description: "Experiment with programmable contraptions and logic puzzles in a playful lab sandbox focused on creativity and problem solving."
+      },
+      'Brotato.html': {
+        title: 'Brotato',
+        year: '2022',
+        system: 'PC',
+        genre: 'Roguelite, Action, Shooter',
+        cover: 'Brotato.png',
+        description: "Top-down arena roguelite where you play as a potato wielding many weapons, fighting waves of enemies and upgrading between runs."
+      },
+      'cloverpit.html': {
+  title: 'Clover Pit',
+  year: '2023',
+  system: 'PC',
+  genre: 'Indie / Action',
+  cover: 'cloverpit.png',
+  description: "a fast-paced indie action experience focused on tight movement, quick reflexes, and challenging encounters.",
+  features: "Indie, Action, Singleplayer, Fast-Paced.",
+  warning: "Mouse dosent lock so if you cant turn all the way try turnig up sensitivity when in game."
+},
+
+'p3D.html': {
+  title: 'Pixel Gun 3D',
+  year: '2013',
+  system: 'PC',
+  genre: 'Shooter',
+  cover: 'p3D.png',
+  description: "a blocky first-person shooter featuring multiplayer battles, creative maps, and a wide variety of weapons.",
+  features: "Multiplayer, FPS, Online, Block-Style.",
+},
+
+'sam.html': {
+  title: 'Shift At Midnight',
+  year: '2024',
+  system: 'PC',
+  genre: 'Horror',
+  cover: 'sam.jpg',
+  description: "a suspenseful horror experience set during a late-night shift where tension builds with every passing minute.",
+  features: "Horror, Atmospheric, Singleplayer, Story-Driven.",
+},
+
+'fnac.html': {
+  title: 'Five Nights At Candys',
+  year: '2015',
+  system: 'PC',
+  genre: 'Horror / Survival',
+  cover: 'fnac.jpg',
+  description: "a point-and-click survival horror game where you monitor security cameras to survive against animatronic threats.",
+  features: "Survival, Horror, Strategy, Singleplayer.",
+},
+
+'fnac2.html': {
+  title: 'Five Nights At Candys 2',
+  year: '2016',
+  system: 'PC',
+  genre: 'Horror / Survival',
+  cover: 'fnac2.jpg',
+  description: "a sequel expanding the tense camera-based survival gameplay with new mechanics and animatronics.",
+  features: "Survival, Horror, Strategy, Singleplayer.",
+},
+
+'doom3.html': {
+  title: 'Doom 3',
+  year: '2004',
+  system: 'PC',
+  genre: 'FPS',
+  cover: 'doom3.png',
+  description: "a first-person shooter featuring intense combat, atmospheric environments, and challenging enemy encounters.",
+  features: "FPS, Singleplayer, Challenging, Classic.",
+  warning: "May not work, idrk tho (I didnt make this port)",
+},
+
+'antondemo.html': {
+  title: 'Anton Blast Demo',
+  year: '2023',
+  system: 'PC',
+  genre: 'Action / Platformer',
+  cover: 'antondemo.png',
+  description: "a chaotic action-platformer demo focused on explosive movement, destruction, and high-speed level design.",
+  features: "Platformer, Fast-Paced, Indie, Singleplayer.",
+},
+
+'survivor.html': {
+  title: 'Survivor.IO',
+  year: '2022',
+  system: 'PC',
+  genre: 'Action / Roguelike',
+  cover: 'survivor.png',
+  description: "a top-down survival action game where you battle endless waves of enemies while upgrading powerful abilities.",
+  features: "Roguelike, Survival, Upgrades, Singleplayer.",
+},
+
+'tboir.html': {
+  title: 'The Binding of Isaac Rebirth',
+  year: '2014',
+  system: 'PC',
+  genre: 'Roguelike / Action',
+  cover: 'tboir.png',
+  description: "a dark roguelike dungeon crawler featuring procedurally generated levels, unique items, and intense boss fights.",
+  features: "Roguelike, Dungeon Crawler, Challenging, Singleplayer.",
+},
+
+'legostarwars.html': {
+  title: 'Lego Star Wars',
+  year: '2005',
+  system: 'PC',
+  genre: 'Action / Adventure',
+  cover: 'legostarwars.png',
+  description: "a family-friendly action adventure that retells iconic space saga moments with humor and cooperative gameplay.",
+  features: "Co-Op, Action, Adventure, Family-Friendly.",
+},
+
+'cm.html': {
+  title: 'Cooking Mama 1',
+  year: '2006',
+  system: 'PC',
+  genre: 'Simulation',
+  cover: 'cm.png',
+  description: "a cooking simulation game where you prepare meals through interactive mini-games and timed challenges.",
+  features: "Simulation, Mini-Games, Casual, Singleplayer.",
+},
+
+'cm2.html': {
+  title: 'Cooking Mama 2',
+  year: '2007',
+  system: 'PC',
+  genre: 'Simulation',
+  cover: 'cm2.png',
+  description: "a sequel adding new recipes, mini-games, and cooking challenges to the lighthearted culinary experience.",
+  features: "Simulation, Casual, Mini-Games, Singleplayer.",
+},
+
+'cm3.html': {
+  title: 'Cooking Mama 3',
+  year: '2009',
+  system: 'PC',
+  genre: 'Simulation',
+  cover: 'cm3.jpg',
+  description: "an expanded cooking simulation with more dishes, creative modes, and interactive preparation steps.",
+  features: "Simulation, Casual, Creative, Singleplayer.",
+},
+
+'slowroads.html': {
+  title: 'Slowroads',
+  year: '2022',
+  system: 'PC',
+  genre: 'Driving / Relaxing',
+  cover: 'slowroads.jpg',
+  description: "a calming endless driving experience focused on relaxing scenery, smooth roads, and stress-free exploration.",
+  features: "Relaxing, Driving, Endless, Singleplayer.",
+},
+
+'wwDIY.html': {
+  title: 'Wario Ware D.I.Y',
+  year: '2009',
+  system: 'PC',
+  genre: 'Party / Creation',
+  cover: 'wwDIY.png',
+  description: "a quirky microgame collection that lets you create and share your own fast-paced mini-games.",
+  features: "Mini-Games, Creation, Party, Singleplayer.",
+},
+
+'FFVII.html': {
+  title: 'Final Fantasy VII',
+  year: '1997',
+  system: 'PC',
+  genre: 'RPG',
+  cover: 'FFVII.png',
+  description: "a legendary role-playing game featuring a deep story, memorable characters, and strategic turn-based combat.",
+  features: "RPG, Story-Driven, Turn-Based, Singleplayer.",
+},
+
+'alchemy.html': {
+  title: 'Little Alchemy',
+  year: '2010',
+  system: 'PC',
+  genre: 'Puzzle',
+  cover: 'alchemy.png',
+  description: "a creative puzzle game where you combine elements to discover hundreds of new items and reactions.",
+  features: "Puzzle, Creative, Casual, Singleplayer.",
+},
+
+'marioparty.html': {
+  title: 'Mario Party 1',
+  year: '1998',
+  system: 'PC',
+  genre: 'Party',
+  cover: 'marioparty.png',
+  description: "a competitive party game filled with board-game mechanics and entertaining mini-games.",
+  features: "Party, Mini-Games, Multiplayer, Classic.",
+},
+
+'marioparty2.html': {
+  title: 'Mario Party 2',
+  year: '1999',
+  system: 'PC',
+  genre: 'Party',
+  cover: 'marioparty2.jpg',
+  description: "a sequel expanding the board-game fun with new mini-games, themes, and multiplayer chaos.",
+  features: "Party, Mini-Games, Multiplayer, Classic.",
+},
+
+'marioparty3.html': {
+  title: 'Mario Party 3',
+  year: '2000',
+  system: 'PC',
+  genre: 'Party',
+  cover: 'marioparty3.png',
+  description: "a classic party experience featuring competitive boards, creative mini-games, and chaotic multiplayer fun.",
+  features: "Party, Mini-Games, Multiplayer, Classic.",
+},
+      'silenthill.html': {
+  title: 'Silent Hill',
+  year: '1999',
+  system: 'PC',
+  genre: 'Horror / Survival',
+  cover: 'silenthill.png',
+  description: "a psychological survival horror game set in a fog-covered town filled with disturbing creatures, cryptic puzzles, and a haunting story.",
+  features: "Psychological Horror, Survival, Puzzles, Story-Driven, Singleplayer.",
+},
+    };
